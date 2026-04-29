@@ -1,0 +1,2202 @@
+[
+  {
+    "id": "numberlineninja-001",
+    "question": "What number is halfway between 42 and 62?",
+    "correctAnswer": "52",
+    "answers": [
+      "50",
+      "57",
+      "54",
+      "52"
+    ]
+  },
+  {
+    "id": "numberlineninja-002",
+    "question": "What number is halfway between 30 and 50?",
+    "correctAnswer": "40",
+    "answers": [
+      "38",
+      "40",
+      "45",
+      "42"
+    ]
+  },
+  {
+    "id": "numberlineninja-003",
+    "question": "What number is halfway between 69 and 89?",
+    "correctAnswer": "79",
+    "answers": [
+      "84",
+      "79",
+      "77",
+      "81"
+    ]
+  },
+  {
+    "id": "numberlineninja-004",
+    "question": "What number is halfway between 38 and 58?",
+    "correctAnswer": "48",
+    "answers": [
+      "46",
+      "50",
+      "53",
+      "48"
+    ]
+  },
+  {
+    "id": "numberlineninja-005",
+    "question": "What number is halfway between 59 and 79?",
+    "correctAnswer": "69",
+    "answers": [
+      "71",
+      "74",
+      "67",
+      "69"
+    ]
+  },
+  {
+    "id": "numberlineninja-006",
+    "question": "What number is halfway between 50 and 70?",
+    "correctAnswer": "60",
+    "answers": [
+      "65",
+      "62",
+      "58",
+      "60"
+    ]
+  },
+  {
+    "id": "numberlineninja-007",
+    "question": "What number is halfway between 92 and 112?",
+    "correctAnswer": "102",
+    "answers": [
+      "104",
+      "102",
+      "107",
+      "100"
+    ]
+  },
+  {
+    "id": "numberlineninja-008",
+    "question": "What number is halfway between 67 and 87?",
+    "correctAnswer": "77",
+    "answers": [
+      "79",
+      "77",
+      "75",
+      "82"
+    ]
+  },
+  {
+    "id": "numberlineninja-009",
+    "question": "What number is halfway between 12 and 32?",
+    "correctAnswer": "22",
+    "answers": [
+      "27",
+      "22",
+      "24",
+      "20"
+    ]
+  },
+  {
+    "id": "numberlineninja-010",
+    "question": "What number is halfway between 72 and 92?",
+    "correctAnswer": "82",
+    "answers": [
+      "84",
+      "82",
+      "80",
+      "87"
+    ]
+  },
+  {
+    "id": "numberlineninja-011",
+    "question": "What number is halfway between 94 and 114?",
+    "correctAnswer": "104",
+    "answers": [
+      "102",
+      "104",
+      "106",
+      "109"
+    ]
+  },
+  {
+    "id": "numberlineninja-012",
+    "question": "What number is halfway between 65 and 85?",
+    "correctAnswer": "75",
+    "answers": [
+      "75",
+      "80",
+      "77",
+      "73"
+    ]
+  },
+  {
+    "id": "numberlineninja-013",
+    "question": "What number is halfway between 84 and 104?",
+    "correctAnswer": "94",
+    "answers": [
+      "99",
+      "94",
+      "92",
+      "96"
+    ]
+  },
+  {
+    "id": "numberlineninja-014",
+    "question": "What number is halfway between 84 and 104?",
+    "correctAnswer": "94",
+    "answers": [
+      "96",
+      "99",
+      "92",
+      "94"
+    ]
+  },
+  {
+    "id": "numberlineninja-015",
+    "question": "What number is halfway between 68 and 88?",
+    "correctAnswer": "78",
+    "answers": [
+      "80",
+      "76",
+      "83",
+      "78"
+    ]
+  },
+  {
+    "id": "numberlineninja-016",
+    "question": "What number is halfway between 49 and 69?",
+    "correctAnswer": "59",
+    "answers": [
+      "61",
+      "64",
+      "57",
+      "59"
+    ]
+  },
+  {
+    "id": "numberlineninja-017",
+    "question": "What number is halfway between 48 and 68?",
+    "correctAnswer": "58",
+    "answers": [
+      "63",
+      "60",
+      "58",
+      "56"
+    ]
+  },
+  {
+    "id": "numberlineninja-018",
+    "question": "What number is halfway between 26 and 46?",
+    "correctAnswer": "36",
+    "answers": [
+      "41",
+      "38",
+      "36",
+      "34"
+    ]
+  },
+  {
+    "id": "numberlineninja-019",
+    "question": "What number is halfway between 74 and 94?",
+    "correctAnswer": "84",
+    "answers": [
+      "82",
+      "89",
+      "86",
+      "84"
+    ]
+  },
+  {
+    "id": "numberlineninja-020",
+    "question": "What number is halfway between 81 and 101?",
+    "correctAnswer": "91",
+    "answers": [
+      "93",
+      "89",
+      "96",
+      "91"
+    ]
+  },
+  {
+    "id": "numberlineninja-021",
+    "question": "What number is halfway between 36 and 56?",
+    "correctAnswer": "46",
+    "answers": [
+      "48",
+      "46",
+      "51",
+      "44"
+    ]
+  },
+  {
+    "id": "numberlineninja-022",
+    "question": "What number is halfway between 73 and 93?",
+    "correctAnswer": "83",
+    "answers": [
+      "85",
+      "88",
+      "83",
+      "81"
+    ]
+  },
+  {
+    "id": "numberlineninja-023",
+    "question": "What number is halfway between 10 and 30?",
+    "correctAnswer": "20",
+    "answers": [
+      "18",
+      "22",
+      "25",
+      "20"
+    ]
+  },
+  {
+    "id": "numberlineninja-024",
+    "question": "What number is halfway between 95 and 115?",
+    "correctAnswer": "105",
+    "answers": [
+      "110",
+      "107",
+      "105",
+      "103"
+    ]
+  },
+  {
+    "id": "numberlineninja-025",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "69",
+      "64",
+      "66",
+      "62"
+    ]
+  },
+  {
+    "id": "numberlineninja-026",
+    "question": "What number is halfway between 24 and 44?",
+    "correctAnswer": "34",
+    "answers": [
+      "36",
+      "32",
+      "34",
+      "39"
+    ]
+  },
+  {
+    "id": "numberlineninja-027",
+    "question": "What number is halfway between 1 and 21?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "11",
+      "9",
+      "13"
+    ]
+  },
+  {
+    "id": "numberlineninja-028",
+    "question": "What number is halfway between 75 and 95?",
+    "correctAnswer": "85",
+    "answers": [
+      "90",
+      "83",
+      "87",
+      "85"
+    ]
+  },
+  {
+    "id": "numberlineninja-029",
+    "question": "What number is halfway between 49 and 69?",
+    "correctAnswer": "59",
+    "answers": [
+      "57",
+      "59",
+      "61",
+      "64"
+    ]
+  },
+  {
+    "id": "numberlineninja-030",
+    "question": "What number is halfway between 62 and 82?",
+    "correctAnswer": "72",
+    "answers": [
+      "72",
+      "70",
+      "74",
+      "77"
+    ]
+  },
+  {
+    "id": "numberlineninja-031",
+    "question": "What number is halfway between 33 and 53?",
+    "correctAnswer": "43",
+    "answers": [
+      "41",
+      "43",
+      "48",
+      "45"
+    ]
+  },
+  {
+    "id": "numberlineninja-032",
+    "question": "What number is halfway between 1 and 21?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "13",
+      "11",
+      "9"
+    ]
+  },
+  {
+    "id": "numberlineninja-033",
+    "question": "What number is halfway between 99 and 119?",
+    "correctAnswer": "109",
+    "answers": [
+      "107",
+      "111",
+      "114",
+      "109"
+    ]
+  },
+  {
+    "id": "numberlineninja-034",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "23",
+      "21",
+      "26",
+      "19"
+    ]
+  },
+  {
+    "id": "numberlineninja-035",
+    "question": "What number is halfway between 77 and 97?",
+    "correctAnswer": "87",
+    "answers": [
+      "89",
+      "87",
+      "92",
+      "85"
+    ]
+  },
+  {
+    "id": "numberlineninja-036",
+    "question": "What number is halfway between 31 and 51?",
+    "correctAnswer": "41",
+    "answers": [
+      "39",
+      "41",
+      "43",
+      "46"
+    ]
+  },
+  {
+    "id": "numberlineninja-037",
+    "question": "What number is halfway between 66 and 86?",
+    "correctAnswer": "76",
+    "answers": [
+      "78",
+      "81",
+      "76",
+      "74"
+    ]
+  },
+  {
+    "id": "numberlineninja-038",
+    "question": "What number is halfway between 28 and 48?",
+    "correctAnswer": "38",
+    "answers": [
+      "36",
+      "38",
+      "40",
+      "43"
+    ]
+  },
+  {
+    "id": "numberlineninja-039",
+    "question": "What number is halfway between 92 and 112?",
+    "correctAnswer": "102",
+    "answers": [
+      "107",
+      "102",
+      "104",
+      "100"
+    ]
+  },
+  {
+    "id": "numberlineninja-040",
+    "question": "What number is halfway between 73 and 93?",
+    "correctAnswer": "83",
+    "answers": [
+      "85",
+      "81",
+      "88",
+      "83"
+    ]
+  },
+  {
+    "id": "numberlineninja-041",
+    "question": "What number is halfway between 93 and 113?",
+    "correctAnswer": "103",
+    "answers": [
+      "101",
+      "103",
+      "108",
+      "105"
+    ]
+  },
+  {
+    "id": "numberlineninja-042",
+    "question": "What number is halfway between 13 and 33?",
+    "correctAnswer": "23",
+    "answers": [
+      "28",
+      "21",
+      "25",
+      "23"
+    ]
+  },
+  {
+    "id": "numberlineninja-043",
+    "question": "What number is halfway between 95 and 115?",
+    "correctAnswer": "105",
+    "answers": [
+      "105",
+      "103",
+      "107",
+      "110"
+    ]
+  },
+  {
+    "id": "numberlineninja-044",
+    "question": "What number is halfway between 49 and 69?",
+    "correctAnswer": "59",
+    "answers": [
+      "64",
+      "59",
+      "61",
+      "57"
+    ]
+  },
+  {
+    "id": "numberlineninja-045",
+    "question": "What number is halfway between 19 and 39?",
+    "correctAnswer": "29",
+    "answers": [
+      "31",
+      "27",
+      "34",
+      "29"
+    ]
+  },
+  {
+    "id": "numberlineninja-046",
+    "question": "What number is halfway between 76 and 96?",
+    "correctAnswer": "86",
+    "answers": [
+      "86",
+      "91",
+      "88",
+      "84"
+    ]
+  },
+  {
+    "id": "numberlineninja-047",
+    "question": "What number is halfway between 23 and 43?",
+    "correctAnswer": "33",
+    "answers": [
+      "31",
+      "33",
+      "35",
+      "38"
+    ]
+  },
+  {
+    "id": "numberlineninja-048",
+    "question": "What number is halfway between 91 and 111?",
+    "correctAnswer": "101",
+    "answers": [
+      "101",
+      "103",
+      "106",
+      "99"
+    ]
+  },
+  {
+    "id": "numberlineninja-049",
+    "question": "What number is halfway between 2 and 22?",
+    "correctAnswer": "12",
+    "answers": [
+      "14",
+      "12",
+      "17",
+      "10"
+    ]
+  },
+  {
+    "id": "numberlineninja-050",
+    "question": "What number is halfway between 19 and 39?",
+    "correctAnswer": "29",
+    "answers": [
+      "27",
+      "31",
+      "29",
+      "34"
+    ]
+  },
+  {
+    "id": "numberlineninja-051",
+    "question": "What number is halfway between 32 and 52?",
+    "correctAnswer": "42",
+    "answers": [
+      "42",
+      "44",
+      "47",
+      "40"
+    ]
+  },
+  {
+    "id": "numberlineninja-052",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "30",
+      "26",
+      "28",
+      "33"
+    ]
+  },
+  {
+    "id": "numberlineninja-053",
+    "question": "What number is halfway between 63 and 83?",
+    "correctAnswer": "73",
+    "answers": [
+      "75",
+      "71",
+      "78",
+      "73"
+    ]
+  },
+  {
+    "id": "numberlineninja-054",
+    "question": "What number is halfway between 20 and 40?",
+    "correctAnswer": "30",
+    "answers": [
+      "32",
+      "35",
+      "28",
+      "30"
+    ]
+  },
+  {
+    "id": "numberlineninja-055",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "19",
+      "26",
+      "23",
+      "21"
+    ]
+  },
+  {
+    "id": "numberlineninja-056",
+    "question": "What number is halfway between 42 and 62?",
+    "correctAnswer": "52",
+    "answers": [
+      "50",
+      "57",
+      "54",
+      "52"
+    ]
+  },
+  {
+    "id": "numberlineninja-057",
+    "question": "What number is halfway between 92 and 112?",
+    "correctAnswer": "102",
+    "answers": [
+      "100",
+      "107",
+      "104",
+      "102"
+    ]
+  },
+  {
+    "id": "numberlineninja-058",
+    "question": "What number is halfway between 43 and 63?",
+    "correctAnswer": "53",
+    "answers": [
+      "58",
+      "53",
+      "55",
+      "51"
+    ]
+  },
+  {
+    "id": "numberlineninja-059",
+    "question": "What number is halfway between 62 and 82?",
+    "correctAnswer": "72",
+    "answers": [
+      "74",
+      "70",
+      "77",
+      "72"
+    ]
+  },
+  {
+    "id": "numberlineninja-060",
+    "question": "What number is halfway between 88 and 108?",
+    "correctAnswer": "98",
+    "answers": [
+      "100",
+      "98",
+      "96",
+      "103"
+    ]
+  },
+  {
+    "id": "numberlineninja-061",
+    "question": "What number is halfway between 77 and 97?",
+    "correctAnswer": "87",
+    "answers": [
+      "89",
+      "85",
+      "87",
+      "92"
+    ]
+  },
+  {
+    "id": "numberlineninja-062",
+    "question": "What number is halfway between 69 and 89?",
+    "correctAnswer": "79",
+    "answers": [
+      "81",
+      "79",
+      "84",
+      "77"
+    ]
+  },
+  {
+    "id": "numberlineninja-063",
+    "question": "What number is halfway between 81 and 101?",
+    "correctAnswer": "91",
+    "answers": [
+      "91",
+      "96",
+      "93",
+      "89"
+    ]
+  },
+  {
+    "id": "numberlineninja-064",
+    "question": "What number is halfway between 47 and 67?",
+    "correctAnswer": "57",
+    "answers": [
+      "55",
+      "62",
+      "57",
+      "59"
+    ]
+  },
+  {
+    "id": "numberlineninja-065",
+    "question": "What number is halfway between 78 and 98?",
+    "correctAnswer": "88",
+    "answers": [
+      "93",
+      "90",
+      "88",
+      "86"
+    ]
+  },
+  {
+    "id": "numberlineninja-066",
+    "question": "What number is halfway between 37 and 57?",
+    "correctAnswer": "47",
+    "answers": [
+      "47",
+      "45",
+      "52",
+      "49"
+    ]
+  },
+  {
+    "id": "numberlineninja-067",
+    "question": "What number is halfway between 100 and 120?",
+    "correctAnswer": "110",
+    "answers": [
+      "108",
+      "110",
+      "115",
+      "112"
+    ]
+  },
+  {
+    "id": "numberlineninja-068",
+    "question": "What number is halfway between 44 and 64?",
+    "correctAnswer": "54",
+    "answers": [
+      "59",
+      "54",
+      "56",
+      "52"
+    ]
+  },
+  {
+    "id": "numberlineninja-069",
+    "question": "What number is halfway between 66 and 86?",
+    "correctAnswer": "76",
+    "answers": [
+      "74",
+      "78",
+      "81",
+      "76"
+    ]
+  },
+  {
+    "id": "numberlineninja-070",
+    "question": "What number is halfway between 7 and 27?",
+    "correctAnswer": "17",
+    "answers": [
+      "17",
+      "15",
+      "22",
+      "19"
+    ]
+  },
+  {
+    "id": "numberlineninja-071",
+    "question": "What number is halfway between 31 and 51?",
+    "correctAnswer": "41",
+    "answers": [
+      "46",
+      "39",
+      "41",
+      "43"
+    ]
+  },
+  {
+    "id": "numberlineninja-072",
+    "question": "What number is halfway between 36 and 56?",
+    "correctAnswer": "46",
+    "answers": [
+      "46",
+      "51",
+      "44",
+      "48"
+    ]
+  },
+  {
+    "id": "numberlineninja-073",
+    "question": "What number is halfway between 56 and 76?",
+    "correctAnswer": "66",
+    "answers": [
+      "66",
+      "71",
+      "64",
+      "68"
+    ]
+  },
+  {
+    "id": "numberlineninja-074",
+    "question": "What number is halfway between 74 and 94?",
+    "correctAnswer": "84",
+    "answers": [
+      "84",
+      "89",
+      "86",
+      "82"
+    ]
+  },
+  {
+    "id": "numberlineninja-075",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "64",
+      "69",
+      "62",
+      "66"
+    ]
+  },
+  {
+    "id": "numberlineninja-076",
+    "question": "What number is halfway between 76 and 96?",
+    "correctAnswer": "86",
+    "answers": [
+      "84",
+      "86",
+      "88",
+      "91"
+    ]
+  },
+  {
+    "id": "numberlineninja-077",
+    "question": "What number is halfway between 72 and 92?",
+    "correctAnswer": "82",
+    "answers": [
+      "82",
+      "84",
+      "80",
+      "87"
+    ]
+  },
+  {
+    "id": "numberlineninja-078",
+    "question": "What number is halfway between 76 and 96?",
+    "correctAnswer": "86",
+    "answers": [
+      "88",
+      "84",
+      "86",
+      "91"
+    ]
+  },
+  {
+    "id": "numberlineninja-079",
+    "question": "What number is halfway between 65 and 85?",
+    "correctAnswer": "75",
+    "answers": [
+      "80",
+      "75",
+      "73",
+      "77"
+    ]
+  },
+  {
+    "id": "numberlineninja-080",
+    "question": "What number is halfway between 93 and 113?",
+    "correctAnswer": "103",
+    "answers": [
+      "105",
+      "103",
+      "101",
+      "108"
+    ]
+  },
+  {
+    "id": "numberlineninja-081",
+    "question": "What number is halfway between 47 and 67?",
+    "correctAnswer": "57",
+    "answers": [
+      "59",
+      "55",
+      "57",
+      "62"
+    ]
+  },
+  {
+    "id": "numberlineninja-082",
+    "question": "What number is halfway between 97 and 117?",
+    "correctAnswer": "107",
+    "answers": [
+      "105",
+      "112",
+      "107",
+      "109"
+    ]
+  },
+  {
+    "id": "numberlineninja-083",
+    "question": "What number is halfway between 79 and 99?",
+    "correctAnswer": "89",
+    "answers": [
+      "91",
+      "94",
+      "87",
+      "89"
+    ]
+  },
+  {
+    "id": "numberlineninja-084",
+    "question": "What number is halfway between 94 and 114?",
+    "correctAnswer": "104",
+    "answers": [
+      "109",
+      "102",
+      "104",
+      "106"
+    ]
+  },
+  {
+    "id": "numberlineninja-085",
+    "question": "What number is halfway between 82 and 102?",
+    "correctAnswer": "92",
+    "answers": [
+      "94",
+      "90",
+      "92",
+      "97"
+    ]
+  },
+  {
+    "id": "numberlineninja-086",
+    "question": "What number is halfway between 48 and 68?",
+    "correctAnswer": "58",
+    "answers": [
+      "63",
+      "60",
+      "56",
+      "58"
+    ]
+  },
+  {
+    "id": "numberlineninja-087",
+    "question": "What number is halfway between 60 and 80?",
+    "correctAnswer": "70",
+    "answers": [
+      "70",
+      "68",
+      "72",
+      "75"
+    ]
+  },
+  {
+    "id": "numberlineninja-088",
+    "question": "What number is halfway between 13 and 33?",
+    "correctAnswer": "23",
+    "answers": [
+      "21",
+      "25",
+      "23",
+      "28"
+    ]
+  },
+  {
+    "id": "numberlineninja-089",
+    "question": "What number is halfway between 23 and 43?",
+    "correctAnswer": "33",
+    "answers": [
+      "33",
+      "31",
+      "35",
+      "38"
+    ]
+  },
+  {
+    "id": "numberlineninja-090",
+    "question": "What number is halfway between 37 and 57?",
+    "correctAnswer": "47",
+    "answers": [
+      "49",
+      "47",
+      "52",
+      "45"
+    ]
+  },
+  {
+    "id": "numberlineninja-091",
+    "question": "What number is halfway between 1 and 21?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "11",
+      "13",
+      "9"
+    ]
+  },
+  {
+    "id": "numberlineninja-092",
+    "question": "What number is halfway between 36 and 56?",
+    "correctAnswer": "46",
+    "answers": [
+      "51",
+      "44",
+      "48",
+      "46"
+    ]
+  },
+  {
+    "id": "numberlineninja-093",
+    "question": "What number is halfway between 60 and 80?",
+    "correctAnswer": "70",
+    "answers": [
+      "68",
+      "70",
+      "72",
+      "75"
+    ]
+  },
+  {
+    "id": "numberlineninja-094",
+    "question": "What number is halfway between 83 and 103?",
+    "correctAnswer": "93",
+    "answers": [
+      "98",
+      "95",
+      "91",
+      "93"
+    ]
+  },
+  {
+    "id": "numberlineninja-095",
+    "question": "What number is halfway between 58 and 78?",
+    "correctAnswer": "68",
+    "answers": [
+      "73",
+      "66",
+      "70",
+      "68"
+    ]
+  },
+  {
+    "id": "numberlineninja-096",
+    "question": "What number is halfway between 33 and 53?",
+    "correctAnswer": "43",
+    "answers": [
+      "48",
+      "41",
+      "43",
+      "45"
+    ]
+  },
+  {
+    "id": "numberlineninja-097",
+    "question": "What number is halfway between 66 and 86?",
+    "correctAnswer": "76",
+    "answers": [
+      "76",
+      "81",
+      "78",
+      "74"
+    ]
+  },
+  {
+    "id": "numberlineninja-098",
+    "question": "What number is halfway between 61 and 81?",
+    "correctAnswer": "71",
+    "answers": [
+      "71",
+      "73",
+      "76",
+      "69"
+    ]
+  },
+  {
+    "id": "numberlineninja-099",
+    "question": "What number is halfway between 77 and 97?",
+    "correctAnswer": "87",
+    "answers": [
+      "89",
+      "85",
+      "92",
+      "87"
+    ]
+  },
+  {
+    "id": "numberlineninja-100",
+    "question": "What number is halfway between 40 and 60?",
+    "correctAnswer": "50",
+    "answers": [
+      "50",
+      "52",
+      "55",
+      "48"
+    ]
+  },
+  {
+    "id": "numberlineninja-101",
+    "question": "What number is halfway between 37 and 57?",
+    "correctAnswer": "47",
+    "answers": [
+      "52",
+      "47",
+      "45",
+      "49"
+    ]
+  },
+  {
+    "id": "numberlineninja-102",
+    "question": "What number is halfway between 27 and 47?",
+    "correctAnswer": "37",
+    "answers": [
+      "35",
+      "42",
+      "37",
+      "39"
+    ]
+  },
+  {
+    "id": "numberlineninja-103",
+    "question": "What number is halfway between 89 and 109?",
+    "correctAnswer": "99",
+    "answers": [
+      "99",
+      "97",
+      "101",
+      "104"
+    ]
+  },
+  {
+    "id": "numberlineninja-104",
+    "question": "What number is halfway between 45 and 65?",
+    "correctAnswer": "55",
+    "answers": [
+      "55",
+      "60",
+      "53",
+      "57"
+    ]
+  },
+  {
+    "id": "numberlineninja-105",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "30",
+      "28",
+      "26",
+      "33"
+    ]
+  },
+  {
+    "id": "numberlineninja-106",
+    "question": "What number is halfway between 89 and 109?",
+    "correctAnswer": "99",
+    "answers": [
+      "104",
+      "97",
+      "101",
+      "99"
+    ]
+  },
+  {
+    "id": "numberlineninja-107",
+    "question": "What number is halfway between 0 and 20?",
+    "correctAnswer": "10",
+    "answers": [
+      "8",
+      "12",
+      "10",
+      "15"
+    ]
+  },
+  {
+    "id": "numberlineninja-108",
+    "question": "What number is halfway between 5 and 25?",
+    "correctAnswer": "15",
+    "answers": [
+      "17",
+      "13",
+      "20",
+      "15"
+    ]
+  },
+  {
+    "id": "numberlineninja-109",
+    "question": "What number is halfway between 8 and 28?",
+    "correctAnswer": "18",
+    "answers": [
+      "23",
+      "18",
+      "20",
+      "16"
+    ]
+  },
+  {
+    "id": "numberlineninja-110",
+    "question": "What number is halfway between 25 and 45?",
+    "correctAnswer": "35",
+    "answers": [
+      "35",
+      "40",
+      "37",
+      "33"
+    ]
+  },
+  {
+    "id": "numberlineninja-111",
+    "question": "What number is halfway between 1 and 21?",
+    "correctAnswer": "11",
+    "answers": [
+      "11",
+      "16",
+      "13",
+      "9"
+    ]
+  },
+  {
+    "id": "numberlineninja-112",
+    "question": "What number is halfway between 73 and 93?",
+    "correctAnswer": "83",
+    "answers": [
+      "88",
+      "81",
+      "83",
+      "85"
+    ]
+  },
+  {
+    "id": "numberlineninja-113",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "28",
+      "26",
+      "33",
+      "30"
+    ]
+  },
+  {
+    "id": "numberlineninja-114",
+    "question": "What number is halfway between 47 and 67?",
+    "correctAnswer": "57",
+    "answers": [
+      "55",
+      "59",
+      "57",
+      "62"
+    ]
+  },
+  {
+    "id": "numberlineninja-115",
+    "question": "What number is halfway between 76 and 96?",
+    "correctAnswer": "86",
+    "answers": [
+      "91",
+      "84",
+      "88",
+      "86"
+    ]
+  },
+  {
+    "id": "numberlineninja-116",
+    "question": "What number is halfway between 57 and 77?",
+    "correctAnswer": "67",
+    "answers": [
+      "72",
+      "67",
+      "69",
+      "65"
+    ]
+  },
+  {
+    "id": "numberlineninja-117",
+    "question": "What number is halfway between 57 and 77?",
+    "correctAnswer": "67",
+    "answers": [
+      "67",
+      "69",
+      "72",
+      "65"
+    ]
+  },
+  {
+    "id": "numberlineninja-118",
+    "question": "What number is halfway between 92 and 112?",
+    "correctAnswer": "102",
+    "answers": [
+      "104",
+      "102",
+      "100",
+      "107"
+    ]
+  },
+  {
+    "id": "numberlineninja-119",
+    "question": "What number is halfway between 68 and 88?",
+    "correctAnswer": "78",
+    "answers": [
+      "76",
+      "83",
+      "80",
+      "78"
+    ]
+  },
+  {
+    "id": "numberlineninja-120",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "30",
+      "28",
+      "26",
+      "33"
+    ]
+  },
+  {
+    "id": "numberlineninja-121",
+    "question": "What number is halfway between 99 and 119?",
+    "correctAnswer": "109",
+    "answers": [
+      "114",
+      "111",
+      "109",
+      "107"
+    ]
+  },
+  {
+    "id": "numberlineninja-122",
+    "question": "What number is halfway between 92 and 112?",
+    "correctAnswer": "102",
+    "answers": [
+      "102",
+      "104",
+      "107",
+      "100"
+    ]
+  },
+  {
+    "id": "numberlineninja-123",
+    "question": "What number is halfway between 90 and 110?",
+    "correctAnswer": "100",
+    "answers": [
+      "105",
+      "102",
+      "98",
+      "100"
+    ]
+  },
+  {
+    "id": "numberlineninja-124",
+    "question": "What number is halfway between 67 and 87?",
+    "correctAnswer": "77",
+    "answers": [
+      "79",
+      "77",
+      "82",
+      "75"
+    ]
+  },
+  {
+    "id": "numberlineninja-125",
+    "question": "What number is halfway between 86 and 106?",
+    "correctAnswer": "96",
+    "answers": [
+      "98",
+      "96",
+      "94",
+      "101"
+    ]
+  },
+  {
+    "id": "numberlineninja-126",
+    "question": "What number is halfway between 12 and 32?",
+    "correctAnswer": "22",
+    "answers": [
+      "24",
+      "20",
+      "22",
+      "27"
+    ]
+  },
+  {
+    "id": "numberlineninja-127",
+    "question": "What number is halfway between 53 and 73?",
+    "correctAnswer": "63",
+    "answers": [
+      "68",
+      "65",
+      "63",
+      "61"
+    ]
+  },
+  {
+    "id": "numberlineninja-128",
+    "question": "What number is halfway between 15 and 35?",
+    "correctAnswer": "25",
+    "answers": [
+      "23",
+      "30",
+      "25",
+      "27"
+    ]
+  },
+  {
+    "id": "numberlineninja-129",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "26",
+      "33",
+      "30",
+      "28"
+    ]
+  },
+  {
+    "id": "numberlineninja-130",
+    "question": "What number is halfway between 44 and 64?",
+    "correctAnswer": "54",
+    "answers": [
+      "54",
+      "52",
+      "59",
+      "56"
+    ]
+  },
+  {
+    "id": "numberlineninja-131",
+    "question": "What number is halfway between 70 and 90?",
+    "correctAnswer": "80",
+    "answers": [
+      "80",
+      "85",
+      "78",
+      "82"
+    ]
+  },
+  {
+    "id": "numberlineninja-132",
+    "question": "What number is halfway between 27 and 47?",
+    "correctAnswer": "37",
+    "answers": [
+      "37",
+      "35",
+      "39",
+      "42"
+    ]
+  },
+  {
+    "id": "numberlineninja-133",
+    "question": "What number is halfway between 90 and 110?",
+    "correctAnswer": "100",
+    "answers": [
+      "100",
+      "102",
+      "98",
+      "105"
+    ]
+  },
+  {
+    "id": "numberlineninja-134",
+    "question": "What number is halfway between 63 and 83?",
+    "correctAnswer": "73",
+    "answers": [
+      "75",
+      "71",
+      "78",
+      "73"
+    ]
+  },
+  {
+    "id": "numberlineninja-135",
+    "question": "What number is halfway between 56 and 76?",
+    "correctAnswer": "66",
+    "answers": [
+      "71",
+      "68",
+      "64",
+      "66"
+    ]
+  },
+  {
+    "id": "numberlineninja-136",
+    "question": "What number is halfway between 100 and 120?",
+    "correctAnswer": "110",
+    "answers": [
+      "112",
+      "115",
+      "108",
+      "110"
+    ]
+  },
+  {
+    "id": "numberlineninja-137",
+    "question": "What number is halfway between 5 and 25?",
+    "correctAnswer": "15",
+    "answers": [
+      "17",
+      "15",
+      "20",
+      "13"
+    ]
+  },
+  {
+    "id": "numberlineninja-138",
+    "question": "What number is halfway between 72 and 92?",
+    "correctAnswer": "82",
+    "answers": [
+      "84",
+      "82",
+      "87",
+      "80"
+    ]
+  },
+  {
+    "id": "numberlineninja-139",
+    "question": "What number is halfway between 32 and 52?",
+    "correctAnswer": "42",
+    "answers": [
+      "47",
+      "44",
+      "42",
+      "40"
+    ]
+  },
+  {
+    "id": "numberlineninja-140",
+    "question": "What number is halfway between 35 and 55?",
+    "correctAnswer": "45",
+    "answers": [
+      "43",
+      "45",
+      "50",
+      "47"
+    ]
+  },
+  {
+    "id": "numberlineninja-141",
+    "question": "What number is halfway between 43 and 63?",
+    "correctAnswer": "53",
+    "answers": [
+      "53",
+      "51",
+      "58",
+      "55"
+    ]
+  },
+  {
+    "id": "numberlineninja-142",
+    "question": "What number is halfway between 97 and 117?",
+    "correctAnswer": "107",
+    "answers": [
+      "109",
+      "105",
+      "112",
+      "107"
+    ]
+  },
+  {
+    "id": "numberlineninja-143",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "26",
+      "21",
+      "23",
+      "19"
+    ]
+  },
+  {
+    "id": "numberlineninja-144",
+    "question": "What number is halfway between 87 and 107?",
+    "correctAnswer": "97",
+    "answers": [
+      "95",
+      "97",
+      "102",
+      "99"
+    ]
+  },
+  {
+    "id": "numberlineninja-145",
+    "question": "What number is halfway between 86 and 106?",
+    "correctAnswer": "96",
+    "answers": [
+      "101",
+      "96",
+      "94",
+      "98"
+    ]
+  },
+  {
+    "id": "numberlineninja-146",
+    "question": "What number is halfway between 1 and 21?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "11",
+      "9",
+      "13"
+    ]
+  },
+  {
+    "id": "numberlineninja-147",
+    "question": "What number is halfway between 55 and 75?",
+    "correctAnswer": "65",
+    "answers": [
+      "63",
+      "65",
+      "70",
+      "67"
+    ]
+  },
+  {
+    "id": "numberlineninja-148",
+    "question": "What number is halfway between 50 and 70?",
+    "correctAnswer": "60",
+    "answers": [
+      "62",
+      "58",
+      "60",
+      "65"
+    ]
+  },
+  {
+    "id": "numberlineninja-149",
+    "question": "What number is halfway between 5 and 25?",
+    "correctAnswer": "15",
+    "answers": [
+      "13",
+      "20",
+      "15",
+      "17"
+    ]
+  },
+  {
+    "id": "numberlineninja-150",
+    "question": "What number is halfway between 13 and 33?",
+    "correctAnswer": "23",
+    "answers": [
+      "21",
+      "28",
+      "25",
+      "23"
+    ]
+  },
+  {
+    "id": "numberlineninja-151",
+    "question": "What number is halfway between 26 and 46?",
+    "correctAnswer": "36",
+    "answers": [
+      "38",
+      "41",
+      "34",
+      "36"
+    ]
+  },
+  {
+    "id": "numberlineninja-152",
+    "question": "What number is halfway between 9 and 29?",
+    "correctAnswer": "19",
+    "answers": [
+      "24",
+      "19",
+      "17",
+      "21"
+    ]
+  },
+  {
+    "id": "numberlineninja-153",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "19",
+      "21",
+      "26",
+      "23"
+    ]
+  },
+  {
+    "id": "numberlineninja-154",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "64",
+      "62",
+      "69",
+      "66"
+    ]
+  },
+  {
+    "id": "numberlineninja-155",
+    "question": "What number is halfway between 59 and 79?",
+    "correctAnswer": "69",
+    "answers": [
+      "67",
+      "74",
+      "71",
+      "69"
+    ]
+  },
+  {
+    "id": "numberlineninja-156",
+    "question": "What number is halfway between 38 and 58?",
+    "correctAnswer": "48",
+    "answers": [
+      "50",
+      "53",
+      "46",
+      "48"
+    ]
+  },
+  {
+    "id": "numberlineninja-157",
+    "question": "What number is halfway between 81 and 101?",
+    "correctAnswer": "91",
+    "answers": [
+      "96",
+      "93",
+      "89",
+      "91"
+    ]
+  },
+  {
+    "id": "numberlineninja-158",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "33",
+      "26",
+      "28",
+      "30"
+    ]
+  },
+  {
+    "id": "numberlineninja-159",
+    "question": "What number is halfway between 30 and 50?",
+    "correctAnswer": "40",
+    "answers": [
+      "38",
+      "40",
+      "45",
+      "42"
+    ]
+  },
+  {
+    "id": "numberlineninja-160",
+    "question": "What number is halfway between 99 and 119?",
+    "correctAnswer": "109",
+    "answers": [
+      "114",
+      "109",
+      "107",
+      "111"
+    ]
+  },
+  {
+    "id": "numberlineninja-161",
+    "question": "What number is halfway between 55 and 75?",
+    "correctAnswer": "65",
+    "answers": [
+      "65",
+      "67",
+      "63",
+      "70"
+    ]
+  },
+  {
+    "id": "numberlineninja-162",
+    "question": "What number is halfway between 48 and 68?",
+    "correctAnswer": "58",
+    "answers": [
+      "60",
+      "56",
+      "58",
+      "63"
+    ]
+  },
+  {
+    "id": "numberlineninja-163",
+    "question": "What number is halfway between 95 and 115?",
+    "correctAnswer": "105",
+    "answers": [
+      "110",
+      "107",
+      "105",
+      "103"
+    ]
+  },
+  {
+    "id": "numberlineninja-164",
+    "question": "What number is halfway between 61 and 81?",
+    "correctAnswer": "71",
+    "answers": [
+      "71",
+      "73",
+      "69",
+      "76"
+    ]
+  },
+  {
+    "id": "numberlineninja-165",
+    "question": "What number is halfway between 40 and 60?",
+    "correctAnswer": "50",
+    "answers": [
+      "55",
+      "50",
+      "48",
+      "52"
+    ]
+  },
+  {
+    "id": "numberlineninja-166",
+    "question": "What number is halfway between 36 and 56?",
+    "correctAnswer": "46",
+    "answers": [
+      "48",
+      "46",
+      "51",
+      "44"
+    ]
+  },
+  {
+    "id": "numberlineninja-167",
+    "question": "What number is halfway between 28 and 48?",
+    "correctAnswer": "38",
+    "answers": [
+      "43",
+      "36",
+      "38",
+      "40"
+    ]
+  },
+  {
+    "id": "numberlineninja-168",
+    "question": "What number is halfway between 89 and 109?",
+    "correctAnswer": "99",
+    "answers": [
+      "97",
+      "104",
+      "101",
+      "99"
+    ]
+  },
+  {
+    "id": "numberlineninja-169",
+    "question": "What number is halfway between 17 and 37?",
+    "correctAnswer": "27",
+    "answers": [
+      "32",
+      "25",
+      "29",
+      "27"
+    ]
+  },
+  {
+    "id": "numberlineninja-170",
+    "question": "What number is halfway between 47 and 67?",
+    "correctAnswer": "57",
+    "answers": [
+      "59",
+      "57",
+      "55",
+      "62"
+    ]
+  },
+  {
+    "id": "numberlineninja-171",
+    "question": "What number is halfway between 77 and 97?",
+    "correctAnswer": "87",
+    "answers": [
+      "92",
+      "89",
+      "87",
+      "85"
+    ]
+  },
+  {
+    "id": "numberlineninja-172",
+    "question": "What number is halfway between 76 and 96?",
+    "correctAnswer": "86",
+    "answers": [
+      "88",
+      "91",
+      "86",
+      "84"
+    ]
+  },
+  {
+    "id": "numberlineninja-173",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "23",
+      "19",
+      "21",
+      "26"
+    ]
+  },
+  {
+    "id": "numberlineninja-174",
+    "question": "What number is halfway between 15 and 35?",
+    "correctAnswer": "25",
+    "answers": [
+      "23",
+      "27",
+      "30",
+      "25"
+    ]
+  },
+  {
+    "id": "numberlineninja-175",
+    "question": "What number is halfway between 77 and 97?",
+    "correctAnswer": "87",
+    "answers": [
+      "89",
+      "85",
+      "92",
+      "87"
+    ]
+  },
+  {
+    "id": "numberlineninja-176",
+    "question": "What number is halfway between 100 and 120?",
+    "correctAnswer": "110",
+    "answers": [
+      "112",
+      "108",
+      "110",
+      "115"
+    ]
+  },
+  {
+    "id": "numberlineninja-177",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "62",
+      "66",
+      "64",
+      "69"
+    ]
+  },
+  {
+    "id": "numberlineninja-178",
+    "question": "What number is halfway between 29 and 49?",
+    "correctAnswer": "39",
+    "answers": [
+      "44",
+      "37",
+      "41",
+      "39"
+    ]
+  },
+  {
+    "id": "numberlineninja-179",
+    "question": "What number is halfway between 5 and 25?",
+    "correctAnswer": "15",
+    "answers": [
+      "13",
+      "20",
+      "15",
+      "17"
+    ]
+  },
+  {
+    "id": "numberlineninja-180",
+    "question": "What number is halfway between 2 and 22?",
+    "correctAnswer": "12",
+    "answers": [
+      "12",
+      "14",
+      "17",
+      "10"
+    ]
+  },
+  {
+    "id": "numberlineninja-181",
+    "question": "What number is halfway between 17 and 37?",
+    "correctAnswer": "27",
+    "answers": [
+      "29",
+      "27",
+      "25",
+      "32"
+    ]
+  },
+  {
+    "id": "numberlineninja-182",
+    "question": "What number is halfway between 68 and 88?",
+    "correctAnswer": "78",
+    "answers": [
+      "80",
+      "83",
+      "78",
+      "76"
+    ]
+  },
+  {
+    "id": "numberlineninja-183",
+    "question": "What number is halfway between 37 and 57?",
+    "correctAnswer": "47",
+    "answers": [
+      "47",
+      "52",
+      "45",
+      "49"
+    ]
+  },
+  {
+    "id": "numberlineninja-184",
+    "question": "What number is halfway between 32 and 52?",
+    "correctAnswer": "42",
+    "answers": [
+      "42",
+      "40",
+      "47",
+      "44"
+    ]
+  },
+  {
+    "id": "numberlineninja-185",
+    "question": "What number is halfway between 14 and 34?",
+    "correctAnswer": "24",
+    "answers": [
+      "24",
+      "26",
+      "22",
+      "29"
+    ]
+  },
+  {
+    "id": "numberlineninja-186",
+    "question": "What number is halfway between 6 and 26?",
+    "correctAnswer": "16",
+    "answers": [
+      "14",
+      "21",
+      "16",
+      "18"
+    ]
+  },
+  {
+    "id": "numberlineninja-187",
+    "question": "What number is halfway between 14 and 34?",
+    "correctAnswer": "24",
+    "answers": [
+      "22",
+      "29",
+      "24",
+      "26"
+    ]
+  },
+  {
+    "id": "numberlineninja-188",
+    "question": "What number is halfway between 24 and 44?",
+    "correctAnswer": "34",
+    "answers": [
+      "39",
+      "36",
+      "34",
+      "32"
+    ]
+  },
+  {
+    "id": "numberlineninja-189",
+    "question": "What number is halfway between 2 and 22?",
+    "correctAnswer": "12",
+    "answers": [
+      "12",
+      "10",
+      "14",
+      "17"
+    ]
+  },
+  {
+    "id": "numberlineninja-190",
+    "question": "What number is halfway between 36 and 56?",
+    "correctAnswer": "46",
+    "answers": [
+      "48",
+      "46",
+      "51",
+      "44"
+    ]
+  },
+  {
+    "id": "numberlineninja-191",
+    "question": "What number is halfway between 18 and 38?",
+    "correctAnswer": "28",
+    "answers": [
+      "33",
+      "26",
+      "30",
+      "28"
+    ]
+  },
+  {
+    "id": "numberlineninja-192",
+    "question": "What number is halfway between 97 and 117?",
+    "correctAnswer": "107",
+    "answers": [
+      "107",
+      "109",
+      "112",
+      "105"
+    ]
+  },
+  {
+    "id": "numberlineninja-193",
+    "question": "What number is halfway between 22 and 42?",
+    "correctAnswer": "32",
+    "answers": [
+      "37",
+      "34",
+      "30",
+      "32"
+    ]
+  },
+  {
+    "id": "numberlineninja-194",
+    "question": "What number is halfway between 5 and 25?",
+    "correctAnswer": "15",
+    "answers": [
+      "20",
+      "13",
+      "17",
+      "15"
+    ]
+  },
+  {
+    "id": "numberlineninja-195",
+    "question": "What number is halfway between 11 and 31?",
+    "correctAnswer": "21",
+    "answers": [
+      "21",
+      "19",
+      "23",
+      "26"
+    ]
+  },
+  {
+    "id": "numberlineninja-196",
+    "question": "What number is halfway between 29 and 49?",
+    "correctAnswer": "39",
+    "answers": [
+      "41",
+      "39",
+      "44",
+      "37"
+    ]
+  },
+  {
+    "id": "numberlineninja-197",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "69",
+      "64",
+      "62",
+      "66"
+    ]
+  },
+  {
+    "id": "numberlineninja-198",
+    "question": "What number is halfway between 74 and 94?",
+    "correctAnswer": "84",
+    "answers": [
+      "82",
+      "84",
+      "86",
+      "89"
+    ]
+  },
+  {
+    "id": "numberlineninja-199",
+    "question": "What number is halfway between 29 and 49?",
+    "correctAnswer": "39",
+    "answers": [
+      "37",
+      "44",
+      "39",
+      "41"
+    ]
+  },
+  {
+    "id": "numberlineninja-200",
+    "question": "What number is halfway between 54 and 74?",
+    "correctAnswer": "64",
+    "answers": [
+      "64",
+      "69",
+      "66",
+      "62"
+    ]
+  }
+]
