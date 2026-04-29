@@ -1,0 +1,17 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+external-assets/
+GUI Pro-FantasyHero/
+characters/
+
+deploy.config.bat
+.vercel
+.env*.local
+.verify_deployroot/
+src/assets/importedassets/screen comparison/SATsLegendsendofcodex.zip
