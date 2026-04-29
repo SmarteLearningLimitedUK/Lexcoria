@@ -1,0 +1,2202 @@
+[
+  {
+    "id": "calculationclash-001",
+    "question": "What is 15 + 11?",
+    "correctAnswer": "26",
+    "answers": [
+      "24",
+      "26",
+      "28",
+      "31"
+    ]
+  },
+  {
+    "id": "calculationclash-002",
+    "question": "What is 39 + 9?",
+    "correctAnswer": "48",
+    "answers": [
+      "50",
+      "46",
+      "53",
+      "48"
+    ]
+  },
+  {
+    "id": "calculationclash-003",
+    "question": "What is 30 + 7?",
+    "correctAnswer": "37",
+    "answers": [
+      "42",
+      "35",
+      "39",
+      "37"
+    ]
+  },
+  {
+    "id": "calculationclash-004",
+    "question": "What is 3 + 3?",
+    "correctAnswer": "6",
+    "answers": [
+      "4",
+      "8",
+      "6",
+      "11"
+    ]
+  },
+  {
+    "id": "calculationclash-005",
+    "question": "What is 7 + 10?",
+    "correctAnswer": "17",
+    "answers": [
+      "22",
+      "15",
+      "17",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-006",
+    "question": "What is 36 + 2?",
+    "correctAnswer": "38",
+    "answers": [
+      "38",
+      "36",
+      "40",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-007",
+    "question": "What is 9 + 11?",
+    "correctAnswer": "20",
+    "answers": [
+      "20",
+      "18",
+      "22",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-008",
+    "question": "What is 13 + 3?",
+    "correctAnswer": "16",
+    "answers": [
+      "18",
+      "16",
+      "21",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-009",
+    "question": "What is 47 + 8?",
+    "correctAnswer": "55",
+    "answers": [
+      "60",
+      "57",
+      "53",
+      "55"
+    ]
+  },
+  {
+    "id": "calculationclash-010",
+    "question": "What is 50 + 4?",
+    "correctAnswer": "54",
+    "answers": [
+      "59",
+      "56",
+      "54",
+      "52"
+    ]
+  },
+  {
+    "id": "calculationclash-011",
+    "question": "What is 4 + 7?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "13",
+      "11",
+      "9"
+    ]
+  },
+  {
+    "id": "calculationclash-012",
+    "question": "What is 39 + 6?",
+    "correctAnswer": "45",
+    "answers": [
+      "50",
+      "47",
+      "45",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-013",
+    "question": "What is 6 + 4?",
+    "correctAnswer": "10",
+    "answers": [
+      "10",
+      "12",
+      "15",
+      "8"
+    ]
+  },
+  {
+    "id": "calculationclash-014",
+    "question": "What is 36 + 6?",
+    "correctAnswer": "42",
+    "answers": [
+      "42",
+      "40",
+      "44",
+      "47"
+    ]
+  },
+  {
+    "id": "calculationclash-015",
+    "question": "What is 23 + 8?",
+    "correctAnswer": "31",
+    "answers": [
+      "36",
+      "29",
+      "31",
+      "33"
+    ]
+  },
+  {
+    "id": "calculationclash-016",
+    "question": "What is 30 + 2?",
+    "correctAnswer": "32",
+    "answers": [
+      "37",
+      "32",
+      "30",
+      "34"
+    ]
+  },
+  {
+    "id": "calculationclash-017",
+    "question": "What is 12 + 7?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "17",
+      "24",
+      "21"
+    ]
+  },
+  {
+    "id": "calculationclash-018",
+    "question": "What is 4 + 11?",
+    "correctAnswer": "15",
+    "answers": [
+      "20",
+      "13",
+      "17",
+      "15"
+    ]
+  },
+  {
+    "id": "calculationclash-019",
+    "question": "What is 46 + 12?",
+    "correctAnswer": "58",
+    "answers": [
+      "58",
+      "60",
+      "63",
+      "56"
+    ]
+  },
+  {
+    "id": "calculationclash-020",
+    "question": "What is 15 + 3?",
+    "correctAnswer": "18",
+    "answers": [
+      "23",
+      "16",
+      "18",
+      "20"
+    ]
+  },
+  {
+    "id": "calculationclash-021",
+    "question": "What is 28 + 2?",
+    "correctAnswer": "30",
+    "answers": [
+      "30",
+      "32",
+      "28",
+      "35"
+    ]
+  },
+  {
+    "id": "calculationclash-022",
+    "question": "What is 29 + 11?",
+    "correctAnswer": "40",
+    "answers": [
+      "40",
+      "42",
+      "45",
+      "38"
+    ]
+  },
+  {
+    "id": "calculationclash-023",
+    "question": "What is 50 + 9?",
+    "correctAnswer": "59",
+    "answers": [
+      "59",
+      "64",
+      "57",
+      "61"
+    ]
+  },
+  {
+    "id": "calculationclash-024",
+    "question": "What is 25 + 8?",
+    "correctAnswer": "33",
+    "answers": [
+      "31",
+      "35",
+      "38",
+      "33"
+    ]
+  },
+  {
+    "id": "calculationclash-025",
+    "question": "What is 38 + 8?",
+    "correctAnswer": "46",
+    "answers": [
+      "48",
+      "46",
+      "51",
+      "44"
+    ]
+  },
+  {
+    "id": "calculationclash-026",
+    "question": "What is 47 + 7?",
+    "correctAnswer": "54",
+    "answers": [
+      "59",
+      "54",
+      "52",
+      "56"
+    ]
+  },
+  {
+    "id": "calculationclash-027",
+    "question": "What is 39 + 11?",
+    "correctAnswer": "50",
+    "answers": [
+      "55",
+      "50",
+      "52",
+      "48"
+    ]
+  },
+  {
+    "id": "calculationclash-028",
+    "question": "What is 8 + 5?",
+    "correctAnswer": "13",
+    "answers": [
+      "11",
+      "15",
+      "18",
+      "13"
+    ]
+  },
+  {
+    "id": "calculationclash-029",
+    "question": "What is 10 + 7?",
+    "correctAnswer": "17",
+    "answers": [
+      "19",
+      "17",
+      "15",
+      "22"
+    ]
+  },
+  {
+    "id": "calculationclash-030",
+    "question": "What is 41 + 10?",
+    "correctAnswer": "51",
+    "answers": [
+      "56",
+      "49",
+      "51",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-031",
+    "question": "What is 49 + 9?",
+    "correctAnswer": "58",
+    "answers": [
+      "60",
+      "58",
+      "63",
+      "56"
+    ]
+  },
+  {
+    "id": "calculationclash-032",
+    "question": "What is 12 + 7?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "17",
+      "21",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-033",
+    "question": "What is 18 + 9?",
+    "correctAnswer": "27",
+    "answers": [
+      "25",
+      "29",
+      "27",
+      "32"
+    ]
+  },
+  {
+    "id": "calculationclash-034",
+    "question": "What is 34 + 2?",
+    "correctAnswer": "36",
+    "answers": [
+      "34",
+      "38",
+      "41",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-035",
+    "question": "What is 50 + 12?",
+    "correctAnswer": "62",
+    "answers": [
+      "67",
+      "62",
+      "60",
+      "64"
+    ]
+  },
+  {
+    "id": "calculationclash-036",
+    "question": "What is 19 + 10?",
+    "correctAnswer": "29",
+    "answers": [
+      "27",
+      "29",
+      "31",
+      "34"
+    ]
+  },
+  {
+    "id": "calculationclash-037",
+    "question": "What is 41 + 8?",
+    "correctAnswer": "49",
+    "answers": [
+      "51",
+      "47",
+      "49",
+      "54"
+    ]
+  },
+  {
+    "id": "calculationclash-038",
+    "question": "What is 38 + 11?",
+    "correctAnswer": "49",
+    "answers": [
+      "54",
+      "51",
+      "49",
+      "47"
+    ]
+  },
+  {
+    "id": "calculationclash-039",
+    "question": "What is 35 + 10?",
+    "correctAnswer": "45",
+    "answers": [
+      "47",
+      "43",
+      "45",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-040",
+    "question": "What is 48 + 5?",
+    "correctAnswer": "53",
+    "answers": [
+      "51",
+      "53",
+      "58",
+      "55"
+    ]
+  },
+  {
+    "id": "calculationclash-041",
+    "question": "What is 46 + 2?",
+    "correctAnswer": "48",
+    "answers": [
+      "46",
+      "53",
+      "48",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-042",
+    "question": "What is 15 + 10?",
+    "correctAnswer": "25",
+    "answers": [
+      "25",
+      "23",
+      "30",
+      "27"
+    ]
+  },
+  {
+    "id": "calculationclash-043",
+    "question": "What is 40 + 4?",
+    "correctAnswer": "44",
+    "answers": [
+      "44",
+      "46",
+      "49",
+      "42"
+    ]
+  },
+  {
+    "id": "calculationclash-044",
+    "question": "What is 7 + 2?",
+    "correctAnswer": "9",
+    "answers": [
+      "9",
+      "7",
+      "11",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-045",
+    "question": "What is 48 + 2?",
+    "correctAnswer": "50",
+    "answers": [
+      "55",
+      "52",
+      "50",
+      "48"
+    ]
+  },
+  {
+    "id": "calculationclash-046",
+    "question": "What is 47 + 2?",
+    "correctAnswer": "49",
+    "answers": [
+      "54",
+      "47",
+      "51",
+      "49"
+    ]
+  },
+  {
+    "id": "calculationclash-047",
+    "question": "What is 2 + 11?",
+    "correctAnswer": "13",
+    "answers": [
+      "11",
+      "13",
+      "15",
+      "18"
+    ]
+  },
+  {
+    "id": "calculationclash-048",
+    "question": "What is 17 + 11?",
+    "correctAnswer": "28",
+    "answers": [
+      "28",
+      "33",
+      "26",
+      "30"
+    ]
+  },
+  {
+    "id": "calculationclash-049",
+    "question": "What is 48 + 7?",
+    "correctAnswer": "55",
+    "answers": [
+      "53",
+      "55",
+      "60",
+      "57"
+    ]
+  },
+  {
+    "id": "calculationclash-050",
+    "question": "What is 3 + 11?",
+    "correctAnswer": "14",
+    "answers": [
+      "19",
+      "16",
+      "14",
+      "12"
+    ]
+  },
+  {
+    "id": "calculationclash-051",
+    "question": "What is 20 + 8?",
+    "correctAnswer": "28",
+    "answers": [
+      "30",
+      "33",
+      "28",
+      "26"
+    ]
+  },
+  {
+    "id": "calculationclash-052",
+    "question": "What is 26 + 7?",
+    "correctAnswer": "33",
+    "answers": [
+      "33",
+      "31",
+      "38",
+      "35"
+    ]
+  },
+  {
+    "id": "calculationclash-053",
+    "question": "What is 37 + 11?",
+    "correctAnswer": "48",
+    "answers": [
+      "50",
+      "53",
+      "48",
+      "46"
+    ]
+  },
+  {
+    "id": "calculationclash-054",
+    "question": "What is 27 + 7?",
+    "correctAnswer": "34",
+    "answers": [
+      "32",
+      "36",
+      "34",
+      "39"
+    ]
+  },
+  {
+    "id": "calculationclash-055",
+    "question": "What is 3 + 4?",
+    "correctAnswer": "7",
+    "answers": [
+      "5",
+      "12",
+      "9",
+      "7"
+    ]
+  },
+  {
+    "id": "calculationclash-056",
+    "question": "What is 37 + 5?",
+    "correctAnswer": "42",
+    "answers": [
+      "40",
+      "47",
+      "44",
+      "42"
+    ]
+  },
+  {
+    "id": "calculationclash-057",
+    "question": "What is 19 + 10?",
+    "correctAnswer": "29",
+    "answers": [
+      "34",
+      "29",
+      "31",
+      "27"
+    ]
+  },
+  {
+    "id": "calculationclash-058",
+    "question": "What is 8 + 8?",
+    "correctAnswer": "16",
+    "answers": [
+      "21",
+      "18",
+      "16",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-059",
+    "question": "What is 9 + 12?",
+    "correctAnswer": "21",
+    "answers": [
+      "26",
+      "21",
+      "23",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-060",
+    "question": "What is 38 + 2?",
+    "correctAnswer": "40",
+    "answers": [
+      "45",
+      "42",
+      "40",
+      "38"
+    ]
+  },
+  {
+    "id": "calculationclash-061",
+    "question": "What is 44 + 8?",
+    "correctAnswer": "52",
+    "answers": [
+      "50",
+      "57",
+      "52",
+      "54"
+    ]
+  },
+  {
+    "id": "calculationclash-062",
+    "question": "What is 26 + 12?",
+    "correctAnswer": "38",
+    "answers": [
+      "38",
+      "36",
+      "43",
+      "40"
+    ]
+  },
+  {
+    "id": "calculationclash-063",
+    "question": "What is 34 + 8?",
+    "correctAnswer": "42",
+    "answers": [
+      "47",
+      "44",
+      "40",
+      "42"
+    ]
+  },
+  {
+    "id": "calculationclash-064",
+    "question": "What is 17 + 6?",
+    "correctAnswer": "23",
+    "answers": [
+      "28",
+      "23",
+      "21",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-065",
+    "question": "What is 8 + 6?",
+    "correctAnswer": "14",
+    "answers": [
+      "12",
+      "16",
+      "14",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-066",
+    "question": "What is 38 + 9?",
+    "correctAnswer": "47",
+    "answers": [
+      "52",
+      "45",
+      "47",
+      "49"
+    ]
+  },
+  {
+    "id": "calculationclash-067",
+    "question": "What is 40 + 2?",
+    "correctAnswer": "42",
+    "answers": [
+      "47",
+      "40",
+      "44",
+      "42"
+    ]
+  },
+  {
+    "id": "calculationclash-068",
+    "question": "What is 47 + 4?",
+    "correctAnswer": "51",
+    "answers": [
+      "56",
+      "49",
+      "51",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-069",
+    "question": "What is 47 + 4?",
+    "correctAnswer": "51",
+    "answers": [
+      "53",
+      "51",
+      "56",
+      "49"
+    ]
+  },
+  {
+    "id": "calculationclash-070",
+    "question": "What is 22 + 9?",
+    "correctAnswer": "31",
+    "answers": [
+      "33",
+      "31",
+      "29",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-071",
+    "question": "What is 18 + 3?",
+    "correctAnswer": "21",
+    "answers": [
+      "26",
+      "19",
+      "21",
+      "23"
+    ]
+  },
+  {
+    "id": "calculationclash-072",
+    "question": "What is 10 + 4?",
+    "correctAnswer": "14",
+    "answers": [
+      "16",
+      "19",
+      "12",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-073",
+    "question": "What is 31 + 7?",
+    "correctAnswer": "38",
+    "answers": [
+      "40",
+      "38",
+      "36",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-074",
+    "question": "What is 24 + 4?",
+    "correctAnswer": "28",
+    "answers": [
+      "28",
+      "33",
+      "30",
+      "26"
+    ]
+  },
+  {
+    "id": "calculationclash-075",
+    "question": "What is 15 + 5?",
+    "correctAnswer": "20",
+    "answers": [
+      "20",
+      "18",
+      "22",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-076",
+    "question": "What is 43 + 5?",
+    "correctAnswer": "48",
+    "answers": [
+      "46",
+      "48",
+      "50",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-077",
+    "question": "What is 29 + 10?",
+    "correctAnswer": "39",
+    "answers": [
+      "39",
+      "44",
+      "41",
+      "37"
+    ]
+  },
+  {
+    "id": "calculationclash-078",
+    "question": "What is 43 + 11?",
+    "correctAnswer": "54",
+    "answers": [
+      "59",
+      "56",
+      "52",
+      "54"
+    ]
+  },
+  {
+    "id": "calculationclash-079",
+    "question": "What is 13 + 8?",
+    "correctAnswer": "21",
+    "answers": [
+      "21",
+      "19",
+      "26",
+      "23"
+    ]
+  },
+  {
+    "id": "calculationclash-080",
+    "question": "What is 46 + 7?",
+    "correctAnswer": "53",
+    "answers": [
+      "58",
+      "53",
+      "51",
+      "55"
+    ]
+  },
+  {
+    "id": "calculationclash-081",
+    "question": "What is 45 + 11?",
+    "correctAnswer": "56",
+    "answers": [
+      "61",
+      "54",
+      "56",
+      "58"
+    ]
+  },
+  {
+    "id": "calculationclash-082",
+    "question": "What is 45 + 5?",
+    "correctAnswer": "50",
+    "answers": [
+      "52",
+      "50",
+      "55",
+      "48"
+    ]
+  },
+  {
+    "id": "calculationclash-083",
+    "question": "What is 18 + 8?",
+    "correctAnswer": "26",
+    "answers": [
+      "26",
+      "28",
+      "31",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-084",
+    "question": "What is 23 + 12?",
+    "correctAnswer": "35",
+    "answers": [
+      "35",
+      "37",
+      "40",
+      "33"
+    ]
+  },
+  {
+    "id": "calculationclash-085",
+    "question": "What is 10 + 2?",
+    "correctAnswer": "12",
+    "answers": [
+      "12",
+      "10",
+      "17",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-086",
+    "question": "What is 3 + 11?",
+    "correctAnswer": "14",
+    "answers": [
+      "16",
+      "12",
+      "14",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-087",
+    "question": "What is 9 + 10?",
+    "correctAnswer": "19",
+    "answers": [
+      "17",
+      "21",
+      "19",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-088",
+    "question": "What is 24 + 4?",
+    "correctAnswer": "28",
+    "answers": [
+      "33",
+      "26",
+      "30",
+      "28"
+    ]
+  },
+  {
+    "id": "calculationclash-089",
+    "question": "What is 34 + 5?",
+    "correctAnswer": "39",
+    "answers": [
+      "41",
+      "44",
+      "39",
+      "37"
+    ]
+  },
+  {
+    "id": "calculationclash-090",
+    "question": "What is 39 + 3?",
+    "correctAnswer": "42",
+    "answers": [
+      "47",
+      "44",
+      "42",
+      "40"
+    ]
+  },
+  {
+    "id": "calculationclash-091",
+    "question": "What is 4 + 11?",
+    "correctAnswer": "15",
+    "answers": [
+      "17",
+      "20",
+      "13",
+      "15"
+    ]
+  },
+  {
+    "id": "calculationclash-092",
+    "question": "What is 9 + 8?",
+    "correctAnswer": "17",
+    "answers": [
+      "19",
+      "15",
+      "22",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-093",
+    "question": "What is 50 + 11?",
+    "correctAnswer": "61",
+    "answers": [
+      "63",
+      "66",
+      "61",
+      "59"
+    ]
+  },
+  {
+    "id": "calculationclash-094",
+    "question": "What is 14 + 9?",
+    "correctAnswer": "23",
+    "answers": [
+      "23",
+      "21",
+      "28",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-095",
+    "question": "What is 4 + 7?",
+    "correctAnswer": "11",
+    "answers": [
+      "16",
+      "11",
+      "13",
+      "9"
+    ]
+  },
+  {
+    "id": "calculationclash-096",
+    "question": "What is 48 + 10?",
+    "correctAnswer": "58",
+    "answers": [
+      "56",
+      "60",
+      "63",
+      "58"
+    ]
+  },
+  {
+    "id": "calculationclash-097",
+    "question": "What is 18 + 11?",
+    "correctAnswer": "29",
+    "answers": [
+      "34",
+      "29",
+      "27",
+      "31"
+    ]
+  },
+  {
+    "id": "calculationclash-098",
+    "question": "What is 14 + 10?",
+    "correctAnswer": "24",
+    "answers": [
+      "22",
+      "26",
+      "29",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-099",
+    "question": "What is 48 + 7?",
+    "correctAnswer": "55",
+    "answers": [
+      "57",
+      "53",
+      "60",
+      "55"
+    ]
+  },
+  {
+    "id": "calculationclash-100",
+    "question": "What is 10 + 10?",
+    "correctAnswer": "20",
+    "answers": [
+      "18",
+      "25",
+      "20",
+      "22"
+    ]
+  },
+  {
+    "id": "calculationclash-101",
+    "question": "What is 10 + 9?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "21",
+      "24",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-102",
+    "question": "What is 30 + 9?",
+    "correctAnswer": "39",
+    "answers": [
+      "41",
+      "37",
+      "39",
+      "44"
+    ]
+  },
+  {
+    "id": "calculationclash-103",
+    "question": "What is 7 + 9?",
+    "correctAnswer": "16",
+    "answers": [
+      "21",
+      "14",
+      "18",
+      "16"
+    ]
+  },
+  {
+    "id": "calculationclash-104",
+    "question": "What is 23 + 3?",
+    "correctAnswer": "26",
+    "answers": [
+      "28",
+      "31",
+      "26",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-105",
+    "question": "What is 35 + 12?",
+    "correctAnswer": "47",
+    "answers": [
+      "52",
+      "45",
+      "49",
+      "47"
+    ]
+  },
+  {
+    "id": "calculationclash-106",
+    "question": "What is 23 + 4?",
+    "correctAnswer": "27",
+    "answers": [
+      "29",
+      "27",
+      "32",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-107",
+    "question": "What is 14 + 3?",
+    "correctAnswer": "17",
+    "answers": [
+      "15",
+      "17",
+      "19",
+      "22"
+    ]
+  },
+  {
+    "id": "calculationclash-108",
+    "question": "What is 15 + 12?",
+    "correctAnswer": "27",
+    "answers": [
+      "29",
+      "25",
+      "27",
+      "32"
+    ]
+  },
+  {
+    "id": "calculationclash-109",
+    "question": "What is 25 + 11?",
+    "correctAnswer": "36",
+    "answers": [
+      "34",
+      "38",
+      "41",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-110",
+    "question": "What is 7 + 7?",
+    "correctAnswer": "14",
+    "answers": [
+      "16",
+      "19",
+      "12",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-111",
+    "question": "What is 45 + 6?",
+    "correctAnswer": "51",
+    "answers": [
+      "56",
+      "51",
+      "49",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-112",
+    "question": "What is 23 + 3?",
+    "correctAnswer": "26",
+    "answers": [
+      "31",
+      "24",
+      "26",
+      "28"
+    ]
+  },
+  {
+    "id": "calculationclash-113",
+    "question": "What is 30 + 11?",
+    "correctAnswer": "41",
+    "answers": [
+      "41",
+      "46",
+      "39",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-114",
+    "question": "What is 10 + 2?",
+    "correctAnswer": "12",
+    "answers": [
+      "14",
+      "17",
+      "12",
+      "10"
+    ]
+  },
+  {
+    "id": "calculationclash-115",
+    "question": "What is 27 + 5?",
+    "correctAnswer": "32",
+    "answers": [
+      "32",
+      "37",
+      "34",
+      "30"
+    ]
+  },
+  {
+    "id": "calculationclash-116",
+    "question": "What is 25 + 11?",
+    "correctAnswer": "36",
+    "answers": [
+      "34",
+      "38",
+      "41",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-117",
+    "question": "What is 18 + 2?",
+    "correctAnswer": "20",
+    "answers": [
+      "20",
+      "25",
+      "22",
+      "18"
+    ]
+  },
+  {
+    "id": "calculationclash-118",
+    "question": "What is 7 + 4?",
+    "correctAnswer": "11",
+    "answers": [
+      "11",
+      "9",
+      "13",
+      "16"
+    ]
+  },
+  {
+    "id": "calculationclash-119",
+    "question": "What is 27 + 11?",
+    "correctAnswer": "38",
+    "answers": [
+      "43",
+      "38",
+      "40",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-120",
+    "question": "What is 15 + 4?",
+    "correctAnswer": "19",
+    "answers": [
+      "21",
+      "19",
+      "24",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-121",
+    "question": "What is 37 + 6?",
+    "correctAnswer": "43",
+    "answers": [
+      "45",
+      "48",
+      "41",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-122",
+    "question": "What is 11 + 2?",
+    "correctAnswer": "13",
+    "answers": [
+      "15",
+      "18",
+      "13",
+      "11"
+    ]
+  },
+  {
+    "id": "calculationclash-123",
+    "question": "What is 28 + 3?",
+    "correctAnswer": "31",
+    "answers": [
+      "29",
+      "36",
+      "33",
+      "31"
+    ]
+  },
+  {
+    "id": "calculationclash-124",
+    "question": "What is 32 + 11?",
+    "correctAnswer": "43",
+    "answers": [
+      "41",
+      "48",
+      "45",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-125",
+    "question": "What is 25 + 2?",
+    "correctAnswer": "27",
+    "answers": [
+      "32",
+      "27",
+      "29",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-126",
+    "question": "What is 27 + 11?",
+    "correctAnswer": "38",
+    "answers": [
+      "36",
+      "43",
+      "38",
+      "40"
+    ]
+  },
+  {
+    "id": "calculationclash-127",
+    "question": "What is 32 + 9?",
+    "correctAnswer": "41",
+    "answers": [
+      "43",
+      "39",
+      "41",
+      "46"
+    ]
+  },
+  {
+    "id": "calculationclash-128",
+    "question": "What is 12 + 9?",
+    "correctAnswer": "21",
+    "answers": [
+      "23",
+      "21",
+      "26",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-129",
+    "question": "What is 12 + 8?",
+    "correctAnswer": "20",
+    "answers": [
+      "25",
+      "18",
+      "22",
+      "20"
+    ]
+  },
+  {
+    "id": "calculationclash-130",
+    "question": "What is 7 + 2?",
+    "correctAnswer": "9",
+    "answers": [
+      "11",
+      "9",
+      "14",
+      "7"
+    ]
+  },
+  {
+    "id": "calculationclash-131",
+    "question": "What is 24 + 5?",
+    "correctAnswer": "29",
+    "answers": [
+      "27",
+      "34",
+      "29",
+      "31"
+    ]
+  },
+  {
+    "id": "calculationclash-132",
+    "question": "What is 2 + 3?",
+    "correctAnswer": "5",
+    "answers": [
+      "10",
+      "3",
+      "7",
+      "5"
+    ]
+  },
+  {
+    "id": "calculationclash-133",
+    "question": "What is 49 + 2?",
+    "correctAnswer": "51",
+    "answers": [
+      "56",
+      "49",
+      "53",
+      "51"
+    ]
+  },
+  {
+    "id": "calculationclash-134",
+    "question": "What is 18 + 4?",
+    "correctAnswer": "22",
+    "answers": [
+      "27",
+      "24",
+      "20",
+      "22"
+    ]
+  },
+  {
+    "id": "calculationclash-135",
+    "question": "What is 2 + 11?",
+    "correctAnswer": "13",
+    "answers": [
+      "11",
+      "13",
+      "18",
+      "15"
+    ]
+  },
+  {
+    "id": "calculationclash-136",
+    "question": "What is 44 + 6?",
+    "correctAnswer": "50",
+    "answers": [
+      "52",
+      "48",
+      "55",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-137",
+    "question": "What is 4 + 10?",
+    "correctAnswer": "14",
+    "answers": [
+      "14",
+      "12",
+      "16",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-138",
+    "question": "What is 33 + 8?",
+    "correctAnswer": "41",
+    "answers": [
+      "46",
+      "43",
+      "39",
+      "41"
+    ]
+  },
+  {
+    "id": "calculationclash-139",
+    "question": "What is 26 + 8?",
+    "correctAnswer": "34",
+    "answers": [
+      "34",
+      "39",
+      "32",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-140",
+    "question": "What is 43 + 3?",
+    "correctAnswer": "46",
+    "answers": [
+      "51",
+      "48",
+      "46",
+      "44"
+    ]
+  },
+  {
+    "id": "calculationclash-141",
+    "question": "What is 37 + 4?",
+    "correctAnswer": "41",
+    "answers": [
+      "41",
+      "43",
+      "39",
+      "46"
+    ]
+  },
+  {
+    "id": "calculationclash-142",
+    "question": "What is 6 + 5?",
+    "correctAnswer": "11",
+    "answers": [
+      "11",
+      "9",
+      "13",
+      "16"
+    ]
+  },
+  {
+    "id": "calculationclash-143",
+    "question": "What is 11 + 2?",
+    "correctAnswer": "13",
+    "answers": [
+      "18",
+      "11",
+      "13",
+      "15"
+    ]
+  },
+  {
+    "id": "calculationclash-144",
+    "question": "What is 33 + 7?",
+    "correctAnswer": "40",
+    "answers": [
+      "40",
+      "42",
+      "45",
+      "38"
+    ]
+  },
+  {
+    "id": "calculationclash-145",
+    "question": "What is 33 + 8?",
+    "correctAnswer": "41",
+    "answers": [
+      "39",
+      "43",
+      "46",
+      "41"
+    ]
+  },
+  {
+    "id": "calculationclash-146",
+    "question": "What is 18 + 10?",
+    "correctAnswer": "28",
+    "answers": [
+      "33",
+      "30",
+      "28",
+      "26"
+    ]
+  },
+  {
+    "id": "calculationclash-147",
+    "question": "What is 34 + 5?",
+    "correctAnswer": "39",
+    "answers": [
+      "37",
+      "44",
+      "39",
+      "41"
+    ]
+  },
+  {
+    "id": "calculationclash-148",
+    "question": "What is 44 + 3?",
+    "correctAnswer": "47",
+    "answers": [
+      "49",
+      "45",
+      "47",
+      "52"
+    ]
+  },
+  {
+    "id": "calculationclash-149",
+    "question": "What is 11 + 4?",
+    "correctAnswer": "15",
+    "answers": [
+      "15",
+      "17",
+      "20",
+      "13"
+    ]
+  },
+  {
+    "id": "calculationclash-150",
+    "question": "What is 25 + 11?",
+    "correctAnswer": "36",
+    "answers": [
+      "36",
+      "41",
+      "38",
+      "34"
+    ]
+  },
+  {
+    "id": "calculationclash-151",
+    "question": "What is 40 + 6?",
+    "correctAnswer": "46",
+    "answers": [
+      "44",
+      "51",
+      "48",
+      "46"
+    ]
+  },
+  {
+    "id": "calculationclash-152",
+    "question": "What is 9 + 10?",
+    "correctAnswer": "19",
+    "answers": [
+      "24",
+      "21",
+      "17",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-153",
+    "question": "What is 29 + 3?",
+    "correctAnswer": "32",
+    "answers": [
+      "30",
+      "37",
+      "32",
+      "34"
+    ]
+  },
+  {
+    "id": "calculationclash-154",
+    "question": "What is 49 + 6?",
+    "correctAnswer": "55",
+    "answers": [
+      "57",
+      "53",
+      "60",
+      "55"
+    ]
+  },
+  {
+    "id": "calculationclash-155",
+    "question": "What is 33 + 2?",
+    "correctAnswer": "35",
+    "answers": [
+      "37",
+      "40",
+      "35",
+      "33"
+    ]
+  },
+  {
+    "id": "calculationclash-156",
+    "question": "What is 17 + 10?",
+    "correctAnswer": "27",
+    "answers": [
+      "29",
+      "25",
+      "32",
+      "27"
+    ]
+  },
+  {
+    "id": "calculationclash-157",
+    "question": "What is 40 + 10?",
+    "correctAnswer": "50",
+    "answers": [
+      "48",
+      "52",
+      "55",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-158",
+    "question": "What is 47 + 5?",
+    "correctAnswer": "52",
+    "answers": [
+      "57",
+      "52",
+      "54",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-159",
+    "question": "What is 14 + 9?",
+    "correctAnswer": "23",
+    "answers": [
+      "25",
+      "23",
+      "28",
+      "21"
+    ]
+  },
+  {
+    "id": "calculationclash-160",
+    "question": "What is 46 + 10?",
+    "correctAnswer": "56",
+    "answers": [
+      "61",
+      "56",
+      "54",
+      "58"
+    ]
+  },
+  {
+    "id": "calculationclash-161",
+    "question": "What is 34 + 10?",
+    "correctAnswer": "44",
+    "answers": [
+      "46",
+      "42",
+      "44",
+      "49"
+    ]
+  },
+  {
+    "id": "calculationclash-162",
+    "question": "What is 34 + 4?",
+    "correctAnswer": "38",
+    "answers": [
+      "38",
+      "36",
+      "40",
+      "43"
+    ]
+  },
+  {
+    "id": "calculationclash-163",
+    "question": "What is 23 + 11?",
+    "correctAnswer": "34",
+    "answers": [
+      "32",
+      "39",
+      "36",
+      "34"
+    ]
+  },
+  {
+    "id": "calculationclash-164",
+    "question": "What is 8 + 11?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "17",
+      "21",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-165",
+    "question": "What is 28 + 2?",
+    "correctAnswer": "30",
+    "answers": [
+      "35",
+      "30",
+      "28",
+      "32"
+    ]
+  },
+  {
+    "id": "calculationclash-166",
+    "question": "What is 40 + 12?",
+    "correctAnswer": "52",
+    "answers": [
+      "50",
+      "54",
+      "57",
+      "52"
+    ]
+  },
+  {
+    "id": "calculationclash-167",
+    "question": "What is 50 + 12?",
+    "correctAnswer": "62",
+    "answers": [
+      "64",
+      "62",
+      "67",
+      "60"
+    ]
+  },
+  {
+    "id": "calculationclash-168",
+    "question": "What is 16 + 3?",
+    "correctAnswer": "19",
+    "answers": [
+      "24",
+      "19",
+      "21",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-169",
+    "question": "What is 14 + 2?",
+    "correctAnswer": "16",
+    "answers": [
+      "14",
+      "21",
+      "16",
+      "18"
+    ]
+  },
+  {
+    "id": "calculationclash-170",
+    "question": "What is 48 + 2?",
+    "correctAnswer": "50",
+    "answers": [
+      "55",
+      "48",
+      "50",
+      "52"
+    ]
+  },
+  {
+    "id": "calculationclash-171",
+    "question": "What is 21 + 10?",
+    "correctAnswer": "31",
+    "answers": [
+      "31",
+      "29",
+      "36",
+      "33"
+    ]
+  },
+  {
+    "id": "calculationclash-172",
+    "question": "What is 8 + 11?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "24",
+      "21",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-173",
+    "question": "What is 35 + 4?",
+    "correctAnswer": "39",
+    "answers": [
+      "37",
+      "39",
+      "41",
+      "44"
+    ]
+  },
+  {
+    "id": "calculationclash-174",
+    "question": "What is 13 + 2?",
+    "correctAnswer": "15",
+    "answers": [
+      "13",
+      "15",
+      "20",
+      "17"
+    ]
+  },
+  {
+    "id": "calculationclash-175",
+    "question": "What is 16 + 3?",
+    "correctAnswer": "19",
+    "answers": [
+      "19",
+      "17",
+      "21",
+      "24"
+    ]
+  },
+  {
+    "id": "calculationclash-176",
+    "question": "What is 35 + 11?",
+    "correctAnswer": "46",
+    "answers": [
+      "46",
+      "48",
+      "44",
+      "51"
+    ]
+  },
+  {
+    "id": "calculationclash-177",
+    "question": "What is 33 + 12?",
+    "correctAnswer": "45",
+    "answers": [
+      "45",
+      "43",
+      "47",
+      "50"
+    ]
+  },
+  {
+    "id": "calculationclash-178",
+    "question": "What is 46 + 6?",
+    "correctAnswer": "52",
+    "answers": [
+      "54",
+      "50",
+      "52",
+      "57"
+    ]
+  },
+  {
+    "id": "calculationclash-179",
+    "question": "What is 42 + 2?",
+    "correctAnswer": "44",
+    "answers": [
+      "46",
+      "44",
+      "42",
+      "49"
+    ]
+  },
+  {
+    "id": "calculationclash-180",
+    "question": "What is 9 + 12?",
+    "correctAnswer": "21",
+    "answers": [
+      "26",
+      "23",
+      "21",
+      "19"
+    ]
+  },
+  {
+    "id": "calculationclash-181",
+    "question": "What is 30 + 12?",
+    "correctAnswer": "42",
+    "answers": [
+      "44",
+      "42",
+      "47",
+      "40"
+    ]
+  },
+  {
+    "id": "calculationclash-182",
+    "question": "What is 34 + 3?",
+    "correctAnswer": "37",
+    "answers": [
+      "37",
+      "39",
+      "42",
+      "35"
+    ]
+  },
+  {
+    "id": "calculationclash-183",
+    "question": "What is 39 + 9?",
+    "correctAnswer": "48",
+    "answers": [
+      "50",
+      "48",
+      "46",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-184",
+    "question": "What is 21 + 3?",
+    "correctAnswer": "24",
+    "answers": [
+      "24",
+      "22",
+      "26",
+      "29"
+    ]
+  },
+  {
+    "id": "calculationclash-185",
+    "question": "What is 7 + 3?",
+    "correctAnswer": "10",
+    "answers": [
+      "12",
+      "15",
+      "10",
+      "8"
+    ]
+  },
+  {
+    "id": "calculationclash-186",
+    "question": "What is 41 + 4?",
+    "correctAnswer": "45",
+    "answers": [
+      "45",
+      "50",
+      "43",
+      "47"
+    ]
+  },
+  {
+    "id": "calculationclash-187",
+    "question": "What is 41 + 2?",
+    "correctAnswer": "43",
+    "answers": [
+      "43",
+      "41",
+      "45",
+      "48"
+    ]
+  },
+  {
+    "id": "calculationclash-188",
+    "question": "What is 31 + 5?",
+    "correctAnswer": "36",
+    "answers": [
+      "34",
+      "38",
+      "41",
+      "36"
+    ]
+  },
+  {
+    "id": "calculationclash-189",
+    "question": "What is 24 + 10?",
+    "correctAnswer": "34",
+    "answers": [
+      "39",
+      "34",
+      "36",
+      "32"
+    ]
+  },
+  {
+    "id": "calculationclash-190",
+    "question": "What is 8 + 4?",
+    "correctAnswer": "12",
+    "answers": [
+      "10",
+      "17",
+      "12",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-191",
+    "question": "What is 19 + 8?",
+    "correctAnswer": "27",
+    "answers": [
+      "25",
+      "32",
+      "29",
+      "27"
+    ]
+  },
+  {
+    "id": "calculationclash-192",
+    "question": "What is 38 + 10?",
+    "correctAnswer": "48",
+    "answers": [
+      "48",
+      "46",
+      "50",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-193",
+    "question": "What is 50 + 5?",
+    "correctAnswer": "55",
+    "answers": [
+      "57",
+      "60",
+      "55",
+      "53"
+    ]
+  },
+  {
+    "id": "calculationclash-194",
+    "question": "What is 19 + 4?",
+    "correctAnswer": "23",
+    "answers": [
+      "21",
+      "28",
+      "23",
+      "25"
+    ]
+  },
+  {
+    "id": "calculationclash-195",
+    "question": "What is 34 + 8?",
+    "correctAnswer": "42",
+    "answers": [
+      "40",
+      "47",
+      "44",
+      "42"
+    ]
+  },
+  {
+    "id": "calculationclash-196",
+    "question": "What is 2 + 10?",
+    "correctAnswer": "12",
+    "answers": [
+      "17",
+      "12",
+      "10",
+      "14"
+    ]
+  },
+  {
+    "id": "calculationclash-197",
+    "question": "What is 5 + 2?",
+    "correctAnswer": "7",
+    "answers": [
+      "5",
+      "7",
+      "9",
+      "12"
+    ]
+  },
+  {
+    "id": "calculationclash-198",
+    "question": "What is 43 + 2?",
+    "correctAnswer": "45",
+    "answers": [
+      "50",
+      "43",
+      "47",
+      "45"
+    ]
+  },
+  {
+    "id": "calculationclash-199",
+    "question": "What is 28 + 2?",
+    "correctAnswer": "30",
+    "answers": [
+      "28",
+      "32",
+      "35",
+      "30"
+    ]
+  },
+  {
+    "id": "calculationclash-200",
+    "question": "What is 23 + 5?",
+    "correctAnswer": "28",
+    "answers": [
+      "28",
+      "33",
+      "26",
+      "30"
+    ]
+  }
+]

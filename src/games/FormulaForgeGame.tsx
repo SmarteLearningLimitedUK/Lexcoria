@@ -1,0 +1,519 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import confetti from 'canvas-confetti';
+import CelebrationSplash from '../components/CelebrationSplash';
+import { GameScreenShell } from '../layout/ScreenPrimitives';
+import { triggerHaptic } from '../haptics';
+import { GameplaySessionEventHandlers, GameplaySessionState } from '../app/gameplaySessionContract';
+import { GameQuestionCard } from '../components/game-ui/GameUiKit';
+import { formatFantasyPrompt } from '../utils/fantasyPrompt';
+import fractionForgeBackground from '../assets/maps/backgroundsforgames/fraction forge map.jpg';
+
+interface FormulaForgeGameProps {
+  levelId: number;
+  avatarId: string;
+  useSharedTopHud?: boolean;
+  onVictory: (stars: number, XP: number) => void;
+  onGameOver: (XP: number) => void;
+  onBack: () => void;
+  sessionState?: GameplaySessionState;
+  sessionEvents?: GameplaySessionEventHandlers;
+}
+
+type FormulaKind = 'area_rect' | 'perimeter_rect' | 'triangle_area' | 'volume_cuboid';
+type SolveMode = 'compute' | 'missing';
+
+interface GivenValue {
+  label: string;
+  value: number;
+}
+
+interface FormulaRound {
+  id: string;
+  kind: 'fluency' | 'reasoning';
+  diagram: 'rectangle' | 'triangle' | 'cuboid';
+  title: string;
+  formula: string;
+  prompt: string;
+  targetLabel: string;
+  given: GivenValue[];
+  answer: number;
+  options: number[];
+  hint: string;
+}
+
+type FeedbackState = null | {
+  tone: 'success' | 'error';
+  title: string;
+  subtitle: string;
+};
+
+const MAX_LIVES = 3;
+
+const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+const shuffle = <T,>(items: T[]) => {
+  const clone = [...items];
+  for (let i = clone.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [clone[i], clone[j]] = [clone[j], clone[i]];
+  }
+  return clone;
+};
+
+const makeOptions = (answer: number) => {
+  const pool = new Set<number>([answer]);
+  const offsets = [-12, -8, -5, -3, 3, 5, 8, 11];
+  for (const offset of shuffle(offsets)) {
+    if (pool.size >= 4) break;
+    const candidate = answer + offset;
+    if (candidate > 0) pool.add(candidate);
+  }
+  while (pool.size < 4) {
+    pool.add(Math.max(1, answer + randomInt(-14, 14)));
+  }
+  return shuffle(Array.from(pool).slice(0, 4));
+};
+
+const FORGE_TARGET_LABELS: Record<string, string> = {
+  A: 'area',
+  P: 'perimeter',
+  V: 'volume',
+  b: 'base',
+  h: 'height',
+  l: 'length',
+  w: 'width',
+};
+
+const formatGivenValues = (given: GivenValue[]) => given.map(({ label, value }) => `${label} = ${value}`).join(', ');
+
+const describeTargetLabel = (label: string) => FORGE_TARGET_LABELS[label] || label;
+
+const buildQuestionStem = (round: FormulaRound) => {
+  const givenText = formatGivenValues(round.given);
+  const targetText = describeTargetLabel(round.targetLabel);
+  const leadIn = round.kind === 'reasoning' ? 'Find the missing' : 'Work out the';
+
+  return `The Monster Minds have scrambled the forge runes. The runes now show ${givenText}.\n${leadIn} ${targetText}, ${round.targetLabel}.`;
+};
+
+const buildAreaRound = (mode: SolveMode, level: number): FormulaRound => {
+  const length = randomInt(3, 10 + level);
+  const width = randomInt(2, 8 + level);
+  const area = length * width;
+
+  if (mode === 'missing') {
+    const missing = Math.random() > 0.5 ? 'l' : 'w';
+    return {
+      id: `area-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      kind: 'reasoning',
+      diagram: 'rectangle',
+      title: 'Rectangle Area',
+      formula: 'A = l × w',
+      prompt: `A Monster Mind has hidden the ${missing === 'l' ? 'length' : 'width'} rune.`,
+      targetLabel: missing === 'l' ? 'l' : 'w',
+      given: missing === 'l'
+        ? [{ label: 'A', value: area }, { label: 'w', value: width }]
+        : [{ label: 'A', value: area }, { label: 'l', value: length }],
+      answer: missing === 'l' ? length : width,
+      options: makeOptions(missing === 'l' ? length : width),
+      hint: 'Area equals length multiplied by width.',
+    };
+  }
+
+  return {
+    id: `area-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    kind: 'fluency',
+    diagram: 'rectangle',
+    title: 'Rectangle Area',
+    formula: 'A = l × w',
+    prompt: 'The forge runes need restoring before the spell can hold.',
+    targetLabel: 'A',
+    given: [{ label: 'l', value: length }, { label: 'w', value: width }],
+    answer: area,
+    options: makeOptions(area),
+    hint: 'Multiply length by width.',
+  };
+};
+
+const buildPerimeterRound = (mode: SolveMode, level: number): FormulaRound => {
+  const length = randomInt(3, 12 + level);
+  const width = randomInt(2, 9 + level);
+  const perimeter = 2 * (length + width);
+
+  if (mode === 'missing') {
+    const missing = Math.random() > 0.5 ? 'l' : 'w';
+    const answer = missing === 'l' ? length : width;
+    return {
+      id: `perimeter-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      kind: 'reasoning',
+      diagram: 'rectangle',
+      title: 'Rectangle Perimeter',
+      formula: 'P = 2(l + w)',
+      prompt: `A Monster Mind has hidden the ${missing === 'l' ? 'length' : 'width'} rune.`,
+      targetLabel: missing === 'l' ? 'l' : 'w',
+      given: missing === 'l'
+        ? [{ label: 'P', value: perimeter }, { label: 'w', value: width }]
+        : [{ label: 'P', value: perimeter }, { label: 'l', value: length }],
+      answer,
+      options: makeOptions(answer),
+      hint: 'Half the perimeter equals length plus width.',
+    };
+  }
+
+  return {
+    id: `perimeter-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    kind: 'fluency',
+    diagram: 'rectangle',
+    title: 'Rectangle Perimeter',
+    formula: 'P = 2(l + w)',
+    prompt: 'The forge boundary rune has been scrambled.',
+    targetLabel: 'P',
+    given: [{ label: 'l', value: length }, { label: 'w', value: width }],
+    answer: perimeter,
+    options: makeOptions(perimeter),
+    hint: 'Add length + width, then multiply by 2.',
+  };
+};
+
+const buildTriangleRound = (level: number): FormulaRound => {
+  const base = randomInt(4, 12 + level);
+  const height = randomInt(4, 12 + level);
+  const area = (base * height) / 2;
+  return {
+    id: `triangle-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    kind: 'fluency',
+    diagram: 'triangle',
+    title: 'Triangle Area',
+    formula: 'A = (b × h) ÷ 2',
+    prompt: 'The triangle rune is unstable. Restore it with the correct formula.',
+    targetLabel: 'A',
+    given: [{ label: 'b', value: base }, { label: 'h', value: height }],
+    answer: area,
+    options: makeOptions(area),
+    hint: 'Multiply base by height, then halve.',
+  };
+};
+
+const buildVolumeRound = (mode: SolveMode, level: number): FormulaRound => {
+  const length = randomInt(3, 8 + level);
+  const width = randomInt(2, 6 + level);
+  const height = randomInt(2, 6 + level);
+  const volume = length * width * height;
+
+  if (mode === 'missing') {
+    const missing = Math.random() > 0.5 ? 'l' : 'h';
+    const answer = missing === 'l' ? length : height;
+    return {
+      id: `volume-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      kind: 'reasoning',
+      diagram: 'cuboid',
+      title: 'Cuboid Volume',
+      formula: 'V = l × w × h',
+      prompt: `A Monster Mind has hidden the ${missing === 'l' ? 'length' : 'height'} rune.`,
+      targetLabel: missing === 'l' ? 'l' : 'h',
+      given: missing === 'l'
+        ? [{ label: 'V', value: volume }, { label: 'w', value: width }, { label: 'h', value: height }]
+        : [{ label: 'V', value: volume }, { label: 'l', value: length }, { label: 'w', value: width }],
+      answer,
+      options: makeOptions(answer),
+      hint: 'Divide the volume by the other dimensions.',
+    };
+  }
+
+  return {
+    id: `volume-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    kind: 'fluency',
+    diagram: 'cuboid',
+    title: 'Cuboid Volume',
+    formula: 'V = l × w × h',
+    prompt: 'The cuboid rune has been disturbed. Restore the full formula.',
+    targetLabel: 'V',
+    given: [{ label: 'l', value: length }, { label: 'w', value: width }, { label: 'h', value: height }],
+    answer: volume,
+    options: makeOptions(volume),
+    hint: 'Multiply all three dimensions.',
+  };
+};
+
+const createRound = (level: number): FormulaRound => {
+  const modes: FormulaKind[] = level <= 2
+    ? ['area_rect', 'perimeter_rect']
+    : level <= 4
+      ? ['area_rect', 'perimeter_rect', 'triangle_area']
+      : ['area_rect', 'perimeter_rect', 'triangle_area', 'volume_cuboid'];
+
+  const mode = modes[randomInt(0, modes.length - 1)];
+  const solveMode: SolveMode = level >= 5 && Math.random() > 0.48 ? 'missing' : 'compute';
+
+  if (mode === 'area_rect') return buildAreaRound(solveMode, level);
+  if (mode === 'perimeter_rect') return buildPerimeterRound(solveMode, level);
+  if (mode === 'volume_cuboid') return buildVolumeRound(solveMode, level);
+  return buildTriangleRound(level);
+};
+
+const scoreToStars = (correct: number, rounds: number, lives: number) => {
+  const accuracy = rounds > 0 ? correct / rounds : 1;
+  if (accuracy >= 0.9 && lives >= 2) return 3;
+  if (accuracy >= 0.7) return 2;
+  return 1;
+};
+
+const FormulaShapePanel: React.FC<{ round: FormulaRound }> = ({ round }) => {
+  const givenMap = new Map(round.given.map(({ label, value }) => [label, value]));
+  const labelValue = (label: string) => (
+    givenMap.has(label)
+      ? String(givenMap.get(label))
+      : round.targetLabel === label
+        ? '?'
+        : ''
+  );
+  const valuePills = round.given.map(({ label, value }) => (
+    <div
+      key={`${round.id}-${label}`}
+      className="rounded-[0.85rem] border border-white/12 bg-black/18 px-3 py-1.5 text-center shadow-[0_8px_16px_rgba(2,6,23,0.12)]"
+    >
+      <div className="text-[10px] font-black uppercase tracking-[0.18em] text-cyan-100/72">{label}</div>
+      <div className="mt-0.5 text-xl font-black text-white md:text-2xl">{value}</div>
+    </div>
+  ));
+
+  return (
+    <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto] gap-2 rounded-[1.15rem] border border-cyan-200/14 bg-[linear-gradient(180deg,rgba(8,18,36,0.42),rgba(15,23,42,0.18))] p-2.5 shadow-[0_12px_22px_rgba(2,6,23,0.12)] md:p-3">
+      <div className="flex min-h-0 items-center justify-center rounded-[1rem] border border-cyan-100/16 bg-slate-950/22 p-2">
+          {round.diagram === 'rectangle' ? (
+            <svg viewBox="0 0 260 170" className="h-full max-h-[17rem] w-full max-w-[26rem]" role="img" aria-label={round.title}>
+              <rect x="45" y="38" width="170" height="92" rx="6" fill="rgba(56,189,248,0.16)" stroke="#facc15" strokeWidth="6" />
+              <text x="130" y="88" textAnchor="middle" dominantBaseline="middle" fill="#ffffff" fontSize="22" fontWeight="900">{round.targetLabel === 'A' ? '?' : round.targetLabel === 'P' ? 'P?' : ''}</text>
+              <text x="130" y="154" textAnchor="middle" fill="#bfdbfe" fontSize="18" fontWeight="900">l = {labelValue('l')}</text>
+              <text x="238" y="88" textAnchor="middle" dominantBaseline="middle" fill="#bfdbfe" fontSize="18" fontWeight="900">w = {labelValue('w')}</text>
+            </svg>
+          ) : round.diagram === 'triangle' ? (
+            <svg viewBox="0 0 260 180" className="h-full max-h-[17rem] w-full max-w-[26rem]" role="img" aria-label={round.title}>
+              <path d="M42 138 L218 138 L130 30 Z" fill="rgba(56,189,248,0.16)" stroke="#facc15" strokeWidth="6" strokeLinejoin="round" />
+              <line x1="130" y1="34" x2="130" y2="138" stroke="#93c5fd" strokeWidth="3" strokeDasharray="7 7" />
+              <text x="130" y="92" textAnchor="middle" dominantBaseline="middle" fill="#ffffff" fontSize="22" fontWeight="900">{round.targetLabel === 'A' ? '?' : ''}</text>
+              <text x="130" y="166" textAnchor="middle" fill="#bfdbfe" fontSize="18" fontWeight="900">b = {labelValue('b')}</text>
+              <rect x="142" y="62" width="72" height="28" rx="10" fill="rgba(8,15,32,0.72)" stroke="rgba(191,219,254,0.28)" />
+              <text x="178" y="81" textAnchor="middle" fill="#bfdbfe" fontSize="18" fontWeight="900">h = {labelValue('h')}</text>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 270 190" className="h-full max-h-[17rem] w-full max-w-[26rem]" role="img" aria-label={round.title}>
+              <path d="M55 70 L165 70 L215 35 L105 35 Z" fill="rgba(125,211,252,0.24)" stroke="#facc15" strokeWidth="5" strokeLinejoin="round" />
+              <path d="M165 70 L215 35 L215 125 L165 160 Z" fill="rgba(34,211,238,0.18)" stroke="#facc15" strokeWidth="5" strokeLinejoin="round" />
+              <path d="M55 70 L165 70 L165 160 L55 160 Z" fill="rgba(56,189,248,0.16)" stroke="#facc15" strokeWidth="5" strokeLinejoin="round" />
+              <text x="110" y="118" textAnchor="middle" fill="#ffffff" fontSize="22" fontWeight="900">{round.targetLabel === 'V' ? '?' : ''}</text>
+              <text x="110" y="182" textAnchor="middle" fill="#bfdbfe" fontSize="16" fontWeight="900">l = {labelValue('l')}</text>
+              <rect x="206" y="58" width="56" height="24" rx="10" fill="rgba(8,15,32,0.72)" stroke="rgba(191,219,254,0.28)" />
+              <text x="234" y="75" textAnchor="middle" fill="#bfdbfe" fontSize="15" fontWeight="900">w = {labelValue('w')}</text>
+              <rect x="6" y="104" width="56" height="24" rx="10" fill="rgba(8,15,32,0.72)" stroke="rgba(191,219,254,0.28)" />
+              <text x="34" y="121" textAnchor="middle" fill="#bfdbfe" fontSize="15" fontWeight="900">h = {labelValue('h')}</text>
+            </svg>
+          )}
+      </div>
+      <div>
+        <div className={`grid gap-2 text-white ${round.given.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+          {valuePills}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FormulaForgeGame: React.FC<FormulaForgeGameProps> = ({
+  levelId,
+  avatarId: _avatarId,
+  useSharedTopHud = true,
+  onVictory,
+  onGameOver,
+  onBack: _onBack,
+  sessionState,
+  sessionEvents,
+}) => {
+  const resolvedLevel = useMemo(() => Math.max(1, Math.min(10, levelId || 1)), [levelId]);
+  const totalRounds = useMemo(() => Math.min(10, 6 + Math.floor(resolvedLevel / 2)), [resolvedLevel]);
+
+  const [roundNumber, setRoundNumber] = useState(1);
+  const [round, setRound] = useState<FormulaRound>(() => createRound(resolvedLevel));
+  const [XP, setScore] = useState(0);
+  const [lives, setLives] = useState(MAX_LIVES);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [feedback, setFeedback] = useState<FeedbackState>(null);
+  const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
+  const [isFinished, setIsFinished] = useState(false);
+  const [showCelebrationSplash, setShowCelebrationSplash] = useState(false);
+
+  const timersRef = useRef<number[]>([]);
+  const scoreRef = useRef(0);
+  scoreRef.current = XP;
+
+  const clearTimers = () => {
+    timersRef.current.forEach((id) => window.clearTimeout(id));
+    timersRef.current = [];
+  };
+
+  useEffect(() => () => clearTimers(), []);
+
+  useEffect(() => {
+    clearTimers();
+    setRoundNumber(1);
+    setRound(createRound(resolvedLevel));
+    setScore(0);
+    setLives(MAX_LIVES);
+    setCorrectCount(0);
+    setFeedback(null);
+    setSelectedChoice(null);
+    setIsFinished(false);
+    setShowCelebrationSplash(false);
+  }, [resolvedLevel]);
+
+  const advanceRound = useCallback(() => {
+    if (roundNumber >= totalRounds) {
+      setIsFinished(true);
+      const stars = scoreToStars(correctCount + 1, totalRounds, lives);
+      confetti({
+        particleCount: 110,
+        spread: 70,
+        origin: { y: 0.62 },
+        colors: ['#fcd34d', '#67e8f9', '#ffffff'],
+      });
+      sessionEvents?.onGameComplete?.({ score: XP, stars });
+      onVictory(stars, XP);
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setShowCelebrationSplash(false);
+      setRoundNumber((prev) => prev + 1);
+      setRound(createRound(resolvedLevel));
+      setFeedback(null);
+      setSelectedChoice(null);
+    }, 520);
+    timersRef.current.push(timeoutId);
+  }, [XP, correctCount, lives, onVictory, roundNumber, resolvedLevel, sessionEvents, totalRounds]);
+
+  const handleAnswer = (choice: number) => {
+    if (feedback || isFinished) return;
+    setSelectedChoice(choice);
+
+    if (choice === round.answer) {
+      const gained = 140 + (resolvedLevel * 12);
+      const updatedScore = XP + gained;
+      setScore(updatedScore);
+      setCorrectCount((prev) => prev + 1);
+      setShowCelebrationSplash(true);
+      setFeedback({
+        tone: 'success',
+        title: 'Runes Restored',
+        subtitle: `+${gained} XP`,
+      });
+      triggerHaptic('success');
+      sessionEvents?.onCorrectAnswer?.({ score: updatedScore, metadata: { formula: round.title } });
+      sessionEvents?.onPuzzleComplete?.({ score: updatedScore });
+      advanceRound();
+      return;
+    }
+
+    const nextLives = lives - 1;
+    setLives(nextLives);
+    setFeedback({
+      tone: 'error',
+      title: 'Runes Unstable',
+      subtitle: `Correct answer: ${round.answer}`,
+    });
+    triggerHaptic('error');
+    sessionEvents?.onIncorrectAnswer?.({ score: XP, metadata: { correctAnswer: round.answer } });
+
+    if (nextLives <= 0) {
+      setIsFinished(true);
+      const timeoutId = window.setTimeout(() => {
+        sessionEvents?.onGameFailed?.({ score: XP, reason: 'lives' });
+        onGameOver(scoreRef.current);
+      }, 620);
+      timersRef.current.push(timeoutId);
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setFeedback(null);
+      setSelectedChoice(null);
+    }, 520);
+    timersRef.current.push(timeoutId);
+  };
+
+  return (
+    <GameScreenShell
+      className="overflow-hidden"
+      backgroundImage={fractionForgeBackground}
+      backgroundOpacity={1}
+      overlayDisabled
+    >
+
+      <div className={`formula-forge-content relative z-10 flex h-full min-h-0 w-full flex-1 flex-col items-center px-2 pb-2 ${useSharedTopHud ? 'pt-1 md:pt-2' : 'pt-[calc(env(safe-area-inset-top)+2.5rem)]'}`}>
+        <div className="relative flex w-full max-w-6xl min-h-0 flex-1 flex-col overflow-hidden rounded-[1.7rem] p-2 md:rounded-[2rem] md:p-3">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.12),rgba(15,23,42,0.02)_36%,rgba(15,23,42,0.08)_100%)]" />
+
+          <div className="relative z-10 flex h-full w-full min-h-0 flex-col px-2 pb-2 pt-2 md:px-4 md:pb-4">
+            <div className="flex justify-center">
+              <GameQuestionCard
+                title="Formula Forge"
+                className="max-w-[860px] border border-cyan-200/22 bg-[linear-gradient(180deg,rgba(8,18,36,0.42),rgba(8,18,36,0.18))] shadow-[0_12px_26px_rgba(2,6,23,0.12)]"
+              >
+                {formatFantasyPrompt(buildQuestionStem(round))}
+              </GameQuestionCard>
+            </div>
+
+            <div className="mt-3 grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto_auto] gap-2 md:gap-3">
+              <FormulaShapePanel round={round} />
+
+              <div className="answer-choice-surface mt-auto min-h-0 rounded-[1.15rem] border border-white/12 bg-[linear-gradient(180deg,rgba(30,64,175,0.08),rgba(15,23,42,0.46))] p-2.5 shadow-[0_14px_26px_rgba(2,6,23,0.12)] md:p-3">
+                <div className="text-[11px] font-black uppercase tracking-[0.16em] text-amber-100/85 md:text-xs">Restore the correct value for {round.targetLabel}</div>
+                <div className="mt-2.5 grid grid-cols-2 gap-1.5 md:gap-2.5">
+                  {round.options.map((option) => (
+                    <motion.button
+                      key={`${round.id}-${option}`}
+                      type="button"
+                      onClick={() => handleAnswer(option)}
+                      disabled={Boolean(feedback) || isFinished}
+                      whileTap={{ scale: 0.96 }}
+                      animate={selectedChoice === option ? (feedback?.tone === 'success' ? { scale: [1, 1.1, 0.98, 1.05, 1], rotate: [0, -2, 2, 0] } : { scale: [1, 1.04, 1] }) : { scale: 1 }}
+                      className={`min-h-[2.8rem] rounded-[1.05rem] px-2 py-1.5 text-base font-black shadow-[0_12px_20px_rgba(2,6,23,0.2)] disabled:opacity-60 md:min-h-[3.3rem] md:text-2xl ${
+                        selectedChoice === option
+                          ? feedback?.tone === 'success'
+                            ? 'ui-button-success'
+                            : 'ui-button-primary'
+                          : 'ui-button-secondary'
+                      }`}
+                    >
+                      {option}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <CelebrationSplash active={showCelebrationSplash} message="Forge Restored!" theme="forge" />
+
+          <AnimatePresence>
+            {feedback && feedback.tone === 'error' ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.82 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.08 }}
+                className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center backdrop-blur-md bg-red-500/16"
+              >
+                <div className="rounded-[1.6rem] border border-white/14 bg-slate-950/62 px-6 py-5 text-center shadow-[0_18px_28px_rgba(0,0,0,0.24)] md:rounded-[2rem] md:px-8 md:py-6">
+                  <div className="text-3xl font-black uppercase tracking-[0.12em] text-amber-100 md:text-5xl">{feedback.title}</div>
+                  <div className="mt-1 text-sm font-bold text-white/92 md:mt-2 md:text-xl">{feedback.subtitle}</div>
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
+      </div>
+    </GameScreenShell>
+  );
+};
+
+export default FormulaForgeGame;

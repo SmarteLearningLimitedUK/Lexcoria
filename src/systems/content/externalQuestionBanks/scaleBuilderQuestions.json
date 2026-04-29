@@ -1,0 +1,143 @@
+[
+  {
+    "id": "sb-001",
+    "difficulty": "easy",
+    "question": "A blueprint wall is 4m long. The scale factor is x2. What is the new length?",
+    "correctAnswer": "8m",
+    "answers": ["6m", "8m", "10m", "12m"]
+  },
+  {
+    "id": "sb-002",
+    "difficulty": "easy",
+    "question": "A tower is 7cm tall on a plan. It is enlarged by scale factor x3. What is the new height?",
+    "correctAnswer": "21cm",
+    "answers": ["14cm", "18cm", "21cm", "24cm"]
+  },
+  {
+    "id": "sb-003",
+    "difficulty": "easy",
+    "question": "A path measures 5m. The blueprint uses scale factor x4. What is the new length?",
+    "correctAnswer": "20m",
+    "answers": ["15m", "18m", "20m", "25m"]
+  },
+  {
+    "id": "sb-004",
+    "difficulty": "easy",
+    "question": "A room width is 12m. It is reduced by scale factor \u00f72. What is the new width?",
+    "correctAnswer": "6m",
+    "answers": ["4m", "5m", "6m", "8m"]
+  },
+  {
+    "id": "sb-005",
+    "difficulty": "easy",
+    "question": "A bridge is 9cm long. It is enlarged by scale factor x2. What is the new length?",
+    "correctAnswer": "18cm",
+    "answers": ["16cm", "18cm", "20cm", "22cm"]
+  },
+  {
+    "id": "sb-006",
+    "difficulty": "medium",
+    "question": "A blueprint rectangle measures 6cm by 8cm. The scale factor is x3. What is the new width?",
+    "correctAnswer": "18cm",
+    "answers": ["16cm", "18cm", "20cm", "24cm"]
+  },
+  {
+    "id": "sb-007",
+    "difficulty": "medium",
+    "question": "A plan is reduced by scale factor \u00f74. A wall originally measures 28m. What is the new length?",
+    "correctAnswer": "7m",
+    "answers": ["6m", "7m", "8m", "9m"]
+  },
+  {
+    "id": "sb-008",
+    "difficulty": "medium",
+    "question": "A shape with side length 14cm is enlarged by x5. What is the new side length?",
+    "correctAnswer": "70cm",
+    "answers": ["60cm", "65cm", "70cm", "75cm"]
+  },
+  {
+    "id": "sb-009",
+    "difficulty": "medium",
+    "question": "A blueprint floor measures 32m. It is scaled down by \u00f78. What is the new size?",
+    "correctAnswer": "4m",
+    "answers": ["2m", "3m", "4m", "8m"]
+  },
+  {
+    "id": "sb-010",
+    "difficulty": "medium",
+    "question": "A castle wall is 15m long. The scale factor is x6. What is the scaled length?",
+    "correctAnswer": "90m",
+    "answers": ["75m", "80m", "90m", "95m"]
+  },
+  {
+    "id": "sb-011",
+    "difficulty": "medium",
+    "question": "A blueprint uses scale factor x10. A tower is 4m high. What is the scaled height?",
+    "correctAnswer": "40m",
+    "answers": ["14m", "20m", "40m", "44m"]
+  },
+  {
+    "id": "sb-012",
+    "difficulty": "hard",
+    "question": "A blueprint room measures 3.5m wide. It is enlarged by x4. What is the new width?",
+    "correctAnswer": "14m",
+    "answers": ["12m", "13m", "14m", "15m"]
+  },
+  {
+    "id": "sb-013",
+    "difficulty": "hard",
+    "question": "A plan is scaled down by \u00f75. A corridor measures 45m. What is the new length?",
+    "correctAnswer": "9m",
+    "answers": ["7m", "8m", "9m", "10m"]
+  },
+  {
+    "id": "sb-014",
+    "difficulty": "hard",
+    "question": "A blueprint shape measures 2.4cm. It is enlarged by x5. What is the new size?",
+    "correctAnswer": "12cm",
+    "answers": ["10cm", "11cm", "12cm", "14cm"]
+  },
+  {
+    "id": "sb-015",
+    "difficulty": "hard",
+    "question": "A wall is reduced by scale factor \u00f710. The original length is 120m. What is the new length?",
+    "correctAnswer": "12m",
+    "answers": ["10m", "11m", "12m", "14m"]
+  },
+  {
+    "id": "sb-016",
+    "difficulty": "hard",
+    "question": "A blueprint uses scale factor x2.5. A path is 8m long. What is the new length?",
+    "correctAnswer": "20m",
+    "answers": ["18m", "19m", "20m", "22m"]
+  },
+  {
+    "id": "sb-017",
+    "difficulty": "hard",
+    "question": "A model is built at half size. The real tower is 36m tall. What is the model height?",
+    "correctAnswer": "18m",
+    "answers": ["12m", "16m", "18m", "20m"]
+  },
+  {
+    "id": "sb-018",
+    "difficulty": "hard",
+    "question": "A shape measures 7.2cm. It is enlarged by x3. What is the new size?",
+    "correctAnswer": "21.6cm",
+    "answers": ["18.6cm", "20.6cm", "21.6cm", "24.6cm"]
+  },
+  {
+    "id": "sb-019",
+    "difficulty": "hard",
+    "question": "A room on a blueprint measures 11cm. The actual room is x20 larger. What is the actual size?",
+    "correctAnswer": "220cm",
+    "answers": ["200cm", "210cm", "220cm", "240cm"]
+  },
+  {
+    "id": "sb-020",
+    "difficulty": "hard",
+    "question": "A castle gate is reduced by \u00f74. The original width is 52m. What is the new width?",
+    "correctAnswer": "13m",
+    "answers": ["11m", "12m", "13m", "14m"]
+  }
+]
+
