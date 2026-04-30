@@ -75,11 +75,8 @@ export const WELLBEING_BY_ID: Record<WellbeingActivityId, WellbeingActivityMeta>
 }, {} as Record<WellbeingActivityId, WellbeingActivityMeta>);
 
 export const WELLBEING_ACTIVITY_BY_ISLAND: Record<number, WellbeingActivityId> = {
-  1: 'breathing_bloom',
-  2: 'leaf_drift',
+  1: 'leaf_drift',
+  2: 'breathing_bloom',
   3: 'constellation_connect',
   4: 'peaceful_pond',
-  5: 'thought_sort',
-  6: 'candle_calm',
-  7: 'peaceful_pond',
 };

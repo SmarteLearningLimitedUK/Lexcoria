@@ -43,72 +43,40 @@ const MAP_HEIGHT_PX = 2500;
 
 const ISLAND_HOTSPOTS: IslandHotspot[] = [
   {
-    islandId: 8,
-    x: 52.47,
-    y: 17.38,
-    width: 93.49,
-    height: 5.56,
-  },
-  {
-    islandId: 6,
-    x: 37.5,
-    y: 25.72,
-    width: 63.02,
-    height: 5.52,
-  },
-  {
-    islandId: 5,
-    x: 63.67,
-    y: 34.32,
-    width: 62.76,
-    height: 5.52,
+    islandId: 4,
+    x: 26,
+    y: 13,
+    width: 30,
+    height: 12,
   },
   {
     islandId: 3,
-    x: 45.44,
-    y: 45.16,
-    width: 62.76,
-    height: 5.52,
+    x: 62,
+    y: 30,
+    width: 36,
+    height: 13,
   },
   {
     islandId: 2,
-    x: 52.73,
-    y: 54.98,
-    width: 82.55,
-    height: 5.72,
-  },
-  {
-    islandId: 4,
-    x: 50,
-    y: 66.74,
-    width: 63.02,
-    height: 5.56,
-  },
-  {
-    islandId: 7,
-    x: 54.17,
-    y: 79.5,
-    width: 75,
-    height: 5.56,
+    x: 52,
+    y: 56,
+    width: 42,
+    height: 14,
   },
   {
     islandId: 1,
-    x: 35.94,
-    y: 91.62,
-    width: 63.02,
-    height: 5.56,
+    x: 52,
+    y: 78,
+    width: 34,
+    height: 16,
   },
 ];
 
 const ISLAND_ACCENT_FRAMES: Partial<Record<number, IslandAccentFrame>> = {
-  1: { left: '50%', top: '50%', width: '70%', height: '72%' },
-  2: { left: '50%', top: '54%', width: '68%', height: '68%' },
-  3: { left: '50%', top: '48%', width: '66%', height: '70%' },
-  4: { left: '50%', top: '52%', width: '66%', height: '68%' },
-  5: { left: '50%', top: '45%', width: '74%', height: '64%' },
-  6: { left: '50%', top: '40%', width: '60%', height: '74%' },
-  7: { left: '50%', top: '48%', width: '70%', height: '66%' },
-  8: { left: '50%', top: '42%', width: '62%', height: '78%' },
+  1: { left: '50%', top: '52%', width: '78%', height: '88%' }, // stack of books tower
+  2: { left: '50%', top: '52%', width: '84%', height: '82%' }, // open book island
+  3: { left: '50%', top: '48%', width: '80%', height: '86%' }, // cloud island
+  4: { left: '50%', top: '48%', width: '82%', height: '88%' }, // moon island (boss papers)
 };
 
 const getIslandAccentFrame = (islandId: number): IslandAccentFrame => (
@@ -121,6 +89,26 @@ const getIslandAccentFrame = (islandId: number): IslandAccentFrame => (
 );
 
 const renderIslandAccent = (islandId: number) => {
+  if (islandId >= 1 && islandId <= 4) {
+    return (
+      <div
+        className="world-map-island-breathe pointer-events-none absolute inset-0 z-10"
+        style={{
+          animationDuration: `${6.2 + (islandId % 4) * 0.6}s`,
+          animationDelay: `${(islandId % 5) * 0.18}s`,
+        }}
+      >
+        <div
+          className="world-map-island-halo"
+          style={{
+            animationDuration: `${7.4 + (islandId % 3) * 0.45}s`,
+            animationDelay: `${(islandId % 7) * 0.12}s`,
+          }}
+        />
+      </div>
+    );
+  }
+
   switch (islandId) {
     case 8:
       return (
