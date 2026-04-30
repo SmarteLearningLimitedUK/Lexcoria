@@ -5132,6 +5132,19 @@ button.avatar-hero-arrow:not(:disabled):active {
   max-height: 100% !important;
 }
 
+/* Gameplay rule: question cards participate in layout flow (no fixed overlays).
+   This prevents overlap with passages/answers across all mini-games. */
+.screen-gameplay .game-question-card {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 /* Ensure any full-screen utility class stays inside the contracted gameplay viewport. */
 .screen-gameplay .unified-minigame-hud-enabled .fixed.inset-0.h-screen,
 .screen-gameplay .unified-minigame-hud-enabled .fixed.inset-0.w-screen {
