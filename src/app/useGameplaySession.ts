@@ -33,13 +33,7 @@ export const useGameplaySession = ({
   const [globalMiniGameLifeLock, setGlobalMiniGameLifeLock] = useState(false);
   const [globalMiniGameTimeLock, setGlobalMiniGameTimeLock] = useState(false);
   const [isMuted, setIsMuted] = useState(() => localStorage.getItem(GAME_AUDIO_STORAGE_KEY) === 'true');
-  const isUntimedGameplay =
-    screen === 'gameplay'
-    && (
-      Boolean(selectedLevel?.isPractice)
-      || selectedLevel?.gameType === 'mean_machine'
-      || selectedLevel?.gameType === 'potion_pour'
-    );
+  const isUntimedGameplay = screen === 'gameplay' && Boolean(selectedLevel?.isPractice);
   const consumeLife = useCallback((amount = 1) => {
     if (amount <= 0) return;
     setGlobalMiniGameLives((previous) => Math.max(0, previous - amount));

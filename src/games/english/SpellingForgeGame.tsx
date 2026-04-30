@@ -37,7 +37,7 @@ const SpellingForgeGame: React.FC<SpellingForgeGameProps> = ({
 
   return (
     <EnglishGameShell
-      title="Spelling Forge"
+      title="Spellbound Forge"
       levelId={levelId}
       questions={questions}
       onVictory={onVictory}
@@ -52,4 +52,3 @@ const SpellingForgeGame: React.FC<SpellingForgeGameProps> = ({
 };
 
 export default SpellingForgeGame;
-

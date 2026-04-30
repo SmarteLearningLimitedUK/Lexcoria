@@ -27,27 +27,7 @@ export const DEFAULT_TELEMETRY: PlayerTelemetry = {
   gameStats: {},
 };
 
-const GAME_TOPIC_MAP: Partial<Record<MiniGameType, string[]>> = {
-  percent_power: ['percentages'],
-  ratio_rapids: ['ratio'],
-  ratio_fractions: ['ratio', 'fractions'],
-  fraction_match: ['fractions'],
-  unit_mixer: ['measurement'],
-  change_counter: ['money'],
-  measurement_forge: ['measurement'],
-  timekeeper_temple: ['time'],
-  area_architect: ['area'],
-  polygon_palace: ['geometry'],
-  transform_temple: ['transformation'],
-  coordinate_quest: ['coordinates'],
-  angle_arena: ['angles'],
-  mean_machine: ['averages'],
-  reasoning_quest: ['reasoning'],
-  calculation_clash: ['arithmetic'],
-  place_value_peaks: ['place_value'],
-  data_dungeon: ['data'],
-  graph_grabber: ['data'],
-};
+const GAME_TOPIC_MAP: Partial<Record<MiniGameType, string[]>> = {};
 
 const normalizeTopicTags = (tags: string[]) => Array.from(new Set(tags.map(tag => tag.trim()).filter(Boolean)));
 

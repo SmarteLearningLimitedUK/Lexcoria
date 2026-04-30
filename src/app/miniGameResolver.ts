@@ -1,12 +1,7 @@
-﻿import { MiniGameRegistryKey } from '../games';
-import { isBossEncounterGameType } from '../games/bossEncounterTypes';
+import { MiniGameRegistryKey } from '../games';
 import { LevelData } from '../types';
 
 export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKey | null => {
-  if (level.isBoss && isBossEncounterGameType(level.gameType)) {
-    return 'BossEncounterGame';
-  }
-
   switch (level.gameType) {
     case 'WORD_WARDEN':
       return 'WordWardenGame';
@@ -33,12 +28,25 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
     case 'SPELLING_FORGE':
       return 'SpellingForgeGame';
     case 'HALL_OF_ECHOES':
+      return 'HallOfEchoesGame';
+    case 'PATTERN_TRIALS':
+      return 'PatternTrialsGame';
+    case 'WORD_MORPH':
+      return 'WordMorphGame';
     case 'HOMOPHONE_HUNT':
       return 'HomophoneHuntGame';
     case 'SUFFIX_SIEGE':
       return 'SuffixSiegeGame';
     case 'SENTENCE_SMITH':
       return 'SentenceSmithGame';
+    case 'SENTENCE_SHIFT':
+      return 'SentenceShiftGame';
+    case 'BLADE_REFINER':
+      return 'BladeRefinerGame';
+    case 'POWER_INFUSION':
+      return 'PowerInfusionGame';
+    case 'FORGE_REPAIR':
+      return 'ForgeRepairGame';
     case 'PARAGRAPH_PATCH':
       return 'ParagraphPatchGame';
     case 'CONNECTIVE_CRAFTER':
@@ -49,172 +57,58 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
       return 'MeaningMinesGame';
     case 'SYNONYM_SIEGE':
       return 'SynonymSiegeGame';
-
-    // SATs Legends English (build spec) - not yet implemented in this scaffold build.
-    case 'PATTERN_TRIALS':
-    case 'WORD_MORPH':
-    case 'SENTENCE_SHIFT':
-    case 'BLADE_REFINER':
-    case 'POWER_INFUSION':
-    case 'FORGE_REPAIR':
     case 'WORD_SENSE':
+      return 'WordSenseGame';
     case 'TWIN_WORDS_TRIAL':
+      return 'TwinWordsTrialGame';
     case 'ANTONYM_AMBUSH':
+      return 'AntonymAmbushGame';
     case 'TONE_TRADER':
+      return 'ToneTraderGame';
     case 'MEANING_MATCH':
+      return 'MeaningMatchGame';
     case 'RETRIEVAL_RAPIDS':
+      return 'RetrievalRapidsGame';
     case 'INFERENCE_ISLE':
+      return 'InferenceIsleGame';
     case 'EVIDENCE_EXPLORER':
+      return 'EvidenceExplorerGame';
     case 'SEQUENCE_STREAM':
+      return 'SequenceStreamGame';
     case 'AUTHOR_INTENT':
+      return 'AuthorIntentGame';
     case 'SUMMARY_SELECT':
+      return 'SummarySelectGame';
     case 'EVIDENCE_CHAIN':
+      return 'EvidenceChainGame';
     case 'PASSAGE_QUEST':
+      return 'PassageQuestGame';
     case 'EVIDENCE_HIGHLIGHT':
+      return 'EvidenceHighlightGame';
     case 'TWIN_TICK_TRIAL':
+      return 'TwinTickTrialGame';
     case 'RULE_BREAKER':
+      return 'RuleBreakerGame';
     case 'BEST_ANSWER_QUEST':
+      return 'BestAnswerQuestGame';
     case 'MIXED_MASTERY':
+      return 'MixedMasteryGame';
     case 'LEGENDS_CHALLENGE':
+      return 'LegendsChallengeGame';
     case 'READING_RESCUE':
+      return 'ReadingRescueGame';
     case 'GRAMMAR_GAUNTLET':
+      return 'GrammarGauntletGame';
     case 'WORDSMITH_TRIALS':
+      return 'WordsmithTrialsGame';
     case 'SCHOLARS_SUMMIT':
     case 'INFERENCE_INVADERS':
     case 'RETRIEVAL_RAID':
     case 'LOGIC_LADDER':
     case 'EDITORS_TRIAL':
       return 'EnglishStubGame';
-    case 'cloud_collapse':
-    case 'fraction_match':
-      if (level.blueprintKey === 'simplify_sprint') {
-        return 'SimplifySprintGame';
-      }
-      return 'FractionMatchGame';
-    case 'potion_pour':
-      return 'PotionPanicGame';
-    case 'take_out_rush':
-      if (level.blueprintKey === 'fraction_forge') {
-        return 'FractionForgeGame';
-      }
-      return 'TakeOutRushGame';
-    case 'prime_pop':
-      return 'PrimePopGame';
-    case 'angle_arena':
-      return 'AngleArenaGame';
-    case 'polygon_palace':
-      return 'PolygonPalaceGame';
-    case 'data_dungeon':
-      if (level.blueprintKey === 'table_trouble') {
-        return 'LineGraphLabGame';
-      }
-      if (level.blueprintKey === 'whodunnit_data' || level.blueprintKey === 'data_detective') {
-        return 'DataDetectiveGame';
-      }
-      return 'DataDungeonGame';
-    case 'monster_market':
-      return 'MonsterMarketGame';
-    case 'ratio_rapids':
-      if (level.blueprintKey === 'share_splitter') {
-        return 'ShareSplitterGame';
-      }
-      if (level.blueprintKey === 'maths_vs_zombies') {
-        return 'MathsVsZombiesGame';
-      }
-      return 'RatioRacerGame';
-    case 'timekeeper_temple':
-      return 'ChronoDashGame';
-    case 'measurement_forge':
-      if (level.blueprintKey === 'perimeter_path') {
-        return 'PerimeterPathGame';
-      }
-      return 'ConversionCanyonGame';
-    case 'tower_of_factors':
-      if (level.blueprintKey === 'factor_frenzy') {
-        return 'FactorFrenzyGame';
-      }
-      return 'TowerOfFactorsGame';
-    case 'place_value_peaks':
-      if (level.blueprintKey === 'place_value_panic') {
-        return 'PlaceValuePanicGame';
-      }
-      if (level.blueprintKey === 'rounding_rocket') {
-        return 'RoundingRocketGame';
-      }
-      return 'DecimalSniperGame';
-    case 'graph_grabber':
-      if (level.blueprintKey === 'line_graph_lab') {
-        return 'LineGraphLabGame';
-      }
-      if (level.blueprintKey === 'chart_challenge' || level.blueprintKey === 'median_mountain') {
-        return 'MedianMountainGame';
-      }
-      return 'GraphGrabberGame';
-    case 'equation_grove':
-      // Player-facing campaign only ships Order Ops Arena for equation_grove.
-      // Treat missing/unknown blueprint keys as Order Ops instead of routing to a stray registry entry.
-      return 'OrderOpsArenaGame';
-    case 'coordinate_quest':
-      if (level.blueprintKey === 'number_line_ninja') {
-        return 'NumberLineNinjaGame';
-      }
-      return 'CoordinatesQuestGame';
-    case 'calculation_clash':
-
-      if (level.blueprintKey === 'multiplication_mine') {
-        return 'MultiplicationMineGame';
-      }
-      if (level.blueprintKey === 'remainder_run') {
-        return 'RemainderRunGame';
-      }
-      return 'CalculationCrashGame';
-    case 'formula_forge':
-      return 'FormulaForgeGame';
-    case 'unit_mixer':
-      return 'LavaPathGame';
-    case 'change_counter':
-      return 'ChangeCounterGame';
-    case 'reasoning_quest':
-      return 'ReasoningQuestGame';
-    case 'percent_power':
-      return 'PercentPowerGame';
-    case 'area_architect':
-      return 'AreaArchitectGame';
-    case 'ratio_fractions':
-      return 'RatioRacerGame';
-    case 'transform_temple':
-      if (level.blueprintKey === 'rotation_relay') {
-        return 'RotationStationGame';
-      }
-      return 'CurriculumChallengeGame';
-    case 'scale_safari':
-      if (level.blueprintKey === 'scale_builder') {
-        return 'ScaleBuilderGame';
-      }
-      return null;
-    case 'mean_machine':
-      if (level.blueprintKey === 'mean_machine') {
-        return 'MeanMachineGame';
-      }
-      if (level.blueprintKey === 'median_mountain') {
-        return 'MedianMountainGame';
-      }
-      return null;
-    case 'rule_runner':
-      if (level.blueprintKey === 'median_mountain') {
-        return 'MedianMountainGame';
-      }
-      if (level.blueprintKey === 'problem_pyramid') {
-        return 'ProblemPyramidGame';
-      }
-      return 'CurriculumChallengeGame';
-    case 'logic_sort':
-      return 'ReasoningGame';
-    case 'matrix_match':
-      return 'ReasoningGame';
     default:
       return null;
   }
 };
-
 

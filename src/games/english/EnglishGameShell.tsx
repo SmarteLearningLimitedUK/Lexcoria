@@ -4,6 +4,7 @@ import { GameQuestionCard, FeedbackStrip } from '../../components/game-ui/GameUi
 import { PrimaryActionButton, SecondaryActionButton } from '../../layout/ScreenPrimitives';
 import { emitMiniGameSessionEvent } from '../../app/gameplaySessionContract';
 import type { GameplaySessionEventHandlers, GameplaySessionState } from '../../app/gameplaySessionContract';
+import { shuffle, shuffleOptionsWithAnswerIndex } from '../../utils/questionShuffle';
 
 export type EnglishMcqQuestion = {
   id: string;
@@ -57,7 +58,15 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
 
-  const activeQuestion = questions[Math.min(questionIndex, Math.max(0, questions.length - 1))];
+  const sessionQuestions = useMemo(() => {
+    const randomized = shuffle(questions);
+    return randomized.map((question) => {
+      const shuffled = shuffleOptionsWithAnswerIndex(question.choices, question.answerIndex);
+      return { ...question, choices: shuffled.options, answerIndex: shuffled.answerIndex };
+    });
+  }, [questions]);
+
+  const activeQuestion = sessionQuestions[Math.min(questionIndex, Math.max(0, sessionQuestions.length - 1))];
   const lives = sessionState?.lives ?? localLives;
   const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
 
@@ -103,23 +112,26 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
     setStatus('playing');
   }, []);
 
-  const advance = useCallback(() => {
-    const nextIndex = questionIndex + 1;
-    if (nextIndex >= questions.length) {
-      setStatus('complete');
-      const earnedStars = starsForAccuracy(correctCount, questions.length, lives);
-      emitMiniGameSessionEvent(sessionEvents, 'game_complete', {
-        score,
-        stars: earnedStars,
-        metadata: { correct: correctCount, total: questions.length },
-      });
-      onVictory(earnedStars, score);
-      return;
-    }
+  const queueAdvance = useCallback((nextQuestionIndex: number, nextCorrect: number, nextScore: number, nextLives: number) => {
+    window.setTimeout(() => {
+      if (nextLives <= 0) return;
 
-    setQuestionIndex(nextIndex);
-    resetForNext();
-  }, [correctCount, lives, onVictory, questionIndex, questions.length, resetForNext, score, sessionEvents]);
+      if (nextQuestionIndex >= questions.length) {
+        setStatus('complete');
+        const earnedStars = starsForAccuracy(nextCorrect, questions.length, nextLives);
+        emitMiniGameSessionEvent(sessionEvents, 'game_complete', {
+          score: nextScore,
+          stars: earnedStars,
+          metadata: { correct: nextCorrect, total: questions.length },
+        });
+        onVictory(earnedStars, nextScore);
+        return;
+      }
+
+      setQuestionIndex(nextQuestionIndex);
+      resetForNext();
+    }, 1200);
+  }, [onVictory, questions.length, resetForNext, sessionEvents]);
 
   const handleSubmit = useCallback(() => {
     if (!activeQuestion || locked || selectedIndex === null) return;
@@ -128,6 +140,10 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
     const isCorrect = selectedIndex === activeQuestion.answerIndex;
     const nextScore = score + (isCorrect ? 120 : 0);
     setScore(nextScore);
+
+    const nextCorrect = correctCount + (isCorrect ? 1 : 0);
+    const nextLives = sessionState ? lives : Math.max(0, lives - (isCorrect ? 0 : 1));
+    const nextQuestionIndex = questionIndex + 1;
 
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
@@ -154,20 +170,22 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
     });
 
     setStatus('resolved');
-  }, [activeQuestion, feedbackCorrect, feedbackPrefixIncorrect, locked, questionIndex, score, selectedIndex, sessionEvents, sessionState]);
+    queueAdvance(nextQuestionIndex, nextCorrect, nextScore, nextLives);
+  }, [activeQuestion, correctCount, feedbackCorrect, feedbackPrefixIncorrect, lives, locked, questionIndex, queueAdvance, score, selectedIndex, sessionEvents, sessionState]);
 
   const headerSubtitle = useMemo(() => (
     <div className="flex flex-wrap items-center justify-between gap-2">
       <span className="font-black text-white/90">
-        Question {Math.min(questionIndex + 1, questions.length)}/{questions.length}
+        Question {Math.min(questionIndex + 1, sessionQuestions.length)}/{sessionQuestions.length}
       </span>
       <span className="font-black text-white/80">
         Lives: {lives}{typeof timeLeft === 'number' ? ` | Time: ${timeLeft}s` : ''}
       </span>
     </div>
-  ), [lives, questionIndex, questions.length, timeLeft]);
+  ), [lives, questionIndex, sessionQuestions.length, timeLeft]);
 
   const isResolved = status === 'resolved' || status === 'complete' || status === 'gameover';
+  const canSubmit = status === 'playing' && selectedIndex !== null && !locked;
 
   return (
     <GameScreenLayout
@@ -183,7 +201,7 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
       )}
       main={(
         <div className="flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4">
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
+          <div className="grid grid-cols-2 gap-2 md:gap-3">
             {(activeQuestion?.choices ?? []).map((choice, index) => {
               const isSelected = selectedIndex === index;
               const isCorrect = activeQuestion ? index === activeQuestion.answerIndex : false;
@@ -234,47 +252,19 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
       )}
       bottom={(
         <div className="flex w-full flex-col gap-2 md:flex-row md:gap-3">
-          {status === 'playing' ? (
-            <>
-              <PrimaryActionButton
-                onClick={handleSubmit}
-                disabled={selectedIndex === null || locked}
-                className="h-14 w-full rounded-2xl text-base md:h-16 md:flex-1 md:text-lg"
-              >
-                Check
-              </PrimaryActionButton>
-              <SecondaryActionButton
-                onClick={onBack}
-                className="h-14 w-full rounded-2xl text-base md:h-16 md:w-auto md:px-8 md:text-lg"
-              >
-                Back
-              </SecondaryActionButton>
-            </>
-          ) : status === 'resolved' ? (
-            <>
-              <PrimaryActionButton
-                onClick={advance}
-                className="h-14 w-full rounded-2xl text-base md:h-16 md:flex-1 md:text-lg"
-              >
-                Next
-              </PrimaryActionButton>
-              <SecondaryActionButton
-                onClick={onBack}
-                className="h-14 w-full rounded-2xl text-base md:h-16 md:w-auto md:px-8 md:text-lg"
-              >
-                Back
-              </SecondaryActionButton>
-            </>
-          ) : (
-            <div className="flex w-full flex-col gap-2 md:flex-row md:gap-3">
-              <PrimaryActionButton
-                onClick={onBack}
-                className="h-14 w-full rounded-2xl text-base md:h-16 md:flex-1 md:text-lg"
-              >
-                Return to island
-              </PrimaryActionButton>
-            </div>
-          )}
+          <PrimaryActionButton
+            onClick={status === 'playing' ? handleSubmit : undefined}
+            disabled={!canSubmit}
+            className="h-14 w-full rounded-2xl text-base md:h-16 md:flex-1 md:text-lg"
+          >
+            {status === 'playing' ? 'Submit' : '...'}
+          </PrimaryActionButton>
+          <SecondaryActionButton
+            onClick={onBack}
+            className="h-14 w-full rounded-2xl text-base md:h-16 md:w-auto md:px-8 md:text-lg"
+          >
+            Exit
+          </SecondaryActionButton>
         </div>
       )}
     />
@@ -282,4 +272,3 @@ const EnglishGameShell: React.FC<EnglishGameShellProps> = ({
 };
 
 export default EnglishGameShell;
-

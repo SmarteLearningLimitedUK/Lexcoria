@@ -522,132 +522,6 @@ const App: React.FC = () => {
   const hintRuleSet = useMemo(
     () => {
       if (!selectedLevel?.isPractice) return null;
-      if (selectedLevel.blueprintKey === 'place_value_panic') {
-        return {
-          title: 'Place Value Panic',
-          summary: 'Place value is the value of a digit based on its position within a number.\nRead the question and then drag each number to its corresponding place.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'number_line_ninja') {
-        return {
-          title: 'Number Line Ninja',
-          summary: 'Use the Number Line to identify and choose the correct answer.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'mean_machine') {
-        return {
-          title: 'Mean Machine',
-          summary: "The Mean Machine must be tamed. It's the source of all fun for the Monster Mind. Spin the reels and follow the instructions to identify MEAN, MODE, and MEDIAN.",
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'multiplication_mine') {
-        return {
-          title: 'Multiplication Mine',
-          summary: "You've made it to the Mines but there are boulders in the way. Solve the multiplication problems and smash your way through!",
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'data_detective' || selectedLevel.blueprintKey === 'whodunnit_data') {
-        return {
-          title: 'Data Detective',
-          summary: "Stop! Show me some ID.. oh, sorry, I'm a seargent down today and we could use your help. There have been thefts, and I need some help looking through the evidence to find our suspect. Can you help?",
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'take_out_rush') {
-        return {
-          title: 'Take-Out Rush',
-          summary: 'Welcome to Monster Munch Diner. These monster Mnds are sure impatient. Complete their order in time to keep them happy.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'percent_power') {
-        return {
-          title: 'Percent Power',
-          summary: 'Practice finding parts of a whole and working backwards from a percentage clue. Use the hints to spot simple percentage facts before you answer.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'polygon_palace') {
-        return {
-          title: 'Polygon Palace',
-          summary: 'Welcome traveller! I need a hand to categorise these shapes. Read the question and select the correct answer, or answers, as there may be more than one. Some of the later shapes are 3D, so be ready to count faces, edges, and vertices too!',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'area_architect') {
-        return {
-          title: 'Area Architect',
-          summary: 'We need to figure out the area of the underground tunnels beneath Monster Mind headquarters. Using the blueprints, can you help us work out the dimensions?',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'perimeter_path') {
-        return {
-          title: 'Perimeter Path',
-          summary: 'We are mapping out the castle tunnels. We need to make sure we have enough fuse to run the dynamite. Can you help us calculate the perimeter? Remember... Perimeter is defined as the total distance around a two-dimensional shape.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'order_ops_arena') {
-        return {
-          title: 'Order Ops Arena',
-          summary: 'HALT! Who goes there. I require order... order of operatons that is! The BIDMAS rule is an acronym to help us remember the order of operations in calculations. Let\'s duel!',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'formula_forge') {
-        return {
-          title: 'Formula Forge',
-          summary: 'Algebra is like a puzzle where letters stand for numbers we don’t know yet, helping us solve problems step by step. Can you complete the formula?',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'factor_frenzy') {
-        return {
-          title: 'Factor Frenzy',
-          summary: 'A factor is a number that divides another number exactly, without leaving any remainder. Factors can also be seen as pairs of numbers that, when multiplied together, result in the original number. Help find the hidden factors.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'remainder_run') {
-        return {
-          title: 'Remainder Run',
-          summary: 'Use long division to work out the quotient, remainder, or decimal answer. Look at the visual, then pick the correct answer.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'coordinate_quest') {
-        return {
-          title: 'Coordinate Quest',
-          summary: "We can't get through! That Monster Mind has hidden traps. Navigate the map from the co-ordinates given, and make it through the pass safely. Remember: the X axis runs left to right â†’, and the Y axis runs bottom to top â†‘.",
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'angle_arena') {
-        return {
-          title: 'Angle Arena',
-          summary: "Greetings! We've built our cannon here to destroy the Monster Mind's look-out towers. Use your maths skills to work out the angle and blast them.",
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'simplify_sprint') {
-        return {
-          title: 'Simplify Sprint',
-          summary: 'The Monster Mind has scrambled the fractions to make them look bigger than they are. Spot a common factor, reduce each fraction to its simplest form, and keep the sprint moving.',
-          bullets: [],
-        };
-      }
-      if (selectedLevel.blueprintKey === 'rotation_reflection') {
-        return {
-          title: 'Rotation Station',
-          summary: 'We need to pack our caravan, but some of the items wont fit unless we are smart with the packing. can you take a look at our shapes and help us out? we may need to flip, mirror or rotate.',
-          bullets: [],
-        };
-      }
       const baseRules = selectedRuleSet || {
         title: canonicalGameTitle || 'Practice',
         summary: `This is the practice run for ${canonicalGameTitle || 'this game'}. Use it to learn the controls before the real level.`,
@@ -672,7 +546,7 @@ const App: React.FC = () => {
       }
       return kidRules;
     },
-    [buildKidRules, selectedLevel, selectedRuleSet],
+    [buildKidRules, canonicalGameTitle, selectedLevel?.isPractice, selectedRuleSet],
   );
 
   useEffect(() => {
@@ -1037,10 +911,7 @@ const App: React.FC = () => {
   const useFlatScreenScaleTransition = isAvatarSelectionScreen || screen === 'profile_setup';
   const screenEnterScale = useFlatScreenScaleTransition ? 1 : 0.98;
   const screenExitScale = useFlatScreenScaleTransition ? 1 : 1.02;
-  const hideShellTimer = LEVEL_TIMERS_DISABLED
-    || !isGameplayScreen
-    || selectedLevel?.isPractice
-    || selectedLevel?.gameType === 'potion_pour';
+  const hideShellTimer = LEVEL_TIMERS_DISABLED || !isGameplayScreen || selectedLevel?.isPractice;
   const goToProfile = useCallback(() => {
     setScreen('profile');
   }, [setScreen]);
@@ -1183,6 +1054,7 @@ const App: React.FC = () => {
                 hideTopBar={screen === 'world_map' || screen === 'island_levels' || screen === 'profile' || screen === 'achievements_tracker' || screen === 'parent_dashboard'}
                 onBack={isGameplayScreen ? goToIslandLevels : handleGlobalDockBack}
                 variant={isGameplayScreen ? 'gameplay' : 'hub'}
+                showActions={!isGameplayScreen}
                 bottomContent={mapHudDock || undefined}
               />
             ) : null}

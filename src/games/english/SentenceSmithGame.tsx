@@ -41,7 +41,7 @@ const SentenceSmithGame: React.FC<SentenceSmithGameProps> = ({
 
   return (
     <EnglishGameShell
-      title="Sentence Smith"
+      title="Sentence Surgery"
       levelId={levelId}
       questions={questions}
       onVictory={onVictory}
@@ -56,4 +56,3 @@ const SentenceSmithGame: React.FC<SentenceSmithGameProps> = ({
 };
 
 export default SentenceSmithGame;
-
