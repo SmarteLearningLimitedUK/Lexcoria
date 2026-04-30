@@ -60,10 +60,11 @@ export const ISLANDS: IslandData[] = [
     decorations: [],
     levels: mergeIslandLevels([
       { id: 1, stars: 0, isLocked: false, blueprintKey: 'inference_island', displayName: 'Inference Island', gameType: 'INFERENCE_ISLE' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'evidence_hunter', displayName: 'Evidence Hunter', gameType: 'EVIDENCE_HIGHLIGHT' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'word_meaning_woods', displayName: 'Word Meaning Woods', gameType: 'WORD_SENSE' },
-      { id: 4, stars: 0, isLocked: false, blueprintKey: 'summit_summariser', displayName: 'Summit Summariser', gameType: 'SUMMARY_SELECT' },
-      { id: 5, stars: 0, isLocked: false, blueprintKey: 'author_intent_arena', displayName: "Author’s Intent Arena", gameType: 'AUTHOR_INTENT' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'text_detective', displayName: 'Text Detective', gameType: 'TEXT_DETECTIVE' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'evidence_hunter', displayName: 'Evidence Hunter', gameType: 'EVIDENCE_HIGHLIGHT' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'word_meaning_woods', displayName: 'Word Meaning Woods', gameType: 'WORD_SENSE' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'summit_summariser', displayName: 'Summit Summariser', gameType: 'SUMMARY_SELECT' },
+      { id: 6, stars: 0, isLocked: false, blueprintKey: 'author_intent_arena', displayName: "Author’s Intent Arena", gameType: 'AUTHOR_INTENT' },
     ]),
   },
   {
@@ -114,4 +115,3 @@ export const SHOP_ITEMS: ShopItem[] = [
 export const CLOUD_COLLAPSE_LEVELS: CloudCollapseLevelConfig[] = [];
 export const POTION_PANIC_LEVELS: PotionPanicLevelConfig[] = [];
 export const MATH_FAMILIES: MathFamily[] = [];
-

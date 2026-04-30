@@ -14,12 +14,15 @@ export type EnglishReadingQuestion = {
   answerIndex: number;
 };
 
+export type EnglishReadingShellLayoutPreset = 'standard' | 'text-detective';
+
 type EnglishReadingShellProps = {
   title: string;
   levelId: number;
   storyTitle: string;
   storyPages: string[];
   questions: EnglishReadingQuestion[];
+  layoutPreset?: EnglishReadingShellLayoutPreset;
   onVictory: (stars: number, xpGained: number) => void;
   onGameOver: (xpGained: number) => void;
   onBack: () => void;
@@ -42,6 +45,7 @@ const EnglishReadingShell: React.FC<EnglishReadingShellProps> = ({
   storyTitle,
   storyPages,
   questions,
+  layoutPreset = 'standard',
   onVictory,
   onGameOver,
   onBack,
@@ -188,8 +192,18 @@ const EnglishReadingShell: React.FC<EnglishReadingShellProps> = ({
   return (
     <GameScreenLayout
       main={(
-        <div className="flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4">
-          <div className="flex min-h-0 flex-[3] flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
+        <div
+          className={layoutPreset === 'text-detective'
+            ? 'grid h-full min-h-0 overflow-hidden pb-1'
+            : 'flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4'}
+          style={layoutPreset === 'text-detective'
+            ? { gridTemplateRows: '58% 42%' }
+            : undefined}
+        >
+          <div className={layoutPreset === 'text-detective'
+            ? 'flex min-h-0 flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 shadow-[0_18px_34px_rgba(2,6,23,0.35)]'
+            : 'flex min-h-0 flex-[3] flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 shadow-[0_18px_34px_rgba(2,6,23,0.35)]'}
+          >
             <div className="flex items-start justify-between gap-3 px-4 pb-3 pt-4">
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/70">Passage</div>
@@ -208,65 +222,70 @@ const EnglishReadingShell: React.FC<EnglishReadingShellProps> = ({
             </div>
           </div>
 
-          <div className="flex min-h-0 flex-[2] flex-col gap-3 overflow-hidden">
-            <GameQuestionCard title={title} subtitle={headerSubtitle}>
-              <div className="space-y-2">
-                <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/75">
-                  {activeQuestion?.prompt}
+          <div className={layoutPreset === 'text-detective'
+            ? 'min-h-0 overflow-hidden pt-3'
+            : 'flex min-h-0 flex-[2] flex-col gap-3 overflow-hidden'}
+          >
+            <div className={layoutPreset === 'text-detective' ? 'flex h-full min-h-0 flex-col gap-3 overflow-hidden' : undefined}>
+              <GameQuestionCard title={title} subtitle={headerSubtitle}>
+                <div className="space-y-2">
+                  <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/75">
+                    {activeQuestion?.prompt}
+                  </div>
+                  <div className="text-base font-semibold text-white md:text-lg">
+                    {activeQuestion?.question}
+                  </div>
                 </div>
-                <div className="text-base font-semibold text-white md:text-lg">
-                  {activeQuestion?.question}
-                </div>
+              </GameQuestionCard>
+
+              <div className="grid grid-cols-2 gap-2 md:gap-3">
+                {(activeQuestion?.choices ?? []).map((choice, index) => {
+                  const isSelected = selectedIndex === index;
+                  const isCorrect = activeQuestion ? index === activeQuestion.answerIndex : false;
+                  const showCorrect = isResolved && isCorrect;
+                  const showIncorrect = isResolved && isSelected && !isCorrect;
+
+                  const surfaceClass = showCorrect
+                    ? 'border-emerald-200/55 bg-emerald-300/15'
+                    : showIncorrect
+                      ? 'border-rose-200/55 bg-rose-300/12'
+                      : isSelected
+                        ? 'border-amber-200/55 bg-amber-200/10'
+                        : 'border-white/18 bg-white/8 hover:bg-white/10';
+
+                  return (
+                    <button
+                      key={`${activeQuestion?.id ?? 'q'}-${choice}`}
+                      type="button"
+                      disabled={locked || status !== 'playing'}
+                      onClick={() => {
+                        if (locked || status !== 'playing') return;
+                        setSelectedIndex(index);
+                      }}
+                      className={[
+                        'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
+                        'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                        'disabled:cursor-not-allowed disabled:opacity-70',
+                        surfaceClass,
+                      ].join(' ')}
+                    >
+                      <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
+                        Option {index + 1}
+                      </div>
+                      <div className="mt-1 text-lg font-black text-white md:text-xl">
+                        {choice}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
-            </GameQuestionCard>
 
-            <div className="grid grid-cols-2 gap-2 md:gap-3">
-              {(activeQuestion?.choices ?? []).map((choice, index) => {
-                const isSelected = selectedIndex === index;
-                const isCorrect = activeQuestion ? index === activeQuestion.answerIndex : false;
-                const showCorrect = isResolved && isCorrect;
-                const showIncorrect = isResolved && isSelected && !isCorrect;
-
-                const surfaceClass = showCorrect
-                  ? 'border-emerald-200/55 bg-emerald-300/15'
-                  : showIncorrect
-                    ? 'border-rose-200/55 bg-rose-300/12'
-                    : isSelected
-                      ? 'border-amber-200/55 bg-amber-200/10'
-                      : 'border-white/18 bg-white/8 hover:bg-white/10';
-
-                return (
-                  <button
-                    key={`${activeQuestion?.id ?? 'q'}-${choice}`}
-                    type="button"
-                    disabled={locked || status !== 'playing'}
-                    onClick={() => {
-                      if (locked || status !== 'playing') return;
-                      setSelectedIndex(index);
-                    }}
-                    className={[
-                      'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                      'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
-                      'disabled:cursor-not-allowed disabled:opacity-70',
-                      surfaceClass,
-                    ].join(' ')}
-                  >
-                    <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
-                      Option {index + 1}
-                    </div>
-                    <div className="mt-1 text-lg font-black text-white md:text-xl">
-                      {choice}
-                    </div>
-                  </button>
-                );
-              })}
+              {feedback ? (
+                <FeedbackStrip tone={status === 'resolved' && selectedIndex === activeQuestion?.answerIndex ? 'success' : 'neutral'}>
+                  {feedback}
+                </FeedbackStrip>
+              ) : null}
             </div>
-
-            {feedback ? (
-              <FeedbackStrip tone={status === 'resolved' && selectedIndex === activeQuestion?.answerIndex ? 'success' : 'neutral'}>
-                {feedback}
-              </FeedbackStrip>
-            ) : null}
           </div>
         </div>
       )}

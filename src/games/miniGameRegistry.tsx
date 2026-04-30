@@ -31,6 +31,7 @@ const ToneTraderGame = lazy(() => import('./english/ToneTraderGame'));
 const MeaningMatchGame = lazy(() => import('./english/MeaningMatchGame'));
 const RetrievalRapidsGame = lazy(() => import('./english/RetrievalRapidsGame'));
 const InferenceIsleGame = lazy(() => import('./english/InferenceIsleGame'));
+const TextDetectiveGame = lazy(() => import('./english/TextDetectiveGame'));
 const EvidenceExplorerGame = lazy(() => import('./english/EvidenceExplorerGame'));
 const SequenceStreamGame = lazy(() => import('./english/SequenceStreamGame'));
 const AuthorIntentGame = lazy(() => import('./english/AuthorIntentGame'));
@@ -84,6 +85,7 @@ export type MiniGameRegistryKey =
   | 'MeaningMatchGame'
   | 'RetrievalRapidsGame'
   | 'InferenceIsleGame'
+  | 'TextDetectiveGame'
   | 'EvidenceExplorerGame'
   | 'SequenceStreamGame'
   | 'AuthorIntentGame'
@@ -141,6 +143,7 @@ export const MINI_GAME_REGISTRY: Record<MiniGameRegistryKey, MiniGame<any>> = {
   MeaningMatchGame: asMiniGame('meaning_match', MeaningMatchGame),
   RetrievalRapidsGame: asMiniGame('retrieval_rapids', RetrievalRapidsGame),
   InferenceIsleGame: asMiniGame('inference_isle', InferenceIsleGame),
+  TextDetectiveGame: asMiniGame('text_detective', TextDetectiveGame),
   EvidenceExplorerGame: asMiniGame('evidence_explorer', EvidenceExplorerGame),
   SequenceStreamGame: asMiniGame('sequence_stream', SequenceStreamGame),
   AuthorIntentGame: asMiniGame('author_intent', AuthorIntentGame),

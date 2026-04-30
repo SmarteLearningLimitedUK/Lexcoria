@@ -327,6 +327,15 @@ export const GAME_META: Partial<Record<MiniGameType, GameMeta>> = {
       'Confirm below.',
     ]),
   },
+  TEXT_DETECTIVE: {
+    label: 'Text Detective',
+    focus: 'Direct comprehension and retrieval',
+    rules: simpleRules('Text Detective', 'Answer using facts and exact details from the passage.', [
+      'Keep the passage open while you answer.',
+      'Choose the option that matches the text exactly.',
+      'Confirm below to continue.',
+    ]),
+  },
   EVIDENCE_EXPLORER: {
     label: 'Evidence Explorer',
     focus: 'Evidence selection',
@@ -467,4 +476,3 @@ export const GAME_META: Partial<Record<MiniGameType, GameMeta>> = {
 export const getGameLabel = (gameType?: MiniGameType | null) => (
   getCanonicalGameLabel(gameType) || (gameType ? GAME_META[gameType]?.label || gameType.replace(/_/g, ' ') : '')
 );
-

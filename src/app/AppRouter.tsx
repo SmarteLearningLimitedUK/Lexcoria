@@ -237,6 +237,8 @@ export const AppRouter: React.FC<AppRouterProps> = ({
         return renderFromRegistry('RetrievalRapidsGame', sharedProps);
       case 'INFERENCE_ISLE':
         return renderFromRegistry('InferenceIsleGame', sharedProps);
+      case 'TEXT_DETECTIVE':
+        return renderFromRegistry('TextDetectiveGame', sharedProps);
       case 'EVIDENCE_EXPLORER':
         return renderFromRegistry('EvidenceExplorerGame', sharedProps);
       case 'SEQUENCE_STREAM':

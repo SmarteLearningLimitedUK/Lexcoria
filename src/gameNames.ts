@@ -36,6 +36,7 @@ export const CANONICAL_GAME_LABELS: Partial<Record<MiniGameType, string>> = {
   EVIDENCE_HIGHLIGHT: 'Evidence Hunter',
   RETRIEVAL_RAPIDS: 'Retrieval Rapids',
   INFERENCE_ISLE: 'Inference Island',
+  TEXT_DETECTIVE: 'Text Detective',
   EVIDENCE_EXPLORER: 'Evidence Explorer',
   SEQUENCE_STREAM: 'Sequence Stream',
   AUTHOR_INTENT: "Author’s Intent Arena",

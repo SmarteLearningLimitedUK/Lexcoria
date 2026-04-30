@@ -47,6 +47,30 @@ export type ReadingPassage = {
   sentences: string[];
 };
 
+export type TextDetectiveSkillTag =
+  | 'retrieval'
+  | 'sequence'
+  | 'vocabulary-in-context'
+  | 'evidence'
+  | 'literal-comprehension';
+
+export type TextDetectiveDifficulty = 'easy' | 'medium' | 'hard';
+
+export type TextDetectiveQuestion = {
+  id: string;
+  questionText: string;
+  options: [string, string, string, string];
+  correctAnswerIndex: 0 | 1 | 2 | 3;
+  skillTag: TextDetectiveSkillTag;
+  difficulty: TextDetectiveDifficulty;
+};
+
+export type TextDetectiveLevel = {
+  passageTitle: string;
+  passageText: string;
+  questions: TextDetectiveQuestion[];
+};
+
 export const INFERENCE_ISLAND_PASSAGE: ReadingPassage = {
   title: 'Tom at the Gate',
   text: [
@@ -421,3 +445,83 @@ export const SPELLBOUND_FORGE_QUESTIONS: McqQuestion[] = [
   },
 ];
 
+export const TEXT_DETECTIVE_LEVELS: TextDetectiveLevel[] = [
+  {
+    passageTitle: 'A Note in the Library',
+    passageText: [
+      'On Monday morning, Zara arrived at the town library before it opened.',
+      'She waited beside the heavy wooden door until Mr Patel turned the key.',
+      'Inside, the air smelled of paper and polish.',
+      'Zara came to return a book and to look for a map of the old canal.',
+      'When she reached the history shelf, she noticed a folded note tucked behind a red atlas.',
+      "The note read: 'Meet me by the canal bridge at three o'clock.'",
+      'Zara slipped the note into her pocket and decided not to tell anyone yet.',
+    ].join('\n'),
+    questions: [
+      {
+        id: 'td-001',
+        questionText: 'When does Zara arrive at the library?',
+        options: ['On Monday morning', 'On Saturday night', 'On Tuesday afternoon', 'On Sunday morning'],
+        correctAnswerIndex: 0,
+        skillTag: 'retrieval',
+        difficulty: 'easy',
+      },
+      {
+        id: 'td-002',
+        questionText: 'Who turns the key to open the library?',
+        options: ['Mr Patel', 'Zara', 'The mayor', 'A stranger'],
+        correctAnswerIndex: 0,
+        skillTag: 'retrieval',
+        difficulty: 'easy',
+      },
+      {
+        id: 'td-003',
+        questionText: 'What is Zara looking for in the library?',
+        options: ['A map of the old canal', 'A new comic book', 'A jar of polish', 'A clock'],
+        correctAnswerIndex: 0,
+        skillTag: 'literal-comprehension',
+        difficulty: 'medium',
+      },
+      {
+        id: 'td-004',
+        questionText: 'What does Zara notice behind the red atlas?',
+        options: ['A folded note', 'A gold coin', 'A torn photograph', 'A pencil'],
+        correctAnswerIndex: 0,
+        skillTag: 'retrieval',
+        difficulty: 'easy',
+      },
+      {
+        id: 'td-005',
+        questionText: 'What time does the note say to meet?',
+        options: ["Three o'clock", "Two o'clock", "Half past four", 'Midday'],
+        correctAnswerIndex: 0,
+        skillTag: 'retrieval',
+        difficulty: 'easy',
+      },
+      {
+        id: 'td-006',
+        questionText: 'What happens first?',
+        options: ['Zara arrives at the library', 'Mr Patel turns the key', 'Zara finds the note', 'Zara slips the note into her pocket'],
+        correctAnswerIndex: 0,
+        skillTag: 'sequence',
+        difficulty: 'medium',
+      },
+      {
+        id: 'td-007',
+        questionText: 'In the passage, what does “tucked” mean?',
+        options: ['Hidden', 'Shouted', 'Opened', 'Spilled'],
+        correctAnswerIndex: 0,
+        skillTag: 'vocabulary-in-context',
+        difficulty: 'hard',
+      },
+      {
+        id: 'td-008',
+        questionText: 'Which phrase shows Zara puts the note into her pocket?',
+        options: ['Zara slipped the note into her pocket', 'She waited beside the door', 'Inside, the air smelled of paper', 'Mr Patel turned the key'],
+        correctAnswerIndex: 0,
+        skillTag: 'evidence',
+        difficulty: 'medium',
+      },
+    ],
+  },
+];

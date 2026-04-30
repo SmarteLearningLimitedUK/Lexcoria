@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { X } from 'lucide-react';
 import { IslandData, PlayerData } from '../types';
 import { ISLANDS } from '../constants';
-import universalMapPoster from '../assets/maps/mapselect.png';
+import lexcoriaMapPoster from '../assets/maps/lexcoria-background.png';
 import AssetIcon from '../components/AssetIcon';
 import ParentGateOverlay from '../components/ParentGateOverlay';
 import { UNLOCK_ALL_LEVELS } from '../app/testingFlags';
@@ -409,8 +409,8 @@ const WorldMap: React.FC<WorldMapProps> = ({
         style={{ aspectRatio: `${MAP_WIDTH_PX} / ${MAP_HEIGHT_PX}` }}
       >
         <img
-          src={universalMapPoster}
-          alt="Island select map"
+          src={lexcoriaMapPoster}
+          alt="Lexcoria world map"
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
         />
