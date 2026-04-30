@@ -37,6 +37,9 @@ export const CANONICAL_GAME_LABELS: Partial<Record<MiniGameType, string>> = {
   RETRIEVAL_RAPIDS: 'Retrieval Rapids',
   INFERENCE_ISLE: 'Inference Island',
   TEXT_DETECTIVE: 'Text Detective',
+  STORY_SEQUENCER: 'Story Sequencer',
+  FACT_OR_FICTION_FORGE: 'Fact or Fiction Forge',
+  COMPARE_CONTRAST_CANYON: 'Compare & Contrast Canyon',
   EVIDENCE_EXPLORER: 'Evidence Explorer',
   SEQUENCE_STREAM: 'Sequence Stream',
   AUTHOR_INTENT: "Author’s Intent Arena",
@@ -55,6 +58,11 @@ export const CANONICAL_GAME_LABELS: Partial<Record<MiniGameType, string>> = {
   READING_RESCUE: 'Trial of Reading',
   GRAMMAR_GAUNTLET: 'Grammar Gauntlet',
   WORDSMITH_TRIALS: 'Trial of GPS',
+  NOUN_PHRASE_BUILDER: 'Noun Phrase Builder',
+  VOICE_SWITCH_VAULT: 'Voice Switch Vault',
+  FORMAL_FIXER: 'Formal Fixer',
+  COHESION_CONNECTOR: 'Cohesion Connector',
+  PUNCTUATION_MASTERY: 'Punctuation Mastery',
   SCHOLARS_SUMMIT: "Scholar's Summit",
 };
 

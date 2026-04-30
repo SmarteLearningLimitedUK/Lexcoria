@@ -31,6 +31,12 @@ type IslandHotspot = {
   height: number;
 };
 
+type IslandLabel = {
+  islandId: number;
+  x: number;
+  y: number;
+};
+
 type IslandAccentFrame = {
   width: string;
   height: string;
@@ -70,6 +76,17 @@ const ISLAND_HOTSPOTS: IslandHotspot[] = [
     width: 34,
     height: 16,
   },
+];
+
+const ISLAND_LABELS: IslandLabel[] = [
+  // Moon (boss papers)
+  { islandId: 4, x: 26, y: 22 },
+  // Cloud island
+  { islandId: 3, x: 62, y: 40 },
+  // Open book island
+  { islandId: 2, x: 52, y: 66 },
+  // Stack of books tower
+  { islandId: 1, x: 52, y: 88 },
 ];
 
 const ISLAND_ACCENT_FRAMES: Partial<Record<number, IslandAccentFrame>> = {
@@ -404,6 +421,35 @@ const WorldMap: React.FC<WorldMapProps> = ({
         />
 
         <div className="absolute inset-0 z-20">
+          {ISLAND_LABELS.map((label) => {
+            const islandState = islandStates.find(({ island }) => island.id === label.islandId);
+            if (!islandState) return null;
+
+            return (
+              <button
+                key={`label-${label.islandId}`}
+                type="button"
+                onClick={() => setSelectedIslandId(islandState.island.id)}
+                className={[
+                  'pointer-events-auto absolute z-30',
+                  'rounded-full border border-white/20 bg-slate-950/55 px-3 py-2',
+                  'text-[11px] font-black uppercase tracking-[0.14em] text-white shadow-[0_10px_20px_rgba(2,6,23,0.35)]',
+                  'backdrop-blur-sm transition-[transform,filter] duration-150 active:scale-[0.98]',
+                ].join(' ')}
+                style={{
+                  left: `${label.x}%`,
+                  top: `${label.y}%`,
+                  transform: 'translate(-50%, -50%)',
+                  filter: islandState.isUnlocked ? 'none' : 'grayscale(0.25)',
+                  opacity: islandState.isUnlocked ? 1 : 0.85,
+                }}
+                aria-label={`Select ${islandState.island.name}`}
+              >
+                {islandState.island.name}
+              </button>
+            );
+          })}
+
           {ISLAND_HOTSPOTS.map((hotspot) => {
             const islandState = islandStates.find(({ island }) => island.id === hotspot.islandId);
             if (!islandState) return null;
@@ -416,7 +462,7 @@ const WorldMap: React.FC<WorldMapProps> = ({
                 style={{
                   left: `${hotspot.x}%`,
                   top: `${hotspot.y}%`,
-                  width: `${hotspot.width * 1.5}%`,
+                  width: `${hotspot.width}%`,
                   height: `${hotspot.height}%`,
                   transform: 'translate(-50%, -50%)',
                 }}

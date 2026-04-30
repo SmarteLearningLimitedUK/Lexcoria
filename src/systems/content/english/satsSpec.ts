@@ -71,6 +71,76 @@ export type TextDetectiveLevel = {
   questions: TextDetectiveQuestion[];
 };
 
+export type StorySequencerQuestion = {
+  id: string;
+  passageTitle: string;
+  passageText: string;
+  prompt: string;
+  questionText: string;
+  events: [string, string, string, string];
+  correctOrder: [0 | 1 | 2 | 3, 0 | 1 | 2 | 3, 0 | 1 | 2 | 3, 0 | 1 | 2 | 3];
+  difficulty: Difficulty;
+};
+
+export type FactOrFictionMode = 'fact_opinion' | 'true_false';
+
+export type FactOrFictionQuestion = {
+  id: string;
+  prompt: string;
+  statement: string;
+  mode: FactOrFictionMode;
+  answerIndex: 0 | 1;
+  difficulty: Difficulty;
+};
+
+export type CompareContrastQuestion = {
+  id: string;
+  prompt: string;
+  extractA: string;
+  extractB: string;
+  questionText: string;
+  options: [string, string, string, string];
+  correctAnswerIndex: 0 | 1 | 2 | 3;
+  difficulty: Difficulty;
+};
+
+export type NounPhraseBuilderQuestion = {
+  id: string;
+  prompt: string;
+  base: string; // e.g. "The ___ dog"
+  modifiers: [string, string, string];
+  correctSequence: [string, string, string];
+  difficulty: Difficulty;
+};
+
+export type VoiceSwitchQuestion = {
+  id: string;
+  prompt: string;
+  sentence: string;
+  options: [string, string, string, string];
+  correctAnswerIndex: 0 | 1 | 2 | 3;
+  difficulty: Difficulty;
+};
+
+export type FormalFixerQuestion = {
+  id: string;
+  prompt: string;
+  sentence: string;
+  informalPhrase: string;
+  replacements: [string, string, string, string];
+  correctAnswerIndex: 0 | 1 | 2 | 3;
+  difficulty: Difficulty;
+};
+
+export type CohesionConnectorQuestion = {
+  id: string;
+  prompt: string;
+  sentence: string;
+  options: [string, string, string, string];
+  correctAnswerIndex: 0 | 1 | 2 | 3;
+  difficulty: Difficulty;
+};
+
 export const INFERENCE_ISLAND_PASSAGE: ReadingPassage = {
   title: 'Tom at the Gate',
   text: [
@@ -523,5 +593,186 @@ export const TEXT_DETECTIVE_LEVELS: TextDetectiveLevel[] = [
         difficulty: 'medium',
       },
     ],
+  },
+];
+
+export const STORY_SEQUENCER_QUESTIONS: StorySequencerQuestion[] = [
+  {
+    id: 'seq-001',
+    passageTitle: 'Tom in the Hallway',
+    passageText: [
+      'Tom paused at the bottom of the stairs.',
+      'A strange noise came from upstairs, so he listened carefully.',
+      'He picked up the key from the table and held it tightly.',
+      'Then he walked upstairs and opened the door at the top.',
+    ].join('\n'),
+    prompt: 'Sequence',
+    questionText: 'Put these events in the order they happened.',
+    events: ['Tom opened the door', 'Tom heard a noise', 'Tom walked upstairs', 'Tom picked up the key'],
+    correctOrder: [1, 3, 2, 0],
+    difficulty: 2,
+  },
+];
+
+export const FACT_OR_FICTION_FORGE_QUESTIONS: FactOrFictionQuestion[] = [
+  {
+    id: 'fof-001',
+    prompt: 'Fact or opinion',
+    statement: 'The castle is the best building in the town.',
+    mode: 'fact_opinion',
+    answerIndex: 1,
+    difficulty: 1,
+  },
+  {
+    id: 'fof-002',
+    prompt: 'Fact or opinion',
+    statement: 'The castle was built in 1850.',
+    mode: 'fact_opinion',
+    answerIndex: 0,
+    difficulty: 1,
+  },
+  {
+    id: 'fof-003',
+    prompt: 'True or false',
+    statement: 'Zara arrives at the library on Monday morning.',
+    mode: 'true_false',
+    answerIndex: 0,
+    difficulty: 1,
+  },
+  {
+    id: 'fof-004',
+    prompt: 'True or false',
+    statement: 'Tom opens the door before he hears a noise.',
+    mode: 'true_false',
+    answerIndex: 1,
+    difficulty: 2,
+  },
+];
+
+export const COMPARE_CONTRAST_CANYON_QUESTIONS: CompareContrastQuestion[] = [
+  {
+    id: 'ccn-001',
+    prompt: 'Compare & contrast',
+    extractA: 'Character A stepped forward without hesitation and smiled at the crowd.',
+    extractB: 'Character B stayed behind the curtain, whispering that they were too scared to go on.',
+    questionText: 'How is Character A different from Character B?',
+    options: ['A is brave, B is fearful', 'Both are brave', 'Both are quiet', 'A is younger'],
+    correctAnswerIndex: 0,
+    difficulty: 2,
+  },
+  {
+    id: 'ccn-002',
+    prompt: 'Compare & contrast',
+    extractA: 'The classroom was bright, with sunlight pouring through the windows.',
+    extractB: 'The corridor was dim, and the lamps flickered above the lockers.',
+    questionText: 'What is different about the two settings?',
+    options: ['One is bright and one is dim', 'Both are outdoors', 'Both are noisy', 'Both are empty'],
+    correctAnswerIndex: 0,
+    difficulty: 1,
+  },
+];
+
+export const NOUN_PHRASE_BUILDER_QUESTIONS: NounPhraseBuilderQuestion[] = [
+  {
+    id: 'np-001',
+    prompt: 'Noun phrase',
+    base: 'The ___ dog',
+    modifiers: ['small', 'brown', 'with muddy paws'],
+    correctSequence: ['small', 'brown', 'with muddy paws'],
+    difficulty: 2,
+  },
+  {
+    id: 'np-002',
+    prompt: 'Noun phrase',
+    base: 'A ___ castle',
+    modifiers: ['ancient', 'stone', 'on the hill'],
+    correctSequence: ['ancient', 'stone', 'on the hill'],
+    difficulty: 2,
+  },
+];
+
+export const VOICE_SWITCH_VAULT_QUESTIONS: VoiceSwitchQuestion[] = [
+  {
+    id: 'vs-001',
+    prompt: 'Voice',
+    sentence: 'The cake was eaten by Tom.',
+    options: ['Active', 'Passive', 'Both', 'Neither'],
+    correctAnswerIndex: 1,
+    difficulty: 2,
+  },
+  {
+    id: 'vs-002',
+    prompt: 'Voice',
+    sentence: 'Tom ate the cake.',
+    options: ['Active', 'Passive', 'Both', 'Neither'],
+    correctAnswerIndex: 0,
+    difficulty: 1,
+  },
+];
+
+export const FORMAL_FIXER_QUESTIONS: FormalFixerQuestion[] = [
+  {
+    id: 'ff-001',
+    prompt: 'Formal language',
+    sentence: "I'm gonna go to the shop.",
+    informalPhrase: "gonna",
+    replacements: ['going to', 'wanna', 'gotta', 'kinda'],
+    correctAnswerIndex: 0,
+    difficulty: 1,
+  },
+  {
+    id: 'ff-002',
+    prompt: 'Formal language',
+    sentence: "Can you gimme a hand, please?",
+    informalPhrase: "gimme",
+    replacements: ['give me', 'got me', 'gives me', 'given me'],
+    correctAnswerIndex: 0,
+    difficulty: 2,
+  },
+];
+
+export const COHESION_CONNECTOR_QUESTIONS: CohesionConnectorQuestion[] = [
+  {
+    id: 'coh-001',
+    prompt: 'Cohesion',
+    sentence: 'Sarah picked up the book. ___ was heavy.',
+    options: ['He', 'It', 'They', 'Them'],
+    correctAnswerIndex: 1,
+    difficulty: 1,
+  },
+  {
+    id: 'coh-002',
+    prompt: 'Cohesion',
+    sentence: 'The rain fell all afternoon. ___, the match was cancelled.',
+    options: ['However', 'Therefore', 'Meanwhile', 'Suddenly'],
+    correctAnswerIndex: 1,
+    difficulty: 2,
+  },
+];
+
+export const PUNCTUATION_MASTERY_QUESTIONS: PunctuationBuildQuestion[] = [
+  {
+    id: 'pm-001',
+    prompt: 'Punctuation (colon)',
+    parts: [
+      'I have three hobbies',
+      { id: 'colon', options: [':', ';', '-', ','], correct: ':' },
+      ' reading',
+      { id: 'comma', options: [',', ';'], correct: ',' },
+      ' writing and swimming',
+      { id: 'end', options: ['.', '!'], correct: '.' },
+    ],
+    difficulty: 2,
+  },
+  {
+    id: 'pm-002',
+    prompt: 'Punctuation (semicolon)',
+    parts: [
+      'The storm was loud',
+      { id: 'semi', options: [';', ':', ','], correct: ';' },
+      ' the windows shook',
+      { id: 'end', options: ['.', '!'], correct: '.' },
+    ],
+    difficulty: 3,
   },
 ];

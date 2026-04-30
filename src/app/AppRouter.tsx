@@ -239,6 +239,12 @@ export const AppRouter: React.FC<AppRouterProps> = ({
         return renderFromRegistry('InferenceIsleGame', sharedProps);
       case 'TEXT_DETECTIVE':
         return renderFromRegistry('TextDetectiveGame', sharedProps);
+      case 'STORY_SEQUENCER':
+        return renderFromRegistry('StorySequencerGame', sharedProps);
+      case 'FACT_OR_FICTION_FORGE':
+        return renderFromRegistry('FactOrFictionForgeGame', sharedProps);
+      case 'COMPARE_CONTRAST_CANYON':
+        return renderFromRegistry('CompareContrastCanyonGame', sharedProps);
       case 'EVIDENCE_EXPLORER':
         return renderFromRegistry('EvidenceExplorerGame', sharedProps);
       case 'SEQUENCE_STREAM':
@@ -269,6 +275,16 @@ export const AppRouter: React.FC<AppRouterProps> = ({
         return renderFromRegistry('GrammarGauntletGame', sharedProps);
       case 'WORDSMITH_TRIALS':
         return renderFromRegistry('WordsmithTrialsGame', sharedProps);
+      case 'NOUN_PHRASE_BUILDER':
+        return renderFromRegistry('NounPhraseBuilderGame', sharedProps);
+      case 'VOICE_SWITCH_VAULT':
+        return renderFromRegistry('VoiceSwitchVaultGame', sharedProps);
+      case 'FORMAL_FIXER':
+        return renderFromRegistry('FormalFixerGame', sharedProps);
+      case 'COHESION_CONNECTOR':
+        return renderFromRegistry('CohesionConnectorGame', sharedProps);
+      case 'PUNCTUATION_MASTERY':
+        return renderFromRegistry('PunctuationMasteryGame', sharedProps);
       case 'SCHOLARS_SUMMIT':
       case 'INFERENCE_INVADERS':
       case 'RETRIEVAL_RAID':

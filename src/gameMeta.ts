@@ -336,6 +336,33 @@ export const GAME_META: Partial<Record<MiniGameType, GameMeta>> = {
       'Confirm below to continue.',
     ]),
   },
+  STORY_SEQUENCER: {
+    label: 'Story Sequencer',
+    focus: 'Ordering events (chronology)',
+    rules: simpleRules('Story Sequencer', 'Build the correct event order from the passage.', [
+      'Read the passage carefully.',
+      'Tap events in the order they happened.',
+      'Confirm below to continue.',
+    ]),
+  },
+  FACT_OR_FICTION_FORGE: {
+    label: 'Fact or Fiction Forge',
+    focus: 'Fact vs opinion / true vs false',
+    rules: simpleRules('Fact or Fiction Forge', 'Decide whether a statement is factual or a judgement.', [
+      'Read the statement carefully.',
+      'Choose the best classification.',
+      'Confirm below to continue.',
+    ]),
+  },
+  COMPARE_CONTRAST_CANYON: {
+    label: 'Compare & Contrast Canyon',
+    focus: 'Comparing ideas across extracts',
+    rules: simpleRules('Compare & Contrast Canyon', 'Compare two extracts and choose the best answer.', [
+      'Read both extracts.',
+      'Look for similarities and differences.',
+      'Confirm below to continue.',
+    ]),
+  },
   EVIDENCE_EXPLORER: {
     label: 'Evidence Explorer',
     focus: 'Evidence selection',
@@ -469,6 +496,51 @@ export const GAME_META: Partial<Record<MiniGameType, GameMeta>> = {
       'Use context for meaning.',
       'Avoid near-miss synonyms.',
       'Confirm below.',
+    ]),
+  },
+  NOUN_PHRASE_BUILDER: {
+    label: 'Noun Phrase Builder',
+    focus: 'Expanded noun phrases',
+    rules: simpleRules('Noun Phrase Builder', 'Build the expanded noun phrase by choosing modifiers.', [
+      'Add modifiers in the best order.',
+      'Check the full phrase reads correctly.',
+      'Confirm below to continue.',
+    ]),
+  },
+  VOICE_SWITCH_VAULT: {
+    label: 'Voice Switch Vault',
+    focus: 'Active vs passive voice',
+    rules: simpleRules('Voice Switch Vault', 'Identify whether the sentence is active or passive.', [
+      'Find who is doing the action.',
+      'Choose active or passive.',
+      'Confirm below to continue.',
+    ]),
+  },
+  FORMAL_FIXER: {
+    label: 'Formal Fixer',
+    focus: 'Formal vs informal language',
+    rules: simpleRules('Formal Fixer', 'Replace informal phrases with formal equivalents.', [
+      'Spot the informal wording.',
+      'Choose the formal replacement.',
+      'Confirm below to continue.',
+    ]),
+  },
+  COHESION_CONNECTOR: {
+    label: 'Cohesion Connector',
+    focus: 'Linking ideas and pronouns',
+    rules: simpleRules('Cohesion Connector', 'Choose the correct linking word or pronoun.', [
+      'Read both sentences together.',
+      'Choose the word that keeps meaning clear.',
+      'Confirm below to continue.',
+    ]),
+  },
+  PUNCTUATION_MASTERY: {
+    label: 'Punctuation Mastery',
+    focus: 'Advanced punctuation',
+    rules: simpleRules('Punctuation Mastery', 'Insert the correct punctuation (colon, semicolon, brackets, hyphen).', [
+      'Read for meaning and structure.',
+      'Pick the punctuation that fits best.',
+      'Confirm below to continue.',
     ]),
   },
 };

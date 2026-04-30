@@ -83,6 +83,9 @@ export const ISLANDS: IslandData[] = [
       { id: 4, stars: 0, isLocked: false, blueprintKey: 'summit_summariser', displayName: 'Summit Summariser', gameType: 'SUMMARY_SELECT' },
       { id: 5, stars: 0, isLocked: false, blueprintKey: 'author_intent_arena', displayName: "Author’s Intent Arena", gameType: 'AUTHOR_INTENT' },
       { id: 6, stars: 0, isLocked: false, blueprintKey: 'text_detective', displayName: 'Text Detective', gameType: 'TEXT_DETECTIVE' },
+      { id: 7, stars: 0, isLocked: false, blueprintKey: 'story_sequencer', displayName: 'Story Sequencer', gameType: 'STORY_SEQUENCER' },
+      { id: 8, stars: 0, isLocked: false, blueprintKey: 'fact_or_fiction_forge', displayName: 'Fact or Fiction Forge', gameType: 'FACT_OR_FICTION_FORGE' },
+      { id: 9, stars: 0, isLocked: false, blueprintKey: 'compare_contrast_canyon', displayName: 'Compare & Contrast Canyon', gameType: 'COMPARE_CONTRAST_CANYON' },
     ]),
   },
   {
@@ -100,6 +103,11 @@ export const ISLANDS: IslandData[] = [
       { id: 1, stars: 0, isLocked: false, blueprintKey: 'clause_crusher', displayName: 'Clause Crusher', gameType: 'CLAUSE_KEEP' },
       { id: 2, stars: 0, isLocked: false, blueprintKey: 'word_class_wars', displayName: 'Word Class Wars', gameType: 'WORD_WARDEN' },
       { id: 3, stars: 0, isLocked: false, blueprintKey: 'spellbound_forge', displayName: 'Spellbound Forge', gameType: 'SPELLING_FORGE' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'noun_phrase_builder', displayName: 'Noun Phrase Builder', gameType: 'NOUN_PHRASE_BUILDER' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'voice_switch_vault', displayName: 'Voice Switch Vault', gameType: 'VOICE_SWITCH_VAULT' },
+      { id: 6, stars: 0, isLocked: false, blueprintKey: 'formal_fixer', displayName: 'Formal Fixer', gameType: 'FORMAL_FIXER' },
+      { id: 7, stars: 0, isLocked: false, blueprintKey: 'cohesion_connector', displayName: 'Cohesion Connector', gameType: 'COHESION_CONNECTOR' },
+      { id: 8, stars: 0, isLocked: false, blueprintKey: 'punctuation_mastery', displayName: 'Punctuation Mastery', gameType: 'PUNCTUATION_MASTERY' },
     ]),
   },
   {

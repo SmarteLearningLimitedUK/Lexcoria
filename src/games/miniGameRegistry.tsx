@@ -32,6 +32,9 @@ const MeaningMatchGame = lazy(() => import('./english/MeaningMatchGame'));
 const RetrievalRapidsGame = lazy(() => import('./english/RetrievalRapidsGame'));
 const InferenceIsleGame = lazy(() => import('./english/InferenceIsleGame'));
 const TextDetectiveGame = lazy(() => import('./english/TextDetectiveGame'));
+const StorySequencerGame = lazy(() => import('./english/StorySequencerGame'));
+const FactOrFictionForgeGame = lazy(() => import('./english/FactOrFictionForgeGame'));
+const CompareContrastCanyonGame = lazy(() => import('./english/CompareContrastCanyonGame'));
 const EvidenceExplorerGame = lazy(() => import('./english/EvidenceExplorerGame'));
 const SequenceStreamGame = lazy(() => import('./english/SequenceStreamGame'));
 const AuthorIntentGame = lazy(() => import('./english/AuthorIntentGame'));
@@ -50,6 +53,11 @@ const WordsmithTrialsGame = lazy(() => import('./english/WordsmithTrialsGame'));
 const WordWizardGame = lazy(() => import('./english/WordWizardGame'));
 const MeaningMinesGame = lazy(() => import('./english/MeaningMinesGame'));
 const SynonymSiegeGame = lazy(() => import('./english/SynonymSiegeGame'));
+const NounPhraseBuilderGame = lazy(() => import('./english/NounPhraseBuilderGame'));
+const VoiceSwitchVaultGame = lazy(() => import('./english/VoiceSwitchVaultGame'));
+const FormalFixerGame = lazy(() => import('./english/FormalFixerGame'));
+const CohesionConnectorGame = lazy(() => import('./english/CohesionConnectorGame'));
+const PunctuationMasteryGame = lazy(() => import('./english/PunctuationMasteryGame'));
 import { createMiniGame, MiniGame } from './MiniGame';
 
 export type MiniGameRegistryKey =
@@ -86,6 +94,9 @@ export type MiniGameRegistryKey =
   | 'RetrievalRapidsGame'
   | 'InferenceIsleGame'
   | 'TextDetectiveGame'
+  | 'StorySequencerGame'
+  | 'FactOrFictionForgeGame'
+  | 'CompareContrastCanyonGame'
   | 'EvidenceExplorerGame'
   | 'SequenceStreamGame'
   | 'AuthorIntentGame'
@@ -103,7 +114,12 @@ export type MiniGameRegistryKey =
   | 'WordsmithTrialsGame'
   | 'WordWizardGame'
   | 'MeaningMinesGame'
-  | 'SynonymSiegeGame';
+  | 'SynonymSiegeGame'
+  | 'NounPhraseBuilderGame'
+  | 'VoiceSwitchVaultGame'
+  | 'FormalFixerGame'
+  | 'CohesionConnectorGame'
+  | 'PunctuationMasteryGame';
 
 const asMiniGame = <P extends Record<string, unknown>>(
   id: string,
@@ -144,6 +160,9 @@ export const MINI_GAME_REGISTRY: Record<MiniGameRegistryKey, MiniGame<any>> = {
   RetrievalRapidsGame: asMiniGame('retrieval_rapids', RetrievalRapidsGame),
   InferenceIsleGame: asMiniGame('inference_isle', InferenceIsleGame),
   TextDetectiveGame: asMiniGame('text_detective', TextDetectiveGame),
+  StorySequencerGame: asMiniGame('story_sequencer', StorySequencerGame),
+  FactOrFictionForgeGame: asMiniGame('fact_or_fiction_forge', FactOrFictionForgeGame),
+  CompareContrastCanyonGame: asMiniGame('compare_contrast_canyon', CompareContrastCanyonGame),
   EvidenceExplorerGame: asMiniGame('evidence_explorer', EvidenceExplorerGame),
   SequenceStreamGame: asMiniGame('sequence_stream', SequenceStreamGame),
   AuthorIntentGame: asMiniGame('author_intent', AuthorIntentGame),
@@ -162,6 +181,11 @@ export const MINI_GAME_REGISTRY: Record<MiniGameRegistryKey, MiniGame<any>> = {
   WordWizardGame: asMiniGame('word_wizard', WordWizardGame),
   MeaningMinesGame: asMiniGame('meaning_mines', MeaningMinesGame),
   SynonymSiegeGame: asMiniGame('synonym_siege', SynonymSiegeGame),
+  NounPhraseBuilderGame: asMiniGame('noun_phrase_builder', NounPhraseBuilderGame),
+  VoiceSwitchVaultGame: asMiniGame('voice_switch_vault', VoiceSwitchVaultGame),
+  FormalFixerGame: asMiniGame('formal_fixer', FormalFixerGame),
+  CohesionConnectorGame: asMiniGame('cohesion_connector', CohesionConnectorGame),
+  PunctuationMasteryGame: asMiniGame('punctuation_mastery', PunctuationMasteryGame),
 };
 
 export const getMiniGame = (key: MiniGameRegistryKey): MiniGame<any> => MINI_GAME_REGISTRY[key];
