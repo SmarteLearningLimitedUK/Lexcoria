@@ -59,9 +59,15 @@ const PunctuationPatrolGame = lazy(() => import('./english/PunctuationPatrolGame
 const SpellingForgeGame = lazy(() => import('./english/SpellingForgeGame'));
 const HomophoneHuntGame = lazy(() => import('./english/HomophoneHuntGame'));
 const SuffixSiegeGame = lazy(() => import('./english/SuffixSiegeGame'));
+const StrongholdSprintGame = lazy(() => import('./english/StrongholdSprintGame'));
+const PrefixPatrolGame = lazy(() => import('./english/PrefixPatrolGame'));
+const ForgeOfSuffixesGame = lazy(() => import('./english/ForgeOfSuffixesGame'));
 const SentenceSmithGame = lazy(() => import('./english/SentenceSmithGame'));
 const ParagraphPatchGame = lazy(() => import('./english/ParagraphPatchGame'));
 const ConnectiveCrafterGame = lazy(() => import('./english/ConnectiveCrafterGame'));
+const WordWizardGame = lazy(() => import('./english/WordWizardGame'));
+const MeaningMinesGame = lazy(() => import('./english/MeaningMinesGame'));
+const SynonymSiegeGame = lazy(() => import('./english/SynonymSiegeGame'));
 import { createMiniGame, MiniGame } from './MiniGame';
 
 export type MiniGameRegistryKey =
@@ -125,9 +131,15 @@ export type MiniGameRegistryKey =
   | 'SpellingForgeGame'
   | 'HomophoneHuntGame'
   | 'SuffixSiegeGame'
+  | 'StrongholdSprintGame'
+  | 'PrefixPatrolGame'
+  | 'ForgeOfSuffixesGame'
   | 'SentenceSmithGame'
   | 'ParagraphPatchGame'
-  | 'ConnectiveCrafterGame';
+  | 'ConnectiveCrafterGame'
+  | 'WordWizardGame'
+  | 'MeaningMinesGame'
+  | 'SynonymSiegeGame';
 
 const asMiniGame = <P extends Record<string, unknown>>(
   id: string,
@@ -199,9 +211,15 @@ export const MINI_GAME_REGISTRY: Record<MiniGameRegistryKey, MiniGame<any>> = {
   SpellingForgeGame: asMiniGame('spelling_forge', SpellingForgeGame),
   HomophoneHuntGame: asMiniGame('homophone_hunt', HomophoneHuntGame),
   SuffixSiegeGame: asMiniGame('suffix_siege', SuffixSiegeGame),
+  StrongholdSprintGame: asMiniGame('stronghold_sprint', StrongholdSprintGame),
+  PrefixPatrolGame: asMiniGame('prefix_patrol', PrefixPatrolGame),
+  ForgeOfSuffixesGame: asMiniGame('forge_of_suffixes', ForgeOfSuffixesGame),
   SentenceSmithGame: asMiniGame('sentence_smith', SentenceSmithGame),
   ParagraphPatchGame: asMiniGame('paragraph_patch', ParagraphPatchGame),
   ConnectiveCrafterGame: asMiniGame('connective_crafter', ConnectiveCrafterGame),
+  WordWizardGame: asMiniGame('word_wizard', WordWizardGame),
+  MeaningMinesGame: asMiniGame('meaning_mines', MeaningMinesGame),
+  SynonymSiegeGame: asMiniGame('synonym_siege', SynonymSiegeGame),
 };
 
 export const getMiniGame = (key: MiniGameRegistryKey): MiniGame<any> => MINI_GAME_REGISTRY[key];

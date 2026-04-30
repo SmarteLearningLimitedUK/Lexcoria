@@ -798,6 +798,409 @@ export const GAME_META: Record<MiniGameType, GameMeta> = {
       ],
     },
   },
+  STRONGHOLD_SPRINT: {
+    label: 'Stronghold Sprint',
+    focus: 'Statutory spelling and tricky patterns',
+    rules: {
+      title: 'Stronghold Sprint',
+      summary: 'Sprint between gates by choosing the correct spelling.',
+      bullets: [
+        'Look closely at each letter pattern.',
+        'Avoid trap spellings that look almost right.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  PREFIX_PATROL: {
+    label: 'Prefix Patrol',
+    focus: 'Prefix meanings and word building',
+    rules: {
+      title: 'Prefix Patrol',
+      summary: 'Choose the prefix that fits the meaning.',
+      bullets: [
+        'Read the prompt carefully.',
+        'Pick the best prefix for the meaning.',
+        'Confirm below.',
+      ],
+    },
+  },
+  FORGE_OF_SUFFIXES: {
+    label: 'Forge of Suffixes',
+    focus: 'Suffix rules and transformations',
+    rules: {
+      title: 'Forge of Suffixes',
+      summary: 'Forge correct words by choosing the right ending.',
+      bullets: [
+        'Watch spelling changes when adding suffixes.',
+        'Choose the option that fits the sentence.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  HALL_OF_ECHOES: {
+    label: 'Hall of Echoes',
+    focus: 'Homophones in context',
+    rules: {
+      title: 'Hall of Echoes',
+      summary: 'Use meaning to choose the correct homophone.',
+      bullets: [
+        'Read the full sentence first.',
+        'Pick the word that fits the meaning.',
+        'Confirm below.',
+      ],
+    },
+  },
+  PATTERN_TRIALS: {
+    label: 'Pattern Trials',
+    focus: 'Spelling pattern practice',
+    rules: {
+      title: 'Pattern Trials',
+      summary: 'Spot the pattern and choose the spelling that follows it.',
+      bullets: [
+        'Look for repeated letter strings.',
+        'Avoid the option that breaks the pattern.',
+        'Confirm below.',
+      ],
+    },
+  },
+  WORD_MORPH: {
+    label: 'Word Morph',
+    focus: 'Word families and morphology',
+    rules: {
+      title: 'Word Morph',
+      summary: 'Choose the word form that best fits meaning and grammar.',
+      bullets: [
+        'Check the sentence for the right word class.',
+        'Pick the best derived form.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  SENTENCE_SHIFT: {
+    label: 'Sentence Shift',
+    focus: 'Guided sentence transformations',
+    rules: {
+      title: 'Sentence Shift',
+      summary: 'Transform the sentence without changing meaning.',
+      bullets: [
+        'Keep the meaning the same.',
+        'Watch for tense, voice, and formality clues.',
+        'Confirm below.',
+      ],
+    },
+  },
+  BLADE_REFINER: {
+    label: 'Blade Refiner',
+    focus: 'Word choice and editing',
+    rules: {
+      title: 'Blade Refiner',
+      summary: 'Replace a weak word with a stronger choice.',
+      bullets: [
+        'Pick the best replacement for meaning and tone.',
+        'Avoid options that change the sentence sense.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  POWER_INFUSION: {
+    label: 'Power Infusion',
+    focus: 'Sentence expansion and effect',
+    rules: {
+      title: 'Power Infusion',
+      summary: 'Choose the option that adds detail without losing clarity.',
+      bullets: [
+        'Add detail, not confusion.',
+        'Keep the sentence coherent.',
+        'Confirm below.',
+      ],
+    },
+  },
+  FORGE_REPAIR: {
+    label: 'Forge Repair',
+    focus: 'Guided repair and proofreading',
+    rules: {
+      title: 'Forge Repair',
+      summary: 'Fix the error that matters most to make the sentence correct.',
+      bullets: [
+        'Read carefully for grammar and punctuation mistakes.',
+        'Choose the correction that fully fixes the issue.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  WORD_SENSE: {
+    label: 'Word Sense',
+    focus: 'Vocabulary in context',
+    rules: {
+      title: 'Word Sense',
+      summary: 'Use the sentence to choose the correct meaning.',
+      bullets: [
+        'Read the whole sentence first.',
+        'Choose the meaning that fits this context.',
+        'Confirm below.',
+      ],
+    },
+  },
+  TWIN_WORDS_TRIAL: {
+    label: 'Twin Words Trial',
+    focus: 'Synonyms and near-synonyms',
+    rules: {
+      title: 'Twin Words Trial',
+      summary: 'Pick the closest match without falling for near-misses.',
+      bullets: [
+        'Check the exact meaning.',
+        'Avoid distractors that are related but not equal.',
+        'Confirm below.',
+      ],
+    },
+  },
+  ANTONYM_AMBUSH: {
+    label: 'Antonym Ambush',
+    focus: 'Opposites and contrast',
+    rules: {
+      title: 'Antonym Ambush',
+      summary: 'Choose the true opposite for the word or phrase.',
+      bullets: [
+        'Think about meaning in context.',
+        'Pick the best contrast.',
+        'Confirm below.',
+      ],
+    },
+  },
+  TONE_TRADER: {
+    label: 'Tone Trader',
+    focus: 'Tone and register',
+    rules: {
+      title: 'Tone Trader',
+      summary: 'Choose words that match the correct formality.',
+      bullets: [
+        'Decide if the tone should be formal or informal.',
+        'Pick the word that matches that register.',
+        'Confirm below.',
+      ],
+    },
+  },
+  MEANING_MATCH: {
+    label: 'Meaning Match',
+    focus: 'Matching words to meanings',
+    rules: {
+      title: 'Meaning Match',
+      summary: 'Match the word to the meaning in quick, clear steps.',
+      bullets: [
+        'Read each option carefully.',
+        'Choose the best match.',
+        'Confirm below.',
+      ],
+    },
+  },
+  RETRIEVAL_RAPIDS: {
+    label: 'Retrieval Rapids',
+    focus: 'Find answers stated in the text',
+    rules: {
+      title: 'Retrieval Rapids',
+      summary: 'Retrieve the exact detail asked for.',
+      bullets: [
+        'Scan for keywords from the question.',
+        'Find the exact matching detail.',
+        'Confirm below.',
+      ],
+    },
+  },
+  INFERENCE_ISLE: {
+    label: 'Inference Isle',
+    focus: 'Inference and implied meaning',
+    rules: {
+      title: 'Inference Isle',
+      summary: 'Use clues from the passage to infer the best answer.',
+      bullets: [
+        'Use evidence from the text, not guesses.',
+        'Choose the most supported inference.',
+        'Confirm below.',
+      ],
+    },
+  },
+  EVIDENCE_EXPLORER: {
+    label: 'Evidence Explorer',
+    focus: 'Answer backed by evidence',
+    rules: {
+      title: 'Evidence Explorer',
+      summary: 'Choose the evidence that supports the answer best.',
+      bullets: [
+        'Decide the best answer first.',
+        'Pick the strongest evidence line or chunk.',
+        'Confirm below.',
+      ],
+    },
+  },
+  SEQUENCE_STREAM: {
+    label: 'Sequence Stream',
+    focus: 'Ordering events',
+    rules: {
+      title: 'Sequence Stream',
+      summary: 'Choose the correct order of events from the passage.',
+      bullets: [
+        'Look for time words and cause-and-effect.',
+        'Choose the option that matches the text order.',
+        'Confirm below.',
+      ],
+    },
+  },
+  AUTHOR_INTENT: {
+    label: 'Author Intent',
+    focus: 'Author choices and effect',
+    rules: {
+      title: 'Author Intent',
+      summary: 'Decide why the author chose certain words or details.',
+      bullets: [
+        'Think about the effect on the reader.',
+        'Choose the strongest explanation.',
+        'Confirm below.',
+      ],
+    },
+  },
+  SUMMARY_SELECT: {
+    label: 'Summary Select',
+    focus: 'Summarising key ideas',
+    rules: {
+      title: 'Summary Select',
+      summary: 'Select the best summary of the passage.',
+      bullets: [
+        'Choose the main idea, not a tiny detail.',
+        'Avoid summaries that add new information.',
+        'Confirm below.',
+      ],
+    },
+  },
+  EVIDENCE_CHAIN: {
+    label: 'Evidence Chain',
+    focus: 'Answer + evidence + reason',
+    rules: {
+      title: 'Evidence Chain',
+      summary: 'Link the answer to evidence, then explain why it proves the point.',
+      bullets: [
+        'Choose the best answer.',
+        'Pick the evidence that supports it.',
+        'Choose the reason that links them.',
+      ],
+    },
+  },
+  PASSAGE_QUEST: {
+    label: 'Passage Quest',
+    focus: 'Story-first question set',
+    rules: {
+      title: 'Passage Quest',
+      summary: 'Read the story, then answer one question at a time.',
+      bullets: [
+        'Use the story whenever you need to reread.',
+        'Answer calmly and carefully.',
+        'Confirm below.',
+      ],
+    },
+  },
+  TWIN_TICK_TRIAL: {
+    label: 'Twin Tick Trial',
+    focus: 'Choose exactly two correct options',
+    rules: {
+      title: 'Twin Tick Trial',
+      summary: 'Tick two answers carefully: only two are correct.',
+      bullets: [
+        'Read every option before choosing.',
+        'Only pick the exact number required.',
+        'Confirm below.',
+      ],
+    },
+  },
+  RULE_BREAKER: {
+    label: 'Rule Breaker',
+    focus: 'Spot the option that breaks the rule',
+    rules: {
+      title: 'Rule Breaker',
+      summary: 'Find the option that breaks the grammar or logic rule.',
+      bullets: [
+        'Identify the rule first.',
+        'Eliminate options that follow it.',
+        'Confirm below.',
+      ],
+    },
+  },
+  BEST_ANSWER_QUEST: {
+    label: 'Best Answer Quest',
+    focus: 'Best-fit answer with close distractors',
+    rules: {
+      title: 'Best Answer Quest',
+      summary: 'Two answers can look right: choose the best one.',
+      bullets: [
+        'Look for the strongest evidence in the prompt.',
+        'Avoid answers that are only partly true.',
+        'Confirm below.',
+      ],
+    },
+  },
+  MIXED_MASTERY: {
+    label: 'Mixed Mastery',
+    focus: 'Mixed skills recap',
+    rules: {
+      title: 'Mixed Mastery',
+      summary: 'A mixed round that samples earlier skills.',
+      bullets: [
+        'Expect variety across islands.',
+        'Take your time and stay accurate.',
+        'Confirm below.',
+      ],
+    },
+  },
+  LEGENDS_CHALLENGE: {
+    label: 'Legends Challenge',
+    focus: 'Harder mixed round',
+    rules: {
+      title: 'Legends Challenge',
+      summary: 'A tougher mixed set with closer distractors.',
+      bullets: [
+        'Read each prompt twice.',
+        'Eliminate near-miss distractors calmly.',
+        'Confirm below.',
+      ],
+    },
+  },
+  READING_RESCUE: {
+    label: 'Reading Rescue',
+    focus: 'Reading-focused mixed round',
+    rules: {
+      title: 'Reading Rescue',
+      summary: 'Rescue the meaning with careful reading choices.',
+      bullets: [
+        'Use the text to support every answer.',
+        'Avoid guesses not backed by evidence.',
+        'Confirm below.',
+      ],
+    },
+  },
+  GRAMMAR_GAUNTLET: {
+    label: 'Grammar Gauntlet',
+    focus: 'Grammar-focused mixed round',
+    rules: {
+      title: 'Grammar Gauntlet',
+      summary: 'A grammar-heavy run with quick decisions.',
+      bullets: [
+        'Watch for clause and word-class clues.',
+        'Choose the strongest option each time.',
+        'Confirm below.',
+      ],
+    },
+  },
+  WORDSMITH_TRIALS: {
+    label: 'Wordsmith Trials',
+    focus: 'Vocabulary and word-building recap',
+    rules: {
+      title: 'Wordsmith Trials',
+      summary: 'Prove wordcraft by choosing meanings, synonyms, and correct forms.',
+      bullets: [
+        'Use context for meaning.',
+        'Avoid near-miss synonyms.',
+        'Confirm below.',
+      ],
+    },
+  },
 };
 
 export const getGameLabel = (gameType?: MiniGameType | null) => (

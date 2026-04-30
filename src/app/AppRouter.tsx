@@ -171,16 +171,6 @@ export const AppRouter: React.FC<AppRouterProps> = ({
     };
 
     switch (selectedLevel.gameType) {
-      case 'WORD_WIZARD':
-      case 'MEANING_MINES':
-      case 'SYNONYM_SIEGE':
-      case 'EVIDENCE_HIGHLIGHT':
-      case 'INFERENCE_INVADERS':
-      case 'RETRIEVAL_RAID':
-      case 'LOGIC_LADDER':
-      case 'EDITORS_TRIAL':
-      case 'SCHOLARS_SUMMIT':
-        return renderFromRegistry('EnglishStubGame', { ...sharedProps, englishGameType: selectedLevel.gameType });
       case 'WORD_WARDEN':
         return renderFromRegistry('WordWardenGame', sharedProps);
       case 'TENSE_TOWER':
@@ -197,8 +187,15 @@ export const AppRouter: React.FC<AppRouterProps> = ({
         return renderFromRegistry('ApostropheOutlawsGame', sharedProps);
       case 'PUNCTUATION_PATROL':
         return renderFromRegistry('PunctuationPatrolGame', sharedProps);
+      case 'STRONGHOLD_SPRINT':
+        return renderFromRegistry('StrongholdSprintGame', sharedProps);
+      case 'PREFIX_PATROL':
+        return renderFromRegistry('PrefixPatrolGame', sharedProps);
+      case 'FORGE_OF_SUFFIXES':
+        return renderFromRegistry('ForgeOfSuffixesGame', sharedProps);
       case 'SPELLING_FORGE':
         return renderFromRegistry('SpellingForgeGame', sharedProps);
+      case 'HALL_OF_ECHOES':
       case 'HOMOPHONE_HUNT':
         return renderFromRegistry('HomophoneHuntGame', sharedProps);
       case 'SUFFIX_SIEGE':
@@ -209,6 +206,46 @@ export const AppRouter: React.FC<AppRouterProps> = ({
         return renderFromRegistry('ParagraphPatchGame', sharedProps);
       case 'CONNECTIVE_CRAFTER':
         return renderFromRegistry('ConnectiveCrafterGame', sharedProps);
+      case 'WORD_WIZARD':
+        return renderFromRegistry('WordWizardGame', sharedProps);
+      case 'MEANING_MINES':
+        return renderFromRegistry('MeaningMinesGame', sharedProps);
+      case 'SYNONYM_SIEGE':
+        return renderFromRegistry('SynonymSiegeGame', sharedProps);
+      case 'PATTERN_TRIALS':
+      case 'WORD_MORPH':
+      case 'SENTENCE_SHIFT':
+      case 'BLADE_REFINER':
+      case 'POWER_INFUSION':
+      case 'FORGE_REPAIR':
+      case 'WORD_SENSE':
+      case 'TWIN_WORDS_TRIAL':
+      case 'ANTONYM_AMBUSH':
+      case 'TONE_TRADER':
+      case 'MEANING_MATCH':
+      case 'RETRIEVAL_RAPIDS':
+      case 'INFERENCE_ISLE':
+      case 'EVIDENCE_EXPLORER':
+      case 'SEQUENCE_STREAM':
+      case 'AUTHOR_INTENT':
+      case 'SUMMARY_SELECT':
+      case 'EVIDENCE_CHAIN':
+      case 'PASSAGE_QUEST':
+      case 'EVIDENCE_HIGHLIGHT':
+      case 'TWIN_TICK_TRIAL':
+      case 'RULE_BREAKER':
+      case 'BEST_ANSWER_QUEST':
+      case 'MIXED_MASTERY':
+      case 'LEGENDS_CHALLENGE':
+      case 'READING_RESCUE':
+      case 'GRAMMAR_GAUNTLET':
+      case 'WORDSMITH_TRIALS':
+      case 'SCHOLARS_SUMMIT':
+      case 'INFERENCE_INVADERS':
+      case 'RETRIEVAL_RAID':
+      case 'LOGIC_LADDER':
+      case 'EDITORS_TRIAL':
+        return renderFromRegistry('EnglishStubGame', { ...sharedProps, englishGameType: selectedLevel.gameType });
       case 'cloud_collapse':
         return renderFromRegistry('FractionMatchGame', { ...sharedProps, variantGameType: 'cloud_collapse', isBoss: Boolean(selectedLevel.isBoss) });
       case 'potion_pour':

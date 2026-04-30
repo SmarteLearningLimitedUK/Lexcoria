@@ -91,9 +91,13 @@ export const ISLANDS: IslandData[] = [
     mapImage: world03Map,
     decorations: [],
     levels: mergeIslandLevels([
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'spelling_forge', displayName: 'Spelling Forge', gameType: 'SPELLING_FORGE' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'homophone_hunt', displayName: 'Homophone Hunt', gameType: 'HOMOPHONE_HUNT' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'suffix_siege', displayName: 'Suffix Siege', gameType: 'SUFFIX_SIEGE' },
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'stronghold_sprint', displayName: 'Stronghold Sprint', gameType: 'STRONGHOLD_SPRINT' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'prefix_patrol', displayName: 'Prefix Patrol', gameType: 'PREFIX_PATROL' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'forge_of_suffixes', displayName: 'Forge of Suffixes', gameType: 'FORGE_OF_SUFFIXES' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'hall_of_echoes', displayName: 'Hall of Echoes', gameType: 'HALL_OF_ECHOES' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'spelling_forge', displayName: 'Spelling Forge', gameType: 'SPELLING_FORGE' },
+      { id: 6, stars: 0, isLocked: false, blueprintKey: 'pattern_trials', displayName: 'Pattern Trials', gameType: 'PATTERN_TRIALS' },
+      { id: 7, stars: 0, isLocked: false, blueprintKey: 'word_morph', displayName: 'Word Morph', gameType: 'WORD_MORPH' },
     ]),
   },
   {
@@ -109,8 +113,10 @@ export const ISLANDS: IslandData[] = [
     decorations: [],
     levels: mergeIslandLevels([
       { id: 1, stars: 0, isLocked: false, blueprintKey: 'sentence_smith', displayName: 'Sentence Smith', gameType: 'SENTENCE_SMITH' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'paragraph_patch', displayName: 'Paragraph Patch', gameType: 'PARAGRAPH_PATCH' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'connective_crafter', displayName: 'Connective Crafter', gameType: 'CONNECTIVE_CRAFTER' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'sentence_shift', displayName: 'Sentence Shift', gameType: 'SENTENCE_SHIFT' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'blade_refiner', displayName: 'Blade Refiner', gameType: 'BLADE_REFINER' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'power_infusion', displayName: 'Power Infusion', gameType: 'POWER_INFUSION' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'forge_repair', displayName: 'Forge Repair', gameType: 'FORGE_REPAIR' },
     ]),
   },
   {
@@ -125,9 +131,11 @@ export const ISLANDS: IslandData[] = [
     mapImage: world05Map,
     decorations: [],
     levels: mergeIslandLevels([
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'word_wizard', displayName: 'Word Wizard', gameType: 'WORD_WIZARD' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'meaning_mines', displayName: 'Meaning Mines', gameType: 'MEANING_MINES' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'synonym_siege', displayName: 'Synonym Siege', gameType: 'SYNONYM_SIEGE' },
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'word_sense', displayName: 'Word Sense', gameType: 'WORD_SENSE' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'twin_words_trial', displayName: 'Twin Words Trial', gameType: 'TWIN_WORDS_TRIAL' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'antonym_ambush', displayName: 'Antonym Ambush', gameType: 'ANTONYM_AMBUSH' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'tone_trader', displayName: 'Tone Trader', gameType: 'TONE_TRADER' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'meaning_match', displayName: 'Meaning Match', gameType: 'MEANING_MATCH' },
     ]),
   },
   {
@@ -142,9 +150,15 @@ export const ISLANDS: IslandData[] = [
     mapImage: world06Map,
     decorations: [],
     levels: mergeIslandLevels([
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'evidence_highlight', displayName: 'Evidence Highlight', gameType: 'EVIDENCE_HIGHLIGHT' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'inference_invaders', displayName: 'Inference Invaders', gameType: 'INFERENCE_INVADERS' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'retrieval_raid', displayName: 'Retrieval Raid', gameType: 'RETRIEVAL_RAID' },
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'retrieval_rapids', displayName: 'Retrieval Rapids', gameType: 'RETRIEVAL_RAPIDS' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'inference_isle', displayName: 'Inference Isle', gameType: 'INFERENCE_ISLE' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'evidence_explorer', displayName: 'Evidence Explorer', gameType: 'EVIDENCE_EXPLORER' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'sequence_stream', displayName: 'Sequence Stream', gameType: 'SEQUENCE_STREAM' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'author_intent', displayName: 'Author Intent', gameType: 'AUTHOR_INTENT' },
+      { id: 6, stars: 0, isLocked: false, blueprintKey: 'summary_select', displayName: 'Summary Select', gameType: 'SUMMARY_SELECT' },
+      { id: 7, stars: 0, isLocked: false, blueprintKey: 'evidence_chain', displayName: 'Evidence Chain', gameType: 'EVIDENCE_CHAIN' },
+      { id: 8, stars: 0, isLocked: false, blueprintKey: 'passage_quest', displayName: 'Passage Quest', gameType: 'PASSAGE_QUEST' },
+      { id: 9, stars: 0, isLocked: false, blueprintKey: 'evidence_highlight', displayName: 'Evidence Highlight', gameType: 'EVIDENCE_HIGHLIGHT' },
     ]),
   },
   {
@@ -159,8 +173,9 @@ export const ISLANDS: IslandData[] = [
     mapImage: world02Map,
     decorations: [],
     levels: mergeIslandLevels([
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'logic_ladder', displayName: 'Logic Ladder', gameType: 'LOGIC_LADDER' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'editors_trial', displayName: "Editor's Trial", gameType: 'EDITORS_TRIAL' },
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'twin_tick_trial', displayName: 'Twin Tick Trial', gameType: 'TWIN_TICK_TRIAL' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'rule_breaker', displayName: 'Rule Breaker', gameType: 'RULE_BREAKER' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'best_answer_quest', displayName: 'Best Answer Quest', gameType: 'BEST_ANSWER_QUEST' },
     ]),
   },
   {
@@ -175,7 +190,11 @@ export const ISLANDS: IslandData[] = [
     mapImage: world03Map,
     decorations: [],
     levels: mergeIslandLevels([
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'scholars_summit', displayName: "Scholar's Summit", gameType: 'SCHOLARS_SUMMIT', isBoss: true, bossUnlockCoins: 0, isPractice: false },
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'mixed_mastery', displayName: 'Mixed Mastery', gameType: 'MIXED_MASTERY' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'legends_challenge', displayName: 'Legends Challenge', gameType: 'LEGENDS_CHALLENGE' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'reading_rescue', displayName: 'Reading Rescue', gameType: 'READING_RESCUE' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'grammar_gauntlet', displayName: 'Grammar Gauntlet', gameType: 'GRAMMAR_GAUNTLET' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'wordsmith_trials', displayName: 'Wordsmith Trials', gameType: 'WORDSMITH_TRIALS' },
     ]),
   },
 ];

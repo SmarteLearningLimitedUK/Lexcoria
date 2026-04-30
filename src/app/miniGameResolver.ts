@@ -8,16 +8,6 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
   }
 
   switch (level.gameType) {
-    case 'WORD_WIZARD':
-    case 'MEANING_MINES':
-    case 'SYNONYM_SIEGE':
-    case 'EVIDENCE_HIGHLIGHT':
-    case 'INFERENCE_INVADERS':
-    case 'RETRIEVAL_RAID':
-    case 'LOGIC_LADDER':
-    case 'EDITORS_TRIAL':
-    case 'SCHOLARS_SUMMIT':
-      return 'EnglishStubGame';
     case 'WORD_WARDEN':
       return 'WordWardenGame';
     case 'TENSE_TOWER':
@@ -34,8 +24,15 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
       return 'ApostropheOutlawsGame';
     case 'PUNCTUATION_PATROL':
       return 'PunctuationPatrolGame';
+    case 'STRONGHOLD_SPRINT':
+      return 'StrongholdSprintGame';
+    case 'PREFIX_PATROL':
+      return 'PrefixPatrolGame';
+    case 'FORGE_OF_SUFFIXES':
+      return 'ForgeOfSuffixesGame';
     case 'SPELLING_FORGE':
       return 'SpellingForgeGame';
+    case 'HALL_OF_ECHOES':
     case 'HOMOPHONE_HUNT':
       return 'HomophoneHuntGame';
     case 'SUFFIX_SIEGE':
@@ -46,6 +43,48 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
       return 'ParagraphPatchGame';
     case 'CONNECTIVE_CRAFTER':
       return 'ConnectiveCrafterGame';
+    case 'WORD_WIZARD':
+      return 'WordWizardGame';
+    case 'MEANING_MINES':
+      return 'MeaningMinesGame';
+    case 'SYNONYM_SIEGE':
+      return 'SynonymSiegeGame';
+
+    // SATs Legends English (build spec) - not yet implemented in this scaffold build.
+    case 'PATTERN_TRIALS':
+    case 'WORD_MORPH':
+    case 'SENTENCE_SHIFT':
+    case 'BLADE_REFINER':
+    case 'POWER_INFUSION':
+    case 'FORGE_REPAIR':
+    case 'WORD_SENSE':
+    case 'TWIN_WORDS_TRIAL':
+    case 'ANTONYM_AMBUSH':
+    case 'TONE_TRADER':
+    case 'MEANING_MATCH':
+    case 'RETRIEVAL_RAPIDS':
+    case 'INFERENCE_ISLE':
+    case 'EVIDENCE_EXPLORER':
+    case 'SEQUENCE_STREAM':
+    case 'AUTHOR_INTENT':
+    case 'SUMMARY_SELECT':
+    case 'EVIDENCE_CHAIN':
+    case 'PASSAGE_QUEST':
+    case 'EVIDENCE_HIGHLIGHT':
+    case 'TWIN_TICK_TRIAL':
+    case 'RULE_BREAKER':
+    case 'BEST_ANSWER_QUEST':
+    case 'MIXED_MASTERY':
+    case 'LEGENDS_CHALLENGE':
+    case 'READING_RESCUE':
+    case 'GRAMMAR_GAUNTLET':
+    case 'WORDSMITH_TRIALS':
+    case 'SCHOLARS_SUMMIT':
+    case 'INFERENCE_INVADERS':
+    case 'RETRIEVAL_RAID':
+    case 'LOGIC_LADDER':
+    case 'EDITORS_TRIAL':
+      return 'EnglishStubGame';
     case 'cloud_collapse':
     case 'fraction_match':
       if (level.blueprintKey === 'simplify_sprint') {
