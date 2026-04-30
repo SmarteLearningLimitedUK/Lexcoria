@@ -8,6 +8,44 @@ export const resolveMiniGameRegistryKey = (level: LevelData): MiniGameRegistryKe
   }
 
   switch (level.gameType) {
+    case 'WORD_WIZARD':
+    case 'MEANING_MINES':
+    case 'SYNONYM_SIEGE':
+    case 'EVIDENCE_HIGHLIGHT':
+    case 'INFERENCE_INVADERS':
+    case 'RETRIEVAL_RAID':
+    case 'LOGIC_LADDER':
+    case 'EDITORS_TRIAL':
+    case 'SCHOLARS_SUMMIT':
+      return 'EnglishStubGame';
+    case 'WORD_WARDEN':
+      return 'WordWardenGame';
+    case 'TENSE_TOWER':
+      return 'TenseTowerGame';
+    case 'CLAUSE_KEEP':
+      return 'ClauseKeepGame';
+    case 'CONJUNCTION_CROSSING':
+      return 'ConjunctionCrossingGame';
+    case 'GRAMMAR_GUARD':
+      return 'GrammarGuardGame';
+    case 'COMMA_CANNON':
+      return 'CommaCannonGame';
+    case 'APOSTROPHE_OUTLAWS':
+      return 'ApostropheOutlawsGame';
+    case 'PUNCTUATION_PATROL':
+      return 'PunctuationPatrolGame';
+    case 'SPELLING_FORGE':
+      return 'SpellingForgeGame';
+    case 'HOMOPHONE_HUNT':
+      return 'HomophoneHuntGame';
+    case 'SUFFIX_SIEGE':
+      return 'SuffixSiegeGame';
+    case 'SENTENCE_SMITH':
+      return 'SentenceSmithGame';
+    case 'PARAGRAPH_PATCH':
+      return 'ParagraphPatchGame';
+    case 'CONNECTIVE_CRAFTER':
+      return 'ConnectiveCrafterGame';
     case 'cloud_collapse':
     case 'fraction_match':
       if (level.blueprintKey === 'simplify_sprint') {

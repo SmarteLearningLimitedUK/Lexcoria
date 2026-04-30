@@ -23,7 +23,6 @@ import potionPanicBackground from './assets/maps/backgroundsforgames/tableshresp
 import primePopBackground from './assets/maps/backgroundsforgames/primepopbkground.jpg';
 import problemPyramidBackground from './assets/maps/backgroundsforgames/problem pyramid.jpg';
 import rotationStationBackground from './assets/maps/backgroundsforgames/Rotation Reflection.jpg';
-import rotationStationBackground from './assets/maps/backgroundsforgames/rotationstation.jpg';
 import scaleBuilderBackground from './assets/maps/backgroundsforgames/scalebuilder-construction.png';
 import scaleMasterBackground from './assets/maps/backgroundsforgames/Scale Master.png';
 import shareSplitterBackground from './assets/maps/backgroundsforgames/sharesplitterfinal.png';
@@ -125,4 +124,27 @@ export const GAME_SCENE_META: Record<MiniGameType, GameSceneMeta> = {
   unit_mixer: withBackground(REASONING_SCENE, lavaPathBackground),
   change_counter: withBackground(CHANGE_COUNTER_SCENE, changeCounterBackground),
   reasoning_quest: withBackground(REASONING_SCENE, multiStepMarathonBackground),
+  WORD_WARDEN: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  TENSE_TOWER: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  CLAUSE_KEEP: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  CONJUNCTION_CROSSING: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  GRAMMAR_GUARD: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  COMMA_CANNON: withBackground(DATA_SCENE, mixedMasteryBackground),
+  APOSTROPHE_OUTLAWS: withBackground(DATA_SCENE, mixedMasteryBackground),
+  PUNCTUATION_PATROL: withBackground(DATA_SCENE, mixedMasteryBackground),
+  SPELLING_FORGE: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  HOMOPHONE_HUNT: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  SUFFIX_SIEGE: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  SENTENCE_SMITH: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  PARAGRAPH_PATCH: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  CONNECTIVE_CRAFTER: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  WORD_WIZARD: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  MEANING_MINES: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  SYNONYM_SIEGE: withBackground(NUMBER_SCENE, mixedMasteryBackground),
+  EVIDENCE_HIGHLIGHT: withBackground(DATA_SCENE, mixedMasteryBackground),
+  INFERENCE_INVADERS: withBackground(DATA_SCENE, mixedMasteryBackground),
+  RETRIEVAL_RAID: withBackground(DATA_SCENE, mixedMasteryBackground),
+  LOGIC_LADDER: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  EDITORS_TRIAL: withBackground(REASONING_SCENE, mixedMasteryBackground),
+  SCHOLARS_SUMMIT: withBackground(REASONING_SCENE, mixedMasteryBackground),
 };

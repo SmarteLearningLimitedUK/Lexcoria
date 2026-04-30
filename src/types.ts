@@ -36,7 +36,31 @@ export type MiniGameType =
   | 'formula_forge'
   | 'unit_mixer'
   | 'change_counter'
-  | 'reasoning_quest';
+  | 'reasoning_quest'
+  // SATs Legends English (testing scaffold)
+  | 'WORD_WARDEN'
+  | 'TENSE_TOWER'
+  | 'CLAUSE_KEEP'
+  | 'CONJUNCTION_CROSSING'
+  | 'GRAMMAR_GUARD'
+  | 'COMMA_CANNON'
+  | 'APOSTROPHE_OUTLAWS'
+  | 'PUNCTUATION_PATROL'
+  | 'SPELLING_FORGE'
+  | 'HOMOPHONE_HUNT'
+  | 'SUFFIX_SIEGE'
+  | 'SENTENCE_SMITH'
+  | 'PARAGRAPH_PATCH'
+  | 'CONNECTIVE_CRAFTER'
+  | 'WORD_WIZARD'
+  | 'MEANING_MINES'
+  | 'SYNONYM_SIEGE'
+  | 'EVIDENCE_HIGHLIGHT'
+  | 'INFERENCE_INVADERS'
+  | 'RETRIEVAL_RAID'
+  | 'LOGIC_LADDER'
+  | 'EDITORS_TRIAL'
+  | 'SCHOLARS_SUMMIT';
 
 export interface LevelData {
   id: number;

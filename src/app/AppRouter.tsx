@@ -171,6 +171,44 @@ export const AppRouter: React.FC<AppRouterProps> = ({
     };
 
     switch (selectedLevel.gameType) {
+      case 'WORD_WIZARD':
+      case 'MEANING_MINES':
+      case 'SYNONYM_SIEGE':
+      case 'EVIDENCE_HIGHLIGHT':
+      case 'INFERENCE_INVADERS':
+      case 'RETRIEVAL_RAID':
+      case 'LOGIC_LADDER':
+      case 'EDITORS_TRIAL':
+      case 'SCHOLARS_SUMMIT':
+        return renderFromRegistry('EnglishStubGame', { ...sharedProps, englishGameType: selectedLevel.gameType });
+      case 'WORD_WARDEN':
+        return renderFromRegistry('WordWardenGame', sharedProps);
+      case 'TENSE_TOWER':
+        return renderFromRegistry('TenseTowerGame', sharedProps);
+      case 'CLAUSE_KEEP':
+        return renderFromRegistry('ClauseKeepGame', sharedProps);
+      case 'CONJUNCTION_CROSSING':
+        return renderFromRegistry('ConjunctionCrossingGame', sharedProps);
+      case 'GRAMMAR_GUARD':
+        return renderFromRegistry('GrammarGuardGame', sharedProps);
+      case 'COMMA_CANNON':
+        return renderFromRegistry('CommaCannonGame', sharedProps);
+      case 'APOSTROPHE_OUTLAWS':
+        return renderFromRegistry('ApostropheOutlawsGame', sharedProps);
+      case 'PUNCTUATION_PATROL':
+        return renderFromRegistry('PunctuationPatrolGame', sharedProps);
+      case 'SPELLING_FORGE':
+        return renderFromRegistry('SpellingForgeGame', sharedProps);
+      case 'HOMOPHONE_HUNT':
+        return renderFromRegistry('HomophoneHuntGame', sharedProps);
+      case 'SUFFIX_SIEGE':
+        return renderFromRegistry('SuffixSiegeGame', sharedProps);
+      case 'SENTENCE_SMITH':
+        return renderFromRegistry('SentenceSmithGame', sharedProps);
+      case 'PARAGRAPH_PATCH':
+        return renderFromRegistry('ParagraphPatchGame', sharedProps);
+      case 'CONNECTIVE_CRAFTER':
+        return renderFromRegistry('ConnectiveCrafterGame', sharedProps);
       case 'cloud_collapse':
         return renderFromRegistry('FractionMatchGame', { ...sharedProps, variantGameType: 'cloud_collapse', isBoss: Boolean(selectedLevel.isBoss) });
       case 'potion_pour':

@@ -6,7 +6,6 @@ import world03Map from './assets/maps/backgroundsforgames/castle.jpg';
 import world04Map from './assets/maps/harbour.jpg';
 import world05Map from './assets/maps/finalamendedworldmap.png';
 import world06Map from './assets/maps/finalmap.png';
-import { NUMBER_BASE_CAMP_LEVELS } from './systems/content/island1NumberBaseCamp';
 
 const mergeIslandLevels = (...groups: LevelData[][]): LevelData[] => {
   const flattened = groups.flat().map((level, index) => ({
@@ -26,11 +25,6 @@ const mergeIslandLevels = (...groups: LevelData[][]): LevelData[] => {
   });
 };
 
-const pickLevelsByBlueprint = (levels: LevelData[], blueprintKeys: string[]): LevelData[] => (
-  levels
-    .filter((level) => !!level.blueprintKey && blueprintKeys.includes(level.blueprintKey))
-    .map((level) => ({ ...level }))
-);
 
 export const ACHIEVEMENTS: Achievement[] = [
   { id: 'first_win', title: 'First Victory', description: 'Complete your first level', icon: '\u{1F3C6}', type: 'levels', target: 1 },
@@ -48,180 +42,141 @@ export const INITIAL_DAILY_QUESTS: DailyQuest[] = [
 ];
 export const AVATARS: AvatarData[] = CHARACTER_AVATARS;
 
-const FRACTION_FOREST_LEVELS: LevelData[] = [
-  { id: 1, stars: 0, isLocked: false, blueprintKey: 'take_out_rush', displayName: 'Take-Out Rush', gameType: 'take_out_rush' },
-  { id: 2, stars: 0, isLocked: false, blueprintKey: 'fraction_forge', displayName: 'Fraction Forge', gameType: 'take_out_rush' },
-  { id: 3, stars: 0, isLocked: false, blueprintKey: 'match3_equivalence', displayName: 'Match Mastery', gameType: 'fraction_match' },
-  { id: 4, stars: 0, isLocked: false, blueprintKey: 'percent_power', displayName: 'Percent Power', gameType: 'percent_power' },
-  { id: 5, stars: 0, isLocked: false, blueprintKey: 'simplify_sprint', displayName: 'Simplify Sprint', gameType: 'fraction_match' },
-];
-
-const RATIO_RACER_LEVELS: LevelData[] = [
-  { id: 1, stars: 0, isLocked: false, blueprintKey: 'potion_panic', displayName: 'Potion Panic', gameType: 'potion_pour' },
-  { id: 2, stars: 0, isLocked: false, blueprintKey: 'potion_panic', displayName: 'Potion Panic', gameType: 'potion_pour' },
-  { id: 3, stars: 0, isLocked: false, blueprintKey: 'share_splitter', displayName: 'Share Splitter', gameType: 'ratio_rapids' },
-  { id: 4, stars: 0, isLocked: false, blueprintKey: 'ratio_fractions', displayName: 'Ratio Racer', gameType: 'ratio_fractions' },
-  { id: 5, stars: 0, isLocked: false, blueprintKey: 'scale_builder', displayName: 'Scale Builder', gameType: 'scale_safari' },
-];
-
-const CALCULATION_CORE_LEVELS: LevelData[] = [
-  { id: 1, stars: 0, isLocked: false, blueprintKey: 'crystal_core', displayName: 'SATs Paper 1: Arithmetic', gameType: 'crystal_core', isBoss: true, bossUnlockCoins: 0, isPractice: false },
-  { id: 2, stars: 0, isLocked: false, blueprintKey: 'mirror_gate', displayName: 'SATs Paper 2: Reasoning', gameType: 'mirror_gate', isBoss: true, bossUnlockCoins: 0, isPractice: false },
-  { id: 3, stars: 0, isLocked: false, blueprintKey: 'matrix_match', displayName: 'SATs Paper 3: Reasoning', gameType: 'matrix_match', isBoss: true, bossUnlockCoins: 0, isPractice: false },
-];
-
 export const ISLANDS: IslandData[] = [
   {
     id: 1,
-    name: 'Arithmetic Acropolis',
-    category: 'Number',
+    name: 'Grammar Grove',
+    category: 'Grammar',
     isLocked: false,
     color: 'bg-[#7ED321]',
-    themeName: 'Arithmetic Acropolis',
-    bgGradient: 'from-sky-300 to-sky-100',
-    groundColor: 'bg-green-500',
+    themeName: 'Grammar Grove',
+    bgGradient: 'from-emerald-900 to-slate-950',
+    groundColor: 'bg-emerald-950',
     mapImage: world01Map,
     decorations: [],
-    levels: mergeIslandLevels(
-      pickLevelsByBlueprint(NUMBER_BASE_CAMP_LEVELS, [
-        'place_value_panic',
-        'number_line_ninja',
-        'prime_pop',
-        'rounding_rocket',
-      ]),
-       [
-        { id: 1, stars: 0, isLocked: false, blueprintKey: 'maths_vs_zombies', displayName: 'Maths vs Zombies', gameType: 'ratio_rapids', isPractice: false },
-       ],
-     ),
-   },
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'word_warden', displayName: 'Word Warden', gameType: 'WORD_WARDEN' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'tense_tower', displayName: 'Tense Tower', gameType: 'TENSE_TOWER' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'clause_keep', displayName: 'Clause Keep', gameType: 'CLAUSE_KEEP' },
+      { id: 4, stars: 0, isLocked: false, blueprintKey: 'conjunction_crossing', displayName: 'Conjunction Crossing', gameType: 'CONJUNCTION_CROSSING' },
+      { id: 5, stars: 0, isLocked: false, blueprintKey: 'grammar_guard', displayName: 'Grammar Guard', gameType: 'GRAMMAR_GUARD' },
+    ]),
+  },
   {
     id: 2,
-    name: 'Fraction Forest',
-    category: 'Fractions',
+    name: 'Punctuation Peaks',
+    category: 'Punctuation',
     isLocked: false,
-    color: 'bg-[#4B9EFF]',
-    themeName: 'Fraction Forest',
-    bgGradient: 'from-emerald-700 to-cyan-700',
-    groundColor: 'bg-emerald-900',
-    mapImage: world01Map,
+    color: 'bg-[#2CC7D9]',
+    themeName: 'Punctuation Peaks',
+    bgGradient: 'from-sky-900 to-slate-950',
+    groundColor: 'bg-sky-950',
+    mapImage: world02Map,
     decorations: [],
-    levels: mergeIslandLevels(FRACTION_FOREST_LEVELS),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'comma_cannon', displayName: 'Comma Cannon', gameType: 'COMMA_CANNON' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'apostrophe_outlaws', displayName: 'Apostrophe Outlaws', gameType: 'APOSTROPHE_OUTLAWS' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'punctuation_patrol', displayName: 'Punctuation Patrol', gameType: 'PUNCTUATION_PATROL' },
+    ]),
   },
   {
     id: 3,
-    name: 'Geometry Glacier',
-    category: 'Geometry & Measure',
+    name: 'Spelling Stronghold',
+    category: 'Spelling',
     isLocked: false,
-    color: 'bg-[#8AD7FF]',
-    themeName: 'Glacier',
-    bgGradient: 'from-sky-200 to-cyan-100',
-    groundColor: 'bg-cyan-700',
-    mapImage: world02Map,
+    color: 'bg-[#F5A623]',
+    themeName: 'Spelling Stronghold',
+    bgGradient: 'from-amber-900 to-slate-950',
+    groundColor: 'bg-amber-950',
+    mapImage: world03Map,
     decorations: [],
-    levels: mergeIslandLevels(
-      [
-        { id: 1, stars: 0, isLocked: false, blueprintKey: 'angle_arena', displayName: 'Angle Arena', gameType: 'angle_arena' },
-        { id: 2, stars: 0, isLocked: false, blueprintKey: 'polygon_palace', displayName: 'Polygon Palace', gameType: 'polygon_palace' },
-        { id: 3, stars: 0, isLocked: false, blueprintKey: 'area_architect', displayName: 'Area Architect', gameType: 'area_architect' },
-        { id: 3, stars: 0, isLocked: false, blueprintKey: 'rotation_relay', displayName: 'Rotation Station', gameType: 'transform_temple' },
-        { id: 4, stars: 0, isLocked: false, blueprintKey: 'coordinates_quest', displayName: 'Coordinates Quest', gameType: 'coordinate_quest' },
-      ],
-      [
-        { id: 2, stars: 0, isLocked: false, blueprintKey: 'conversion_canyon', displayName: 'Conversion Canyon', gameType: 'measurement_forge' },
-        { id: 3, stars: 0, isLocked: false, blueprintKey: 'perimeter_path', displayName: 'Perimeter Path', gameType: 'measurement_forge' },
-      ],
-    ),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'spelling_forge', displayName: 'Spelling Forge', gameType: 'SPELLING_FORGE' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'homophone_hunt', displayName: 'Homophone Hunt', gameType: 'HOMOPHONE_HUNT' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'suffix_siege', displayName: 'Suffix Siege', gameType: 'SUFFIX_SIEGE' },
+    ]),
   },
   {
     id: 4,
-    name: 'Data Desert',
-    category: 'Data',
+    name: 'Sentence Smithy',
+    category: 'Writing',
     isLocked: false,
-    color: 'bg-[#FFB14B]',
-    themeName: 'Desert',
-    bgGradient: 'from-amber-200 to-orange-300',
-    groundColor: 'bg-amber-700',
-    mapImage: world05Map,
+    color: 'bg-[#8F76FF]',
+    themeName: 'Sentence Smithy',
+    bgGradient: 'from-indigo-900 to-slate-950',
+    groundColor: 'bg-indigo-950',
+    mapImage: world04Map,
     decorations: [],
-    levels: mergeIslandLevels(
-      pickLevelsByBlueprint(NUMBER_BASE_CAMP_LEVELS, [
-        'mean_machine',
-      ]),
-      [
-        { id: 1, stars: 0, isLocked: false, blueprintKey: 'graph_grabber', displayName: 'Graph Grabber', gameType: 'graph_grabber' },
-        { id: 2, stars: 0, isLocked: false, blueprintKey: 'line_graph_lab', displayName: 'Line Graph Lab', gameType: 'graph_grabber' },
-        { id: 3, stars: 0, isLocked: false, blueprintKey: 'data_detective', displayName: 'Data Detective', gameType: 'data_dungeon' },
-      ],
-    ),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'sentence_smith', displayName: 'Sentence Smith', gameType: 'SENTENCE_SMITH' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'paragraph_patch', displayName: 'Paragraph Patch', gameType: 'PARAGRAPH_PATCH' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'connective_crafter', displayName: 'Connective Crafter', gameType: 'CONNECTIVE_CRAFTER' },
+    ]),
   },
   {
     id: 5,
-    name: 'Operations Outpost',
-    category: 'Arithmetic',
+    name: 'Vocabulary Vale',
+    category: 'Vocabulary',
     isLocked: false,
-    color: 'bg-[#B04BFF]',
-    themeName: 'Outpost',
-    bgGradient: 'from-orange-200 to-rose-200',
-    groundColor: 'bg-stone-400',
-    mapImage: world03Map,
+    color: 'bg-[#FF4D8D]',
+    themeName: 'Vocabulary Vale',
+    bgGradient: 'from-fuchsia-900 to-slate-950',
+    groundColor: 'bg-fuchsia-950',
+    mapImage: world05Map,
     decorations: [],
-    levels: mergeIslandLevels(
-      pickLevelsByBlueprint(NUMBER_BASE_CAMP_LEVELS, [
-        'calculation_clash',
-        'factor_frenzy',
-      ]),
-      [
-        { id: 1, stars: 0, isLocked: false, blueprintKey: 'multiplication_mine', displayName: 'Multiplication Mine', gameType: 'calculation_clash' },
-        { id: 3, stars: 0, isLocked: false, blueprintKey: 'order_ops_arena', displayName: 'Order Ops Arena', gameType: 'equation_grove' },
-        { id: 4, stars: 0, isLocked: false, blueprintKey: 'formula_forge', displayName: 'Formula Forge', gameType: 'formula_forge' },
-        { id: 5, stars: 0, isLocked: false, blueprintKey: 'remainder_run', displayName: 'Remainder Run', gameType: 'calculation_clash' },
-      ],
-    ),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'word_wizard', displayName: 'Word Wizard', gameType: 'WORD_WIZARD' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'meaning_mines', displayName: 'Meaning Mines', gameType: 'MEANING_MINES' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'synonym_siege', displayName: 'Synonym Siege', gameType: 'SYNONYM_SIEGE' },
+    ]),
   },
   {
     id: 6,
-    name: 'Measurement Mountain',
-    category: 'Final Test',
-    isLocked: false,
-    color: 'bg-[#8F76FF]',
-    themeName: 'Measurement Mountain',
-    bgGradient: 'from-indigo-900 to-sky-900',
-    groundColor: 'bg-indigo-950',
-    mapImage: world06Map,
-    decorations: [],
-    levels: [
-      { id: 1, stars: 0, isLocked: false, blueprintKey: 'time_keeper_cove', displayName: 'Chrono Dash: Time Trial', gameType: 'timekeeper_temple' },
-      { id: 2, stars: 0, isLocked: false, blueprintKey: 'problem_pyramid', displayName: 'Problem Pyramid', gameType: 'rule_runner' },
-      { id: 3, stars: 0, isLocked: false, blueprintKey: 'unit_mixer', displayName: 'Lava Path', gameType: 'unit_mixer' },
-      { id: 4, stars: 0, isLocked: false, blueprintKey: 'change_counter', displayName: 'Change Counter', gameType: 'change_counter' },
-    ],
-  },
-  {
-    id: 8,
-    name: 'Core of Calculation',
-    category: 'Boss Island',
+    name: 'Comprehension Cove',
+    category: 'Reading',
     isLocked: false,
     color: 'bg-[#2C2A4A]',
-    themeName: 'Core of Calculation',
-    backgroundLabel: 'Colosseum',
-    bgGradient: 'from-slate-900 to-indigo-950',
-    groundColor: 'bg-slate-900',
+    themeName: 'Comprehension Cove',
+    bgGradient: 'from-slate-900 to-slate-950',
+    groundColor: 'bg-slate-950',
     mapImage: world06Map,
     decorations: [],
-    levels: mergeIslandLevels(CALCULATION_CORE_LEVELS),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'evidence_highlight', displayName: 'Evidence Highlight', gameType: 'EVIDENCE_HIGHLIGHT' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'inference_invaders', displayName: 'Inference Invaders', gameType: 'INFERENCE_INVADERS' },
+      { id: 3, stars: 0, isLocked: false, blueprintKey: 'retrieval_raid', displayName: 'Retrieval Raid', gameType: 'RETRIEVAL_RAID' },
+    ]),
   },
   {
     id: 7,
-    name: 'Ratio Racer',
-    category: 'Ratio',
+    name: 'Logic Lighthouse',
+    category: 'Logic',
     isLocked: false,
-    color: 'bg-[#2CC7D9]',
-    themeName: 'Ratio Racer',
-    bgGradient: 'from-cyan-300 to-sky-200',
-    groundColor: 'bg-cyan-700',
-    mapImage: world04Map,
+    color: 'bg-[#34D399]',
+    themeName: 'Logic Lighthouse',
+    bgGradient: 'from-teal-900 to-slate-950',
+    groundColor: 'bg-teal-950',
+    mapImage: world02Map,
     decorations: [],
-      levels: mergeIslandLevels(RATIO_RACER_LEVELS),
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'logic_ladder', displayName: 'Logic Ladder', gameType: 'LOGIC_LADDER' },
+      { id: 2, stars: 0, isLocked: false, blueprintKey: 'editors_trial', displayName: "Editor's Trial", gameType: 'EDITORS_TRIAL' },
+    ]),
+  },
+  {
+    id: 8,
+    name: "Scholar's Summit",
+    category: 'Final',
+    isLocked: false,
+    color: 'bg-[#F59E0B]',
+    themeName: "Scholar's Summit",
+    bgGradient: 'from-amber-900 to-slate-950',
+    groundColor: 'bg-amber-950',
+    mapImage: world03Map,
+    decorations: [],
+    levels: mergeIslandLevels([
+      { id: 1, stars: 0, isLocked: false, blueprintKey: 'scholars_summit', displayName: "Scholar's Summit", gameType: 'SCHOLARS_SUMMIT', isBoss: true, bossUnlockCoins: 0, isPractice: false },
+    ]),
   },
 ];
 

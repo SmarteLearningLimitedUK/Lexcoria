@@ -59,8 +59,8 @@ const getLavaPathPosition = (stepIndex: number) => {
 };
 
 const buildLavaPathD = () => {
-  if (LAVA_PATH_STOPS.length === 0) return '';
   const [first, ...rest] = LAVA_PATH_STOPS;
+  if (!first) return '';
   const segments = rest.map((point, index) => {
     const previous = LAVA_PATH_STOPS[index];
     const midX = (previous.x + point.x) / 2;

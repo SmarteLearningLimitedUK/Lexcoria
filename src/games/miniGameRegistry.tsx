@@ -47,6 +47,21 @@ const LavaPathGame = lazy(() => import('./LavaPathGame'));
 const LogicSort = lazy(() => import('./reasoning/LogicSort'));
 const MatrixMatch = lazy(() => import('./reasoning/MatrixMatch'));
 const ReasoningGame = lazy(() => import('./reasoning/ReasoningGame'));
+const EnglishStubGame = lazy(() => import('./english/EnglishStubGame'));
+const WordWardenGame = lazy(() => import('./english/WordWardenGame'));
+const TenseTowerGame = lazy(() => import('./english/TenseTowerGame'));
+const ClauseKeepGame = lazy(() => import('./english/ClauseKeepGame'));
+const ConjunctionCrossingGame = lazy(() => import('./english/ConjunctionCrossingGame'));
+const GrammarGuardGame = lazy(() => import('./english/GrammarGuardGame'));
+const CommaCannonGame = lazy(() => import('./english/CommaCannonGame'));
+const ApostropheOutlawsGame = lazy(() => import('./english/ApostropheOutlawsGame'));
+const PunctuationPatrolGame = lazy(() => import('./english/PunctuationPatrolGame'));
+const SpellingForgeGame = lazy(() => import('./english/SpellingForgeGame'));
+const HomophoneHuntGame = lazy(() => import('./english/HomophoneHuntGame'));
+const SuffixSiegeGame = lazy(() => import('./english/SuffixSiegeGame'));
+const SentenceSmithGame = lazy(() => import('./english/SentenceSmithGame'));
+const ParagraphPatchGame = lazy(() => import('./english/ParagraphPatchGame'));
+const ConnectiveCrafterGame = lazy(() => import('./english/ConnectiveCrafterGame'));
 import { createMiniGame, MiniGame } from './MiniGame';
 
 export type MiniGameRegistryKey =
@@ -97,7 +112,22 @@ export type MiniGameRegistryKey =
   | 'LavaPathGame'
   | 'ReasoningGame'
   | 'LogicSort'
-  | 'MatrixMatch';
+  | 'MatrixMatch'
+  | 'EnglishStubGame'
+  | 'WordWardenGame'
+  | 'TenseTowerGame'
+  | 'ClauseKeepGame'
+  | 'ConjunctionCrossingGame'
+  | 'GrammarGuardGame'
+  | 'CommaCannonGame'
+  | 'ApostropheOutlawsGame'
+  | 'PunctuationPatrolGame'
+  | 'SpellingForgeGame'
+  | 'HomophoneHuntGame'
+  | 'SuffixSiegeGame'
+  | 'SentenceSmithGame'
+  | 'ParagraphPatchGame'
+  | 'ConnectiveCrafterGame';
 
 const asMiniGame = <P extends Record<string, unknown>>(
   id: string,
@@ -157,6 +187,21 @@ export const MINI_GAME_REGISTRY: Record<MiniGameRegistryKey, MiniGame<any>> = {
   ReasoningGame: asMiniGame('reasoning', ReasoningGame),
   LogicSort: asMiniGame('logic_sort', LogicSort),
   MatrixMatch: asMiniGame('matrix_match', MatrixMatch),
+  EnglishStubGame: asMiniGame('english_stub', EnglishStubGame),
+  WordWardenGame: asMiniGame('word_warden', WordWardenGame),
+  TenseTowerGame: asMiniGame('tense_tower', TenseTowerGame),
+  ClauseKeepGame: asMiniGame('clause_keep', ClauseKeepGame),
+  ConjunctionCrossingGame: asMiniGame('conjunction_crossing', ConjunctionCrossingGame),
+  GrammarGuardGame: asMiniGame('grammar_guard', GrammarGuardGame),
+  CommaCannonGame: asMiniGame('comma_cannon', CommaCannonGame),
+  ApostropheOutlawsGame: asMiniGame('apostrophe_outlaws', ApostropheOutlawsGame),
+  PunctuationPatrolGame: asMiniGame('punctuation_patrol', PunctuationPatrolGame),
+  SpellingForgeGame: asMiniGame('spelling_forge', SpellingForgeGame),
+  HomophoneHuntGame: asMiniGame('homophone_hunt', HomophoneHuntGame),
+  SuffixSiegeGame: asMiniGame('suffix_siege', SuffixSiegeGame),
+  SentenceSmithGame: asMiniGame('sentence_smith', SentenceSmithGame),
+  ParagraphPatchGame: asMiniGame('paragraph_patch', ParagraphPatchGame),
+  ConnectiveCrafterGame: asMiniGame('connective_crafter', ConnectiveCrafterGame),
 };
 
 export const getMiniGame = (key: MiniGameRegistryKey): MiniGame<any> => MINI_GAME_REGISTRY[key];

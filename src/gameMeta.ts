@@ -498,6 +498,306 @@ export const GAME_META: Record<MiniGameType, GameMeta> = {
       ],
     },
   },
+  WORD_WARDEN: {
+    label: 'Word Warden',
+    focus: 'Grammar identification and word classes',
+    rules: {
+      title: 'Word Warden',
+      summary: 'Guard the gate by spotting the correct word or grammar choice.',
+      bullets: [
+        'Read the prompt carefully.',
+        'Pick the strongest match from the options.',
+        'Use the bottom zone to confirm your choice.',
+      ],
+    },
+  },
+  TENSE_TOWER: {
+    label: 'Tense Tower',
+    focus: 'Tense recognition and accuracy',
+    rules: {
+      title: 'Tense Tower',
+      summary: 'Climb higher by choosing the correct tense each time.',
+      bullets: [
+        'Look for time markers and verb clues.',
+        'Choose the best tense match.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  CLAUSE_KEEP: {
+    label: 'Clause Keep',
+    focus: 'Clauses and sentence structure',
+    rules: {
+      title: 'Clause Keep',
+      summary: 'Reinforce the keep by identifying main and subordinate clauses.',
+      bullets: [
+        'Focus on the subject and verb to find the main clause.',
+        'Watch for conjunctions and relative pronouns.',
+        'Confirm your selection.',
+      ],
+    },
+  },
+  CONJUNCTION_CROSSING: {
+    label: 'Conjunction Crossing',
+    focus: 'Conjunction choice and cohesion',
+    rules: {
+      title: 'Conjunction Crossing',
+      summary: 'Cross safely by choosing the best conjunction for meaning.',
+      bullets: [
+        'Check the relationship between ideas (cause, contrast, time).',
+        'Pick the conjunction that fits the meaning.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  GRAMMAR_GUARD: {
+    label: 'Grammar Guard',
+    focus: 'Standard English and grammar checks',
+    rules: {
+      title: 'Grammar Guard',
+      summary: 'Defend the realm by fixing grammar slips and choosing standard English.',
+      bullets: [
+        'Spot the sentence that sounds correct and clear.',
+        'Avoid common traps (agreement, tense, punctuation).',
+        'Confirm your choice.',
+      ],
+    },
+  },
+  COMMA_CANNON: {
+    label: 'Comma Cannon',
+    focus: 'Comma placement and clarity',
+    rules: {
+      title: 'Comma Cannon',
+      summary: 'Fire precisely by placing commas where they belong.',
+      bullets: [
+        'Look for clauses, lists, and fronted adverbials.',
+        'Choose the best punctuation option.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  APOSTROPHE_OUTLAWS: {
+    label: 'Apostrophe Outlaws',
+    focus: 'Apostrophes for possession and omission',
+    rules: {
+      title: 'Apostrophe Outlaws',
+      summary: 'Catch the outlaws by choosing the correct apostrophe use.',
+      bullets: [
+        'Decide: possession or omission?',
+        'Match singular/plural ownership carefully.',
+        'Confirm your selection.',
+      ],
+    },
+  },
+  PUNCTUATION_PATROL: {
+    label: 'Punctuation Patrol',
+    focus: 'Sentence boundaries and punctuation rules',
+    rules: {
+      title: 'Punctuation Patrol',
+      summary: 'Patrol the paths and pick punctuation that makes meaning clear.',
+      bullets: [
+        'Choose punctuation that fits the sentence structure.',
+        'Avoid run-ons and fragments.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  SPELLING_FORGE: {
+    label: 'Spelling Forge',
+    focus: 'Spelling patterns and tricky words',
+    rules: {
+      title: 'Spelling Forge',
+      summary: 'Forge correct spellings by choosing or building the right word.',
+      bullets: [
+        'Sound it out, then check the pattern.',
+        'Watch for homophones and suffix rules.',
+        'Confirm your spelling choice.',
+      ],
+    },
+  },
+  HOMOPHONE_HUNT: {
+    label: 'Homophone Hunt',
+    focus: 'Common homophones in context',
+    rules: {
+      title: 'Homophone Hunt',
+      summary: 'Hunt the right homophone by using the sentence meaning.',
+      bullets: [
+        'Read the whole sentence first.',
+        'Pick the word that fits the meaning.',
+        'Confirm below.',
+      ],
+    },
+  },
+  SUFFIX_SIEGE: {
+    label: 'Suffix Siege',
+    focus: 'Suffix rules and transformations',
+    rules: {
+      title: 'Suffix Siege',
+      summary: 'Break the siege by applying suffix rules correctly.',
+      bullets: [
+        'Watch spelling changes when adding suffixes.',
+        'Choose the best formed word.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  SENTENCE_SMITH: {
+    label: 'Sentence Smith',
+    focus: 'Sentence craft and fluency',
+    rules: {
+      title: 'Sentence Smith',
+      summary: 'Smith stronger sentences by choosing the best structure or fix.',
+      bullets: [
+        'Look for clarity and correct grammar.',
+        'Avoid awkward or incorrect phrasing.',
+        'Confirm your choice.',
+      ],
+    },
+  },
+  PARAGRAPH_PATCH: {
+    label: 'Paragraph Patch',
+    focus: 'Paragraphing and cohesion',
+    rules: {
+      title: 'Paragraph Patch',
+      summary: 'Patch the paragraph by ordering or selecting the best link.',
+      bullets: [
+        'Think about topic flow and cohesion.',
+        'Pick the best link or order.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  CONNECTIVE_CRAFTER: {
+    label: 'Connective Crafter',
+    focus: 'Connectives and cohesion',
+    rules: {
+      title: 'Connective Crafter',
+      summary: 'Craft smooth writing by choosing the best connective.',
+      bullets: [
+        'Check whether ideas contrast, add, or explain.',
+        'Pick the strongest connective.',
+        'Confirm below.',
+      ],
+    },
+  },
+  WORD_WIZARD: {
+    label: 'Word Wizard',
+    focus: 'Vocabulary choice and precision',
+    rules: {
+      title: 'Word Wizard',
+      summary: 'Cast the right spell by choosing the best word for meaning.',
+      bullets: [
+        'Use context clues from the sentence.',
+        'Avoid near-miss words with the wrong tone.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  MEANING_MINES: {
+    label: 'Meaning Mines',
+    focus: 'Vocabulary in context',
+    rules: {
+      title: 'Meaning Mines',
+      summary: 'Mine the meaning by choosing what the word or phrase really means here.',
+      bullets: [
+        'Read surrounding words for clues.',
+        'Pick the closest meaning in context.',
+        'Confirm below.',
+      ],
+    },
+  },
+  SYNONYM_SIEGE: {
+    label: 'Synonym Siege',
+    focus: 'Synonyms and nuance',
+    rules: {
+      title: 'Synonym Siege',
+      summary: 'Hold the line by choosing the best synonym for meaning and tone.',
+      bullets: [
+        'Check meaning and tone.',
+        'Pick the best match, not just a similar word.',
+        'Confirm in the bottom zone.',
+      ],
+    },
+  },
+  EVIDENCE_HIGHLIGHT: {
+    label: 'Evidence Highlight',
+    focus: 'Evidence selection in texts',
+    rules: {
+      title: 'Evidence Highlight',
+      summary: 'Highlight the proof that answers the question.',
+      bullets: [
+        'Reread the passage and the question.',
+        'Choose the strongest evidence.',
+        'Confirm your selection.',
+      ],
+    },
+  },
+  INFERENCE_INVADERS: {
+    label: 'Inference Invaders',
+    focus: 'Inference from text',
+    rules: {
+      title: 'Inference Invaders',
+      summary: 'Defeat invaders by making the best inference from clues.',
+      bullets: [
+        'Use evidence from the text, not guessing.',
+        'Pick the strongest inference.',
+        'Confirm below.',
+      ],
+    },
+  },
+  RETRIEVAL_RAID: {
+    label: 'Retrieval Raid',
+    focus: 'Retrieval and scanning',
+    rules: {
+      title: 'Retrieval Raid',
+      summary: 'Raid the text and retrieve the correct detail quickly.',
+      bullets: [
+        'Scan for keywords from the question.',
+        'Find the exact matching detail.',
+        'Confirm your answer.',
+      ],
+    },
+  },
+  LOGIC_LADDER: {
+    label: 'Logic Ladder',
+    focus: 'Reasoning and explanation',
+    rules: {
+      title: 'Logic Ladder',
+      summary: 'Climb the ladder by choosing the strongest explanation.',
+      bullets: [
+        'Choose the best reason, supported by the prompt.',
+        'Avoid weak or unrelated explanations.',
+        'Confirm in the action zone.',
+      ],
+    },
+  },
+  EDITORS_TRIAL: {
+    label: "Editor's Trial",
+    focus: 'Editing and proofreading',
+    rules: {
+      title: "Editor's Trial",
+      summary: 'Pass the trial by spotting and fixing errors.',
+      bullets: [
+        'Look for spelling, grammar, and punctuation slips.',
+        'Choose the best correction.',
+        'Confirm below.',
+      ],
+    },
+  },
+  SCHOLARS_SUMMIT: {
+    label: "Scholar's Summit",
+    focus: 'Final mixed English challenge',
+    mode: 'special',
+    rules: {
+      title: "Scholar's Summit",
+      summary: 'A mixed English challenge for testing the full adventure flow.',
+      bullets: [
+        'Expect mixed grammar, punctuation, spelling, and reading tasks.',
+        'Stay calm and focus on one question at a time.',
+        'Confirm choices in the bottom zone.',
+      ],
+    },
+  },
 };
 
 export const getGameLabel = (gameType?: MiniGameType | null) => (

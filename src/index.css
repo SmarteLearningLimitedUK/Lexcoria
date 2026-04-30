@@ -3291,6 +3291,35 @@ button:disabled {
   min-height: 0;
 }
 
+.screen-gameplay .game-shell-host,
+.screen-gameplay .game-shell-contract,
+.screen-gameplay .structured-game-layout {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  overflow: clip !important;
+}
+
+.screen-gameplay .structured-game-layout {
+  padding-top: var(--game-shell-top-inset, 0.8rem) !important;
+  padding-bottom: var(--game-shell-bottom-inset, 4rem) !important;
+}
+
+.screen-gameplay .game-shell-zone-hud,
+.screen-gameplay .game-shell-zone-title,
+.screen-gameplay .game-shell-zone-actions {
+  flex: 0 0 auto !important;
+}
+
+.screen-gameplay .game-shell-zone-playfield,
+.screen-gameplay .game-shell-zone-playfield-wrapper {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
 .screen-gameplay .app-screen-content {
   overflow: clip !important;
   width: 100% !important;
