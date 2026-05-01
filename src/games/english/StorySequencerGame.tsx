@@ -209,7 +209,7 @@ const StorySequencerGame: React.FC<StorySequencerGameProps> = ({
                 Exit
               </SecondaryActionButton>
             </div>
-            <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
+            <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
               {(activeQuestion?.passageText ?? '').split('\n').map((line) => (
                 <p key={line} className="m-0 mb-3 last:mb-0">
                   {line}
@@ -306,4 +306,3 @@ const StorySequencerGame: React.FC<StorySequencerGameProps> = ({
 };
 
 export default StorySequencerGame;
-

@@ -177,7 +177,7 @@ const CompareContrastCanyonGame: React.FC<CompareContrastCanyonGameProps> = ({
                 Exit
               </SecondaryActionButton>
             </div>
-            <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
+            <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
               <p className="m-0 mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-amber-100/80">Extract A</p>
               <p className="m-0 mb-4 whitespace-pre-line">{activeQuestion?.extractA}</p>
               <p className="m-0 mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-amber-100/80">Extract B</p>
@@ -271,4 +271,3 @@ const CompareContrastCanyonGame: React.FC<CompareContrastCanyonGameProps> = ({
 };
 
 export default CompareContrastCanyonGame;
-

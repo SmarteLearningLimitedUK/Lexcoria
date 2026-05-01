@@ -353,7 +353,7 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
                 Exit
               </SecondaryActionButton>
             </div>
-            <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
+            <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
               {passage.text.split('\n').map((line) => (
                 <p key={line} className="m-0 mb-3 last:mb-0">
                   {line}
@@ -418,7 +418,7 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
               </div>
             ) : activeQuestion?.type === 'evidence' ? (
               <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 p-2 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
-                <div className="min-h-0 flex-1 overflow-y-auto p-2">
+                <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto p-2">
                   <div className="space-y-2">
                     {activeQuestion.sentences.map((sentence, index) => {
                       const isSelected = selectedEvidence.includes(index);
@@ -506,4 +506,3 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
 };
 
 export default ReadingRescueGame;
-

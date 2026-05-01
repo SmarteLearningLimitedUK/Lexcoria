@@ -196,7 +196,7 @@ const EvidenceHighlightGame: React.FC<EvidenceHighlightGameProps> = ({
               <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/70">Text</div>
               <div className="mt-1 truncate text-base font-black text-white md:text-lg">{run.passage.title}</div>
             </div>
-            <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
+            <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto px-4 pb-4">
               <div className="space-y-2">
                 {(activeQuestion?.sentences ?? []).map((sentence, index) => {
                   const isSelected = selected.includes(index);
@@ -269,4 +269,3 @@ const EvidenceHighlightGame: React.FC<EvidenceHighlightGameProps> = ({
 };
 
 export default EvidenceHighlightGame;
-

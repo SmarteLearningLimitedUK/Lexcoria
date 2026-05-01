@@ -41,6 +41,7 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   sessionEvents,
 }) => {
   const sessionQuestions = useMemo(() => shuffle(PUNCTUATION_PANIC_QUESTIONS), []);
+  const maxEnemyHealth = Math.max(1, sessionQuestions.length);
 
   const [status, setStatus] = useState<'playing' | 'resolved' | 'complete' | 'gameover'>('playing');
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -50,6 +51,7 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
+  const [enemyHealth, setEnemyHealth] = useState(maxEnemyHealth);
 
   const activeQuestion = sessionQuestions[Math.min(questionIndex, Math.max(0, sessionQuestions.length - 1))];
   const lives = sessionState?.lives ?? localLives;
@@ -154,6 +156,7 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
 
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
+      setEnemyHealth((prev) => Math.max(0, prev - 1));
       setFeedback('Punctuation fixed.');
       emitMiniGameSessionEvent(sessionEvents, 'correct_answer', {
         score: nextScore,
@@ -191,6 +194,9 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   ), [lives, questionIndex, sessionQuestions.length, timeLeft]);
 
   const isResolved = status === 'resolved' || status === 'complete' || status === 'gameover';
+  const enemyHealthPct = useMemo(() => (
+    maxEnemyHealth > 0 ? Math.max(0, Math.min(1, enemyHealth / maxEnemyHealth)) : 0
+  ), [enemyHealth, maxEnemyHealth]);
 
   return (
     <GameScreenLayout
@@ -206,6 +212,26 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
               </div>
             </div>
           </GameQuestionCard>
+
+          <div className="rounded-[1.4rem] border border-white/15 bg-white/8 px-4 py-3 shadow-[0_18px_34px_rgba(2,6,23,0.32)]">
+            <div className="flex items-center justify-between gap-3">
+              <div className="min-w-0">
+                <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/70">Enemy</div>
+                <div className="mt-0.5 truncate text-sm font-black text-white/90 md:text-base">
+                  Punctuation Phantom
+                </div>
+              </div>
+              <div className="shrink-0 text-xs font-black uppercase tracking-[0.18em] text-white/75">
+                HP {enemyHealth}/{maxEnemyHealth}
+              </div>
+            </div>
+            <div className="mt-2 h-3 w-full overflow-hidden rounded-full border border-white/15 bg-slate-950/55">
+              <div
+                className="h-full rounded-full bg-[linear-gradient(90deg,#f97316_0%,#ef4444_55%,#be123c_100%)] transition-[width] duration-300"
+                style={{ width: `${enemyHealthPct * 100}%` }}
+              />
+            </div>
+          </div>
 
           <div className="rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
             <div className="text-sm font-semibold leading-relaxed text-white/95 md:text-base">
@@ -279,4 +305,3 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
 };
 
 export default PunctuationPatrolGame;
-

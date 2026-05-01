@@ -53,6 +53,7 @@ const App: React.FC = () => {
   const [stageScale, setStageScale] = useState(1);
   const [stageRenderMultiplier, setStageRenderMultiplier] = useState(1);
   const [questionCardScale, setQuestionCardScale] = useState(1);
+  const [useUnboundedStageShell, setUseUnboundedStageShell] = useState(false);
   const [potionCauldronShift, setPotionCauldronShift] = useState('0px');
   const buildId = import.meta.env.VITE_BUILD_ID ?? CACHE_BUSTER;
 
@@ -596,6 +597,7 @@ const App: React.FC = () => {
       const baseHeight = IPHONE_STAGE_HEIGHT;
       const isTabletViewport = Math.min(viewportWidth, viewportHeight) >= 700;
       const isDesktopViewport = Math.min(viewportWidth, viewportHeight) >= 1100;
+      const shouldUseUnboundedStage = !isTabletViewport && !isDesktopViewport;
       const renderMultiplier = isDesktopViewport ? 1.25 : isTabletViewport ? 1.12 : 1;
       const rawScale = Math.min(
         viewportWidth / (baseWidth * renderMultiplier),
@@ -606,6 +608,7 @@ const App: React.FC = () => {
       setStageRenderMultiplier(renderMultiplier);
       setQuestionCardScale(isTabletViewport ? 0.92 : 1);
       setPotionCauldronShift(isTabletViewport ? '28px' : '0px');
+      setUseUnboundedStageShell(shouldUseUnboundedStage);
     };
 
     const visualViewport = window.visualViewport;
@@ -886,7 +889,6 @@ const App: React.FC = () => {
   const selectedGameType = selectedLevel?.gameType;
   const gameplayTypeClass = selectedGameType ? `game-type-${selectedGameType.replace(/_/g, '-')}` : '';
   const usesQuestionMatchFrame = Boolean(selectedGameType && QUESTION_MATCH_FRAME_GAMES.includes(selectedGameType));
-  const useUnboundedStageShell = false;
   const globalDockOffsetClass = screen !== 'splash' && !isGameplayScreen && screen !== 'avatar_selection' && screen !== 'profile_setup'
     ? 'pb-[calc((4.35rem+env(safe-area-inset-bottom))/var(--game-stage-scale))] md:pb-[calc((4.65rem+env(safe-area-inset-bottom))/var(--game-stage-scale))]'
     : '';
@@ -976,14 +978,14 @@ const App: React.FC = () => {
   const stageStyle = {
     '--game-stage-width': `${Math.round(stageWidth * stageRenderMultiplier)}px`,
     '--game-stage-height': `${Math.round(stageHeight * stageRenderMultiplier)}px`,
-    '--game-stage-scale': `${stageScale}`,
+    '--game-stage-scale': `${useUnboundedStageShell ? 1 : stageScale}`,
     '--question-card-scale': `${questionCardScale}`,
     '--potion-cauldron-shift': potionCauldronShift,
   } as React.CSSProperties;
 
   return (
     <div className="iphone-game-viewport">
-      <div className={`iphone-game-stage${useUnboundedStageShell ? ' iphone-game-stage-unbounded' : ''}`} style={useUnboundedStageShell ? undefined : stageStyle}>
+      <div className={`iphone-game-stage${useUnboundedStageShell ? ' iphone-game-stage-unbounded' : ''}`} style={stageStyle}>
         <div className="iphone-game-stage-inner">
           <div
             data-screen-family={screenBehavior.family}

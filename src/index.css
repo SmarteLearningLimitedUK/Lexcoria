@@ -3271,7 +3271,7 @@ button:disabled {
   max-width: 100%;
 }
 
-.screen-gameplay [class*="overflow-y-auto"] {
+.screen-gameplay [class*="overflow-y-auto"]:not(.reading-scroll-panel):not([data-allow-scroll='true']) {
   overflow-y: hidden !important;
 }
 
