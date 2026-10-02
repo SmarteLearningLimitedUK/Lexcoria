@@ -436,7 +436,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
             </div>
           ) : activeQuestion?.type === 'replace' ? (
             <>
-              <div className="rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
+              <div className="english-gps-paper-sentence rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
                 <div className="text-sm font-semibold leading-relaxed text-white/90 md:text-base">
                   <span>{sentenceParts.before}</span>
                   <button
@@ -493,7 +493,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
               </div>
             </>
           ) : activeQuestion?.type === 'punct' ? (
-            <div className="rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
+            <div className="english-gps-paper-sentence rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
               <div className="text-sm font-semibold leading-relaxed text-white/95 md:text-base">
                 {activeQuestion.parts.map((part) => {
                   if (!isSlot(part)) return <span key={part}>{part}</span>;

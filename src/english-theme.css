@@ -294,6 +294,69 @@
   .screen-gameplay .english-punctuation-sentence { padding: 8px; }
 }
 
+/* Give practice-paper answers a full reading line on short landscape phones. */
+@media (min-width: 600px) and (max-width: 700px) and (orientation: landscape) and (max-height: 420px) {
+  .screen-gameplay .english-reading-layout .game-screen-main > div:has(> div > .game-question-card) {
+    grid-template-rows: 48px minmax(0, 1fr) auto;
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div:has(> div > .game-question-card) > div:has(> .game-question-card) {
+    display: contents;
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div > div > .game-question-card {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div > div > :not(.game-question-card, .mission-panel-shell) {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: stretch;
+    height: 100%;
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div > div > .mission-panel-shell {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .screen-gameplay .game-shell-host[data-island='4'] .game-screen-main > div > .game-question-card {
+    flex-shrink: 0;
+  }
+  .screen-gameplay .game-shell-host[data-island='4'] .english-gps-paper-sentence {
+    padding: 8px 10px;
+  }
+  #root .app-viewport.sat-theme-bluegold.screen-gameplay .game-shell-host[data-island='4'] .english-gps-paper-sentence .sats-answer-btn {
+    display: inline-flex;
+    width: auto !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    vertical-align: middle;
+    padding: 4px 8px !important;
+  }
+  .screen-gameplay .game-shell-host[data-island='4'] .game-screen-main .grid.grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 5px;
+  }
+  #root .app-viewport.sat-theme-bluegold.screen-gameplay .game-shell-host[data-island='4'] .game-screen-main .grid.grid-cols-2 > .sats-answer-btn {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 2px 6px !important;
+  }
+  .screen-gameplay .game-shell-host[data-island='4'] .game-screen-main .grid.grid-cols-2 > .sats-answer-btn > .uppercase {
+    flex: 0 0 48px;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: .03em;
+  }
+  .screen-gameplay .game-shell-host[data-island='4'] .game-screen-main .grid.grid-cols-2 > .sats-answer-btn > :is(.text-lg, .text-xl) {
+    min-width: 0;
+    margin-top: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+  }
+}
+
 .sat-theme-bluegold .lexcoria-hud-bar > div:first-child {
   border: 2px solid #8ad1c1;
   background: linear-gradient(145deg, #1b5762, #0c3645 60%, #082a39);
