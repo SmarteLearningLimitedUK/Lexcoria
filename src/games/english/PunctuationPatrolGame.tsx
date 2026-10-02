@@ -6,6 +6,7 @@ import { emitMiniGameSessionEvent } from '../../app/gameplaySessionContract';
 import type { GameplaySessionEventHandlers, GameplaySessionState } from '../../app/gameplaySessionContract';
 import { shuffle } from '../../utils/questionShuffle';
 import { PUNCTUATION_PANIC_QUESTIONS, PunctuationSlot } from '../../systems/content/english/satsSpec';
+import punctuationPhantom from '../../assets/english/punctuation-phantom.png';
 
 type PunctuationPatrolGameProps = {
   levelId: number;
@@ -21,7 +22,6 @@ type PunctuationPatrolGameProps = {
 };
 
 const MAX_LIVES = 3;
-const TOTAL_TIME = 120;
 
 const starsForAccuracy = (correct: number, total: number, lives: number) => {
   const accuracy = total > 0 ? correct / total : 0;
@@ -41,21 +41,23 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   sessionEvents,
 }) => {
   const sessionQuestions = useMemo(() => shuffle(PUNCTUATION_PANIC_QUESTIONS), []);
-  const maxEnemyHealth = Math.max(1, sessionQuestions.length);
+  const maxEnemyHealth = Math.max(1, sessionQuestions.reduce((total, question) => total + question.difficulty, 0));
 
   const [status, setStatus] = useState<'playing' | 'resolved' | 'complete' | 'gameover'>('playing');
   const [questionIndex, setQuestionIndex] = useState(0);
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
   const [localLives, setLocalLives] = useState(MAX_LIVES);
-  const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [enemyHealth, setEnemyHealth] = useState(maxEnemyHealth);
+  const [combo, setCombo] = useState(0);
+  const [impact, setImpact] = useState<'hit' | 'miss' | null>(null);
+  const [impactDamage, setImpactDamage] = useState(0);
+  const [showEnemyTip, setShowEnemyTip] = useState(false);
 
   const activeQuestion = sessionQuestions[Math.min(questionIndex, Math.max(0, sessionQuestions.length - 1))];
   const lives = sessionState?.lives ?? localLives;
-  const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
 
   const initialSlotState = useMemo(() => {
     const state: Record<string, string> = {};
@@ -73,21 +75,12 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   }, [initialSlotState]);
 
   useEffect(() => {
-    if (sessionState) return;
-    setLocalTimeLeft(TOTAL_TIME);
-    const timerId = window.setInterval(() => {
-      setLocalTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
-    return () => window.clearInterval(timerId);
-  }, [sessionState]);
-
-  useEffect(() => {
     if (sessionState) {
-      if (sessionState.timeLeft <= 0 || sessionState.lives <= 0) {
+      if (sessionState.lives <= 0) {
         setStatus('gameover');
         emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
           score,
-          reason: sessionState.timeLeft <= 0 ? 'time' : 'lives',
+          reason: 'lives',
           metadata: { questionId: activeQuestion?.id, questionIndex },
         });
         onGameOver(score);
@@ -95,20 +88,21 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
       return;
     }
 
-    if (timeLeft <= 0 || lives <= 0) {
+    if (lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
     }
-  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState, timeLeft]);
+  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState]);
 
   const resetForNext = useCallback(() => {
     setLocked(false);
     setFeedback('');
+    setImpact(null);
     setStatus('playing');
   }, []);
 
@@ -147,7 +141,8 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
     setLocked(true);
 
     const isCorrect = slotsCorrect;
-    const nextScore = score + (isCorrect ? 160 : 0);
+    const damage = activeQuestion.difficulty + (combo >= 2 ? 1 : 0);
+    const nextScore = score + (isCorrect ? 160 + activeQuestion.difficulty * 20 + Math.min(combo, 4) * 20 : 0);
     setScore(nextScore);
 
     const nextCorrect = correctCount + (isCorrect ? 1 : 0);
@@ -156,14 +151,20 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
 
     if (isCorrect) {
       setCorrectCount((prev) => prev + 1);
-      setEnemyHealth((prev) => Math.max(0, prev - 1));
-      setFeedback('Punctuation fixed.');
+      setEnemyHealth((prev) => Math.max(0, prev - damage));
+      setCombo((previous) => previous + 1);
+      setImpactDamage(damage);
+      setImpact('hit');
+      setFeedback(`Punctuation fixed. ${damage} damage!`);
       emitMiniGameSessionEvent(sessionEvents, 'correct_answer', {
         score: nextScore,
         metadata: { questionId: activeQuestion.id, questionIndex },
       });
     } else {
-      setFeedback('Not quite. Correct choices are highlighted.');
+      const correction = activeQuestion.parts.map((part) => isSlot(part) ? part.correct : part).join('');
+      setCombo(0);
+      setImpact('miss');
+      setFeedback(`Not quite. Correct sentence: ${correction}`);
       emitMiniGameSessionEvent(sessionEvents, 'incorrect_answer', {
         score: nextScore,
         metadata: { questionId: activeQuestion.id, questionIndex },
@@ -180,7 +181,7 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
 
     setStatus('resolved');
     queueAdvance(nextQuestionIndex, nextCorrect, nextScore, nextLives);
-  }, [activeQuestion, canSubmit, correctCount, lives, questionIndex, queueAdvance, score, sessionEvents, sessionState, slotsCorrect]);
+  }, [activeQuestion, canSubmit, combo, correctCount, lives, questionIndex, queueAdvance, score, sessionEvents, sessionState, slotsCorrect]);
 
   const headerSubtitle = useMemo(() => (
     <div className="flex flex-wrap items-center justify-between gap-2">
@@ -188,10 +189,10 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
         Question {Math.min(questionIndex + 1, sessionQuestions.length)}/{sessionQuestions.length}
       </span>
       <span className="font-black text-white/80">
-        Lives: {lives}{typeof timeLeft === 'number' ? ` | Time: ${timeLeft}s` : ''}
+        Lives: {lives}
       </span>
     </div>
-  ), [lives, questionIndex, sessionQuestions.length, timeLeft]);
+  ), [lives, questionIndex, sessionQuestions.length]);
 
   const isResolved = status === 'resolved' || status === 'complete' || status === 'gameover';
   const enemyHealthPct = useMemo(() => (
@@ -201,7 +202,7 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
   return (
     <GameScreenLayout
       main={(
-        <div className="flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4">
+        <div className="english-punctuation-playfield flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4" data-question-id={activeQuestion?.id}>
           <GameQuestionCard title="Punctuation Panic" subtitle={headerSubtitle}>
             <div className="space-y-2">
               <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/75">
@@ -213,40 +214,53 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
             </div>
           </GameQuestionCard>
 
-          <div className="rounded-[1.4rem] border border-white/15 bg-white/8 px-4 py-3 shadow-[0_18px_34px_rgba(2,6,23,0.32)]">
-            <div className="flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/70">Enemy</div>
-                <div className="mt-0.5 truncate text-sm font-black text-white/90 md:text-base">
-                  Punctuation Phantom
-                </div>
+          <div className={`english-phantom-encounter ${impact ? `english-phantom-encounter--${impact}` : ''}`}>
+            <button
+              type="button"
+              data-button-skin="none"
+              className="english-phantom-portrait"
+              onClick={() => setShowEnemyTip((previous) => !previous)}
+              aria-label="Inspect Punctuation Phantom"
+              aria-expanded={showEnemyTip}
+            >
+              <img src={punctuationPhantom} alt="" draggable={false} />
+            </button>
+            <div className="english-phantom-details">
+              <div className="english-phantom-heading">
+                <span>Punctuation Phantom</span>
+                <span>HP {enemyHealth}/{maxEnemyHealth}</span>
               </div>
-              <div className="shrink-0 text-xs font-black uppercase tracking-[0.18em] text-white/75">
-                HP {enemyHealth}/{maxEnemyHealth}
-              </div>
-            </div>
-            <div className="mt-2 h-3 w-full overflow-hidden rounded-full border border-white/15 bg-slate-950/55">
               <div
-                className="h-full rounded-full bg-[linear-gradient(90deg,#f97316_0%,#ef4444_55%,#be123c_100%)] transition-[width] duration-300"
-                style={{ width: `${enemyHealthPct * 100}%` }}
-              />
+                className="english-phantom-health"
+                role="progressbar"
+                aria-label="Punctuation Phantom health"
+                aria-valuemin={0}
+                aria-valuemax={maxEnemyHealth}
+                aria-valuenow={enemyHealth}
+              >
+                <div style={{ width: `${enemyHealthPct * 100}%` }} />
+              </div>
+              <div className="english-phantom-caption" aria-live="polite">
+                {showEnemyTip
+                  ? 'Harder fixes hit harder. Three in a row adds 1 damage.'
+                  : impact === 'hit'
+                    ? `−${impactDamage} HP · ${combo} hit chain`
+                    : impact === 'miss'
+                      ? 'Attack blocked · chain reset'
+                      : 'Tap the phantom for battle rules'}
+              </div>
             </div>
           </div>
 
-          <div className="rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
-            <div className="text-sm font-semibold leading-relaxed text-white/95 md:text-base">
+          <div className="english-punctuation-sentence rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
+            <div className="english-punctuation-instruction">Repair the sentence</div>
+            <div className="english-punctuation-line text-sm font-semibold leading-relaxed text-white/95 md:text-base">
               {(activeQuestion?.parts ?? []).map((part) => {
                 if (!isSlot(part)) return <span key={part}>{part}</span>;
                 const value = slotValues[part.id] ?? part.options[0] ?? '';
                 const isCorrect = value === part.correct;
                 const showCorrect = isResolved && isCorrect;
                 const showIncorrect = isResolved && !isCorrect;
-
-                const surfaceClass = showCorrect
-                  ? 'border-emerald-200/55 bg-emerald-300/15 text-emerald-50'
-                  : showIncorrect
-                    ? 'border-rose-200/55 bg-rose-300/12 text-rose-50'
-                    : 'border-amber-200/55 bg-amber-200/10 text-amber-50 hover:bg-amber-200/15';
 
                 return (
                   <button
@@ -263,10 +277,11 @@ const PunctuationPatrolGame: React.FC<PunctuationPatrolGameProps> = ({
                       });
                     }}
                     className={[
-                      'mx-0.5 inline-flex min-h-[48px] items-center justify-center rounded-xl border px-3 font-black',
-                      'shadow-[0_10px_18px_rgba(2,6,23,0.22)] transition-[transform,filter,background] duration-150',
+                      'sats-answer-btn mx-0.5 inline-flex !min-h-[48px] !w-auto items-center justify-center !rounded-xl !px-3 !py-2 !text-base !font-black !text-center',
+                      isResolved
+                        ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                        : 'sats-answer-btn--selected',
                       'disabled:cursor-not-allowed disabled:opacity-70',
-                      surfaceClass,
                     ].join(' ')}
                   >
                     {value}

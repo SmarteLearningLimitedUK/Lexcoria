@@ -419,6 +419,7 @@ export const AppRouter: React.FC<AppRouterProps> = ({
       return (
         <div
           className={`game-shell-host unified-minigame-hud-enabled ${gameplayTypeClass} ${usesQuestionMatchFrame ? 'question-match-shell' : ''} relative flex h-[100dvh] max-h-[100dvh] w-full min-h-0 flex-col overflow-hidden md:h-full md:max-h-full`.trim()}
+          data-island={selectedIsland?.id}
           style={shellStyle}
         >
             <div className="game-shell-contract relative z-[2] flex h-full max-h-full w-full min-h-0 flex-col overflow-hidden">

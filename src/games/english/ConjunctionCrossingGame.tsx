@@ -22,7 +22,6 @@ type ConjunctionCrossingGameProps = {
 type ResolveState = 'playing' | 'resolved' | 'complete' | 'gameover';
 
 const MAX_LIVES = 3;
-const TOTAL_TIME = 90;
 const QUESTIONS_PER_RUN = 10;
 
 const starsForAccuracy = (correct: number, total: number, lives: number) => {
@@ -56,13 +55,11 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
   const [localLives, setLocalLives] = useState(MAX_LIVES);
-  const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
 
   const activeQuestion = questions[Math.min(questionIndex, questions.length - 1)];
   const lives = sessionState?.lives ?? localLives;
-  const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
 
   const selectedChoice = useMemo(() => {
     if (!activeQuestion || selectedIndex === null) return null;
@@ -70,21 +67,12 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
   }, [activeQuestion, selectedIndex]);
 
   useEffect(() => {
-    if (sessionState) return;
-    setLocalTimeLeft(TOTAL_TIME);
-    const timerId = window.setInterval(() => {
-      setLocalTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
-    return () => window.clearInterval(timerId);
-  }, [sessionState]);
-
-  useEffect(() => {
     if (!sessionState) return;
-    if (sessionState.timeLeft <= 0 || sessionState.lives <= 0) {
+    if (sessionState.lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: sessionState.timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
@@ -93,16 +81,16 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
 
   useEffect(() => {
     if (sessionState) return;
-    if (timeLeft <= 0 || lives <= 0) {
+    if (lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
     }
-  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState, timeLeft]);
+  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState]);
 
   const resetForNext = useCallback(() => {
     setSelectedIndex(null);
@@ -180,7 +168,7 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
                 Question {Math.min(questionIndex + 1, questions.length)}/{questions.length}
               </span>
               <span className="font-black text-white/80">
-                Lives: {lives}{typeof timeLeft === 'number' ? ` • Time: ${timeLeft}s` : ''}
+                Lives: {lives}
               </span>
             </div>
           )}
@@ -203,14 +191,6 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
               const showCorrect = isResolved && isCorrect;
               const showIncorrect = isResolved && isSelected && !isCorrect;
 
-              const surfaceClass = showCorrect
-                ? 'border-emerald-200/55 bg-emerald-300/15'
-                : showIncorrect
-                  ? 'border-rose-200/55 bg-rose-300/12'
-                  : isSelected
-                    ? 'border-amber-200/55 bg-amber-200/10'
-                    : 'border-white/18 bg-white/8 hover:bg-white/10';
-
               return (
                 <button
                   key={`${activeQuestion?.id ?? 'q'}-${choice}`}
@@ -221,16 +201,17 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
                     setSelectedIndex(index);
                   }}
                   className={[
-                    'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                    'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                    'sats-answer-btn',
+                    isResolved
+                      ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                      : (isSelected ? 'sats-answer-btn--selected' : ''),
                     'disabled:cursor-not-allowed disabled:opacity-70',
-                    surfaceClass,
                   ].join(' ')}
                 >
-                  <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
+                  <div className="text-xs font-black uppercase tracking-[0.18em] opacity-80">
                     Option {index + 1}
                   </div>
-                  <div className="mt-1 text-lg font-black text-white md:text-xl">
+                  <div className="mt-1 text-lg font-black md:text-xl">
                     {choice}
                   </div>
                 </button>
@@ -295,4 +276,3 @@ const ConjunctionCrossingGame: React.FC<ConjunctionCrossingGameProps> = ({
 };
 
 export default ConjunctionCrossingGame;
-

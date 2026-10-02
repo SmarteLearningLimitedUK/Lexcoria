@@ -7,14 +7,20 @@ import type { GameplaySessionEventHandlers, GameplaySessionState } from '../../a
 import { shuffle, shuffleOptionsWithAnswerIndex } from '../../utils/questionShuffle';
 import {
   CLAUSE_CRUSHER_QUESTIONS,
+  COHESION_CONNECTOR_QUESTIONS,
+  FORMAL_FIXER_QUESTIONS,
   GRAMMAR_GAUNTLET_QUESTIONS,
+  NOUN_PHRASE_BUILDER_QUESTIONS,
   PUNCTUATION_PANIC_QUESTIONS,
+  PUNCTUATION_MASTERY_QUESTIONS,
   PunctuationSlot,
   SENTENCE_SURGERY_QUESTIONS,
   SPELLBOUND_FORGE_QUESTIONS,
   TENSE_TRIALS_QUESTIONS,
+  VOICE_SWITCH_VAULT_QUESTIONS,
   WORD_CLASS_WARS_QUESTIONS,
 } from '../../systems/content/english/satsSpec';
+import { buildExpandedNounPhrase } from '../../systems/content/english/nounPhrase';
 
 type WordsmithTrialsGameProps = {
   levelId: number;
@@ -58,12 +64,12 @@ type BossQuestion =
   };
 
 const MAX_LIVES = 3;
-const TOTAL_TIME = 12 * 60;
 
 const starsForPercent = (percent: number) => {
   if (percent >= 0.8) return 3;
   if (percent >= 0.6) return 2;
-  return 1;
+  if (percent >= 0.4) return 1;
+  return 0;
 };
 
 const isSlot = (part: string | PunctuationSlot): part is PunctuationSlot => typeof part !== 'string';
@@ -78,7 +84,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
 }) => {
   const questions = useMemo<BossQuestion[]>(() => {
     const mcq: BossQuestion[] = [
-      ...TENSE_TRIALS_QUESTIONS.map((q) => ({
+      ...shuffle(TENSE_TRIALS_QUESTIONS).slice(0, 2).map((q) => ({
         type: 'mcq' as const,
         id: q.id,
         prompt: q.prompt,
@@ -87,7 +93,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         answerIndex: q.answerIndex,
         marks: q.difficulty,
       })),
-      ...SENTENCE_SURGERY_QUESTIONS.map((q) => ({
+      ...shuffle(SENTENCE_SURGERY_QUESTIONS).slice(0, 2).map((q) => ({
         type: 'mcq' as const,
         id: q.id,
         prompt: q.prompt,
@@ -96,7 +102,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         answerIndex: q.answerIndex,
         marks: q.difficulty,
       })),
-      ...CLAUSE_CRUSHER_QUESTIONS.map((q) => ({
+      ...shuffle(CLAUSE_CRUSHER_QUESTIONS).slice(0, 2).map((q) => ({
         type: 'mcq' as const,
         id: q.id,
         prompt: q.prompt,
@@ -105,7 +111,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         answerIndex: q.answerIndex,
         marks: q.difficulty,
       })),
-      ...WORD_CLASS_WARS_QUESTIONS.map((q) => ({
+      ...shuffle(WORD_CLASS_WARS_QUESTIONS).slice(0, 4).map((q) => ({
         type: 'mcq' as const,
         id: q.id,
         prompt: q.prompt,
@@ -114,7 +120,7 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         answerIndex: q.answerIndex,
         marks: q.difficulty,
       })),
-      ...SPELLBOUND_FORGE_QUESTIONS.map((q) => ({
+      ...shuffle(SPELLBOUND_FORGE_QUESTIONS).slice(0, 4).map((q) => ({
         type: 'mcq' as const,
         id: q.id,
         prompt: q.prompt,
@@ -123,9 +129,47 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         answerIndex: q.answerIndex,
         marks: q.difficulty,
       })),
+      ...shuffle(COHESION_CONNECTOR_QUESTIONS).slice(0, 1).map((q) => ({
+        type: 'mcq' as const,
+        id: q.id,
+        prompt: q.prompt,
+        question: q.sentence,
+        choices: q.options,
+        answerIndex: q.correctAnswerIndex,
+        marks: q.difficulty,
+      })),
+      ...shuffle(VOICE_SWITCH_VAULT_QUESTIONS).slice(0, 1).map((q) => ({
+        type: 'mcq' as const,
+        id: q.id,
+        prompt: q.prompt,
+        question: `Is this sentence active or passive? ${q.sentence}`,
+        choices: q.options,
+        answerIndex: q.correctAnswerIndex,
+        marks: q.difficulty,
+      })),
+      ...shuffle(NOUN_PHRASE_BUILDER_QUESTIONS).slice(0, 1).map((q) => {
+        const [first, second, post] = q.correctSequence;
+        return {
+          type: 'mcq' as const,
+          id: q.id,
+          prompt: q.prompt,
+          question: `Which phrase places all three modifiers correctly around the noun in “${q.base}”?`,
+          choices: [
+            buildExpandedNounPhrase(q.base, q.correctSequence),
+            q.base.replace('___', `${first} ${second} ${post}`),
+            q.base.replace('___', `${post} ${first} ${second}`),
+            `${q.base.replace('___', '').trim()} ${first} ${second} ${post}`,
+          ],
+          answerIndex: 0,
+          marks: q.difficulty,
+        };
+      }),
     ];
 
-    const replace: BossQuestion[] = GRAMMAR_GAUNTLET_QUESTIONS.map((q) => ({
+    const replace: BossQuestion[] = [...shuffle(GRAMMAR_GAUNTLET_QUESTIONS).slice(0, 3), ...shuffle(FORMAL_FIXER_QUESTIONS).slice(0, 1).map(q => ({
+      id: q.id, prompt: q.prompt, sentence: q.sentence, wrongWord: q.informalPhrase,
+      replacements: q.replacements, correctReplacementIndex: q.correctAnswerIndex, difficulty: q.difficulty,
+    }))].map((q) => ({
       type: 'replace' as const,
       id: q.id,
       prompt: q.prompt,
@@ -136,11 +180,11 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
       marks: q.difficulty,
     }));
 
-    const punct: BossQuestion[] = PUNCTUATION_PANIC_QUESTIONS.map((q) => ({
+    const punct: BossQuestion[] = [...shuffle(PUNCTUATION_PANIC_QUESTIONS).slice(0, 3), ...shuffle(PUNCTUATION_MASTERY_QUESTIONS).slice(0, 1)].map((q) => ({
       type: 'punct' as const,
       id: q.id,
       prompt: q.prompt,
-      parts: q.parts,
+      parts: q.parts.map(part => isSlot(part) ? { ...part, options: shuffle(part.options) } : part),
       marks: q.difficulty,
     }));
 
@@ -170,13 +214,11 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
   const [localLives, setLocalLives] = useState(MAX_LIVES);
-  const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [earnedMarks, setEarnedMarks] = useState(0);
   const [score, setScore] = useState(0);
 
   const activeQuestion = questions[Math.min(questionIndex, Math.max(0, questions.length - 1))];
   const lives = sessionState?.lives ?? localLives;
-  const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
 
   const initialSlotState = useMemo(() => {
     if (!activeQuestion || activeQuestion.type !== 'punct') return {};
@@ -193,21 +235,12 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
   }, [initialSlotState]);
 
   useEffect(() => {
-    if (sessionState) return;
-    setLocalTimeLeft(TOTAL_TIME);
-    const timerId = window.setInterval(() => {
-      setLocalTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
-    return () => window.clearInterval(timerId);
-  }, [sessionState]);
-
-  useEffect(() => {
     if (sessionState) {
-      if (sessionState.timeLeft <= 0 || sessionState.lives <= 0) {
+      if (sessionState.lives <= 0) {
         setStatus('gameover');
         emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
           score,
-          reason: sessionState.timeLeft <= 0 ? 'time' : 'lives',
+          reason: 'lives',
           metadata: { questionId: activeQuestion?.id, questionIndex },
         });
         onGameOver(score);
@@ -215,16 +248,16 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
       return;
     }
 
-    if (timeLeft <= 0 || lives <= 0) {
+    if (lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
     }
-  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState, timeLeft]);
+  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState]);
 
   const resetForNext = useCallback(() => {
     setSelectedIndex(null);
@@ -301,7 +334,10 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         metadata: { questionId: activeQuestion.id, questionIndex, marks: gainedMarks },
       });
     } else {
-      setFeedback('Incorrect. Correct answer is highlighted.');
+      const correct = activeQuestion.type === 'mcq' ? activeQuestion.choices[activeQuestion.answerIndex]
+        : activeQuestion.type === 'replace' ? activeQuestion.replacements[activeQuestion.correctReplacementIndex]
+          : activeQuestion.parts.map(part => isSlot(part) ? part.correct : part).join('');
+      setFeedback(`Incorrect. Correct answer: ${correct}`);
       emitMiniGameSessionEvent(sessionEvents, 'incorrect_answer', {
         score: nextScore,
         metadata: { questionId: activeQuestion.id, questionIndex },
@@ -326,10 +362,10 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
         Question {Math.min(questionIndex + 1, questions.length)}/{questions.length}
       </span>
       <span className="font-black text-white/80">
-        Marks: {earnedMarks}/{totalMarks}{typeof timeLeft === 'number' ? ` | Time: ${timeLeft}s` : ''}{` | Lives: ${lives}`}
+        Marks: {earnedMarks}/{totalMarks}{` | Lives: ${lives}`}
       </span>
     </div>
-  ), [earnedMarks, lives, questionIndex, questions.length, timeLeft, totalMarks]);
+  ), [earnedMarks, lives, questionIndex, questions.length, totalMarks]);
 
   const isResolved = status === 'resolved' || status === 'complete' || status === 'gameover';
 
@@ -371,14 +407,6 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                 const showCorrect = isResolved && isCorrect;
                 const showIncorrect = isResolved && isSelected && !isCorrect;
 
-                const surfaceClass = showCorrect
-                  ? 'border-emerald-200/55 bg-emerald-300/15'
-                  : showIncorrect
-                    ? 'border-rose-200/55 bg-rose-300/12'
-                    : isSelected
-                      ? 'border-amber-200/55 bg-amber-200/10'
-                      : 'border-white/18 bg-white/8 hover:bg-white/10';
-
                 return (
                   <button
                     key={`${activeQuestion.id}-${choice}`}
@@ -389,16 +417,17 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                       setSelectedIndex(index);
                     }}
                     className={[
-                      'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                      'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                      'sats-answer-btn',
+                      isResolved
+                        ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                        : (isSelected ? 'sats-answer-btn--selected' : ''),
                       'disabled:cursor-not-allowed disabled:opacity-70',
-                      surfaceClass,
                     ].join(' ')}
                   >
-                    <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
+                    <div className="text-xs font-black uppercase tracking-[0.18em] opacity-80">
                       Option {index + 1}
                     </div>
-                    <div className="mt-1 text-lg font-black text-white md:text-xl">
+                    <div className="mt-1 text-lg font-black md:text-xl">
                       {choice}
                     </div>
                   </button>
@@ -418,8 +447,8 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                       setWrongWordTapped(true);
                     }}
                     className={[
-                      'mx-1 inline-flex min-h-[48px] items-center justify-center rounded-xl border px-3 font-black',
-                      wrongWordTapped ? 'border-amber-200/55 bg-amber-200/10 text-amber-100' : 'border-white/18 bg-white/8 text-white',
+                      'sats-answer-btn mx-1 inline-flex !min-h-[48px] !w-auto items-center justify-center !rounded-xl !px-3 !py-2 !text-base !font-black !text-center',
+                      wrongWordTapped ? 'sats-answer-btn--selected' : '',
                       'disabled:cursor-not-allowed disabled:opacity-70',
                     ].join(' ')}
                   >
@@ -435,14 +464,6 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                   const showCorrect = isResolved && isCorrect;
                   const showIncorrect = isResolved && isSelected && !isCorrect;
 
-                  const surfaceClass = showCorrect
-                    ? 'border-emerald-200/55 bg-emerald-300/15'
-                    : showIncorrect
-                      ? 'border-rose-200/55 bg-rose-300/12'
-                      : isSelected
-                        ? 'border-amber-200/55 bg-amber-200/10'
-                        : 'border-white/18 bg-white/8 hover:bg-white/10';
-
                   return (
                     <button
                       key={`${activeQuestion.id}-rep-${replacement}`}
@@ -453,16 +474,17 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                         setSelectedReplacementIndex(index);
                       }}
                       className={[
-                        'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                        'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                        'sats-answer-btn',
+                        isResolved
+                          ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                          : (isSelected ? 'sats-answer-btn--selected' : ''),
                         'disabled:cursor-not-allowed disabled:opacity-70',
-                        surfaceClass,
                       ].join(' ')}
                     >
-                      <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
+                      <div className="text-xs font-black uppercase tracking-[0.18em] opacity-80">
                         Option {index + 1}
                       </div>
-                      <div className="mt-1 text-lg font-black text-white md:text-xl">
+                      <div className="mt-1 text-lg font-black md:text-xl">
                         {replacement}
                       </div>
                     </button>
@@ -480,12 +502,6 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                   const showCorrect = isResolved && isCorrect;
                   const showIncorrect = isResolved && !isCorrect;
 
-                  const surfaceClass = showCorrect
-                    ? 'border-emerald-200/55 bg-emerald-300/15 text-emerald-50'
-                    : showIncorrect
-                      ? 'border-rose-200/55 bg-rose-300/12 text-rose-50'
-                      : 'border-amber-200/55 bg-amber-200/10 text-amber-50 hover:bg-amber-200/15';
-
                   return (
                     <button
                       key={part.id}
@@ -501,10 +517,11 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
                         });
                       }}
                       className={[
-                        'mx-0.5 inline-flex min-h-[48px] items-center justify-center rounded-xl border px-3 font-black',
-                        'shadow-[0_10px_18px_rgba(2,6,23,0.22)] transition-[transform,filter,background] duration-150',
+                        'sats-answer-btn mx-0.5 inline-flex !min-h-[48px] !w-auto items-center justify-center !rounded-xl !px-3 !py-2 !text-base !font-black !text-center',
+                        isResolved
+                          ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                          : 'sats-answer-btn--selected',
                         'disabled:cursor-not-allowed disabled:opacity-70',
-                        surfaceClass,
                       ].join(' ')}
                     >
                       {value}
@@ -544,4 +561,3 @@ const WordsmithTrialsGame: React.FC<WordsmithTrialsGameProps> = ({
 };
 
 export default WordsmithTrialsGame;
-
