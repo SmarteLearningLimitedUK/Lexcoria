@@ -253,6 +253,32 @@
   .screen-gameplay .english-game-layout:not(.english-reading-layout) > .game-screen-top { grid-column: 1; grid-row: 1; max-height: none; }
   .screen-gameplay .english-game-layout:not(.english-reading-layout) > .game-screen-main { grid-column: 2; grid-row: 1; }
   .screen-gameplay .english-game-layout:not(.english-reading-layout) > .game-screen-bottom { grid-column: 1 / -1; grid-row: 2; }
+  .screen-gameplay .english-reading-layout .game-screen-main > div:has(> div > .game-question-card) {
+    display: grid;
+    grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(5px, 1vw, 14px);
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div:has(> div > .game-question-card) > div:has(> .game-question-card) {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    height: 100%;
+    flex: none;
+  }
+  .screen-gameplay .english-reading-layout .game-screen-main > div:has(> div > .game-question-card) > div:has(> button[aria-label='Open passage']) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .screen-gameplay .english-punctuation-playfield {
+    display: grid;
+    grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: clamp(5px, 1vw, 14px);
+  }
+  .screen-gameplay .english-punctuation-playfield > .game-question-card { grid-column: 1; grid-row: 1; }
+  .screen-gameplay .english-punctuation-playfield > .english-phantom-encounter { grid-column: 1; grid-row: 2; min-height: 0; }
+  .screen-gameplay .english-punctuation-playfield > .english-punctuation-sentence { grid-column: 2; grid-row: 1 / -1; min-height: 0; }
+  .screen-gameplay .english-punctuation-playfield > :not(.game-question-card, .english-phantom-encounter, .english-punctuation-sentence) { grid-column: 1; grid-row: 3; }
 }
 @media (min-width: 600px) and (orientation: landscape) and (max-height: 520px) {
   .screen-gameplay .game-screen-layout { padding: 6px; border-radius: 12px; }
@@ -260,6 +286,12 @@
   .screen-gameplay .game-screen-layout .game-question-card :is(.text-base, .text-lg) { font-size: 13px !important; line-height: 1.2; }
   .screen-gameplay .game-screen-layout .sats-answer-btn { padding: 4px 8px !important; }
   .screen-gameplay .game-screen-layout .sats-answer-btn :is(.text-lg, .text-xl) { font-size: 13px !important; line-height: 1.15; }
+  .screen-gameplay .english-phantom-encounter { grid-template-columns: 74px minmax(0, 1fr); padding: 4px 6px; }
+  .screen-gameplay .english-phantom-portrait { width: 74px; height: 74px; }
+  .screen-gameplay .english-phantom-heading { font-size: 11px; }
+  .screen-gameplay .english-phantom-heading span:last-child { font-size: 9px; }
+  .screen-gameplay .english-phantom-caption { font-size: 10px; }
+  .screen-gameplay .english-punctuation-sentence { padding: 8px; }
 }
 
 .sat-theme-bluegold .lexcoria-hud-bar > div:first-child {
