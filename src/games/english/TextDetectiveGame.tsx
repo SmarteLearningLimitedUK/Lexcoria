@@ -24,9 +24,9 @@ const SKILL_PROMPTS: Record<TextDetectiveSkillTag, string> = {
   'literal-comprehension': 'Comprehension',
 };
 
-const getRunForLevel = (levelId: number) => {
+const getRunForLevel = () => {
   const safeIndex = TEXT_DETECTIVE_LEVELS.length > 0
-    ? Math.abs(levelId - 1) % TEXT_DETECTIVE_LEVELS.length
+    ? Math.floor(Math.random() * TEXT_DETECTIVE_LEVELS.length)
     : 0;
   return TEXT_DETECTIVE_LEVELS[safeIndex] ?? {
     passageTitle: 'Missing passage',
@@ -43,7 +43,7 @@ const TextDetectiveGame: React.FC<TextDetectiveGameProps> = ({
   sessionState,
   sessionEvents,
 }) => {
-  const run = useMemo(() => getRunForLevel(levelId), [levelId]);
+  const run = useMemo(() => getRunForLevel(), [levelId]);
 
   const questions = useMemo<EnglishReadingQuestion[]>(() => (
     run.questions.map((q) => ({

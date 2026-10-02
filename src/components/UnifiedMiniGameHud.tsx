@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
+import { Sparkles } from 'lucide-react';
 import hourglassIcon from '../assets/casual_ui/icons/hourglass.png';
 import heartIcon from '../assets/casual_ui/icons/icon__heart.png';
 import { CHARACTER_AVATARS, DEFAULT_AVATAR_ID } from '../assets/characters';
@@ -14,6 +15,7 @@ interface UnifiedMiniGameHudProps {
   hideTimer?: boolean;
   hideTopBar?: boolean;
   lives?: number;
+  streak?: number;
   onBack?: () => void;
   variant?: 'gameplay' | 'hub';
   showActions?: boolean;
@@ -28,12 +30,14 @@ const UnifiedMiniGameHud: React.FC<UnifiedMiniGameHudProps> = ({
   hideTimer = false,
   hideTopBar = false,
   lives = 3,
+  streak = 0,
   onBack,
   variant = 'gameplay',
   showActions = true,
   bottomContent,
 }) => {
   const shouldHideTimer = hideTimer || LEVEL_TIMERS_DISABLED;
+  const showFocus = shouldHideTimer && variant === 'gameplay';
   const timerProgress = useMemo(
     () => Math.max(0, Math.min(1, totalTime > 0 ? timeLeft / totalTime : 0)),
     [timeLeft, totalTime],
@@ -83,8 +87,8 @@ const UnifiedMiniGameHud: React.FC<UnifiedMiniGameHudProps> = ({
           }}
         >
           <div
-            className={`relative ${topBarWidthClass} grid items-center gap-2 ${rootPaddingClass} ${
-              shouldHideTimer ? 'grid-cols-[auto_auto] justify-between' : 'grid-cols-[auto_1fr_auto]'
+            className={`lexcoria-hud-bar relative ${topBarWidthClass} grid items-center gap-2 ${rootPaddingClass} ${
+              showFocus || !shouldHideTimer ? 'grid-cols-[auto_minmax(0,1fr)_auto]' : 'grid-cols-[auto_auto] justify-between'
             }`}
           >
             <div className={`pointer-events-none absolute inset-0 ${shellRadiusClass} ${variant === 'hub' ? 'bg-[linear-gradient(180deg,rgba(20,46,96,0.6)_0%,rgba(7,21,58,0.54)_100%)]' : 'bg-[linear-gradient(180deg,rgba(20,46,96,0.82)_0%,rgba(7,21,58,0.72)_100%)]'} shadow-[0_14px_28px_rgba(2,6,23,0.5)]`} />
@@ -93,7 +97,7 @@ const UnifiedMiniGameHud: React.FC<UnifiedMiniGameHudProps> = ({
 
             <div className="relative flex min-w-0 items-center gap-2.5 pl-1">
               <div
-                className={`relative ${sharedHudHeightClass} ${avatarSizeClass} shrink-0 ${variant === 'hub' ? 'rounded-[0.8rem]' : 'rounded-[0.95rem]'} border-2 border-amber-300/95 bg-[linear-gradient(180deg,#2d63b7_0%,#1b3f86_100%)] shadow-[0_9px_18px_rgba(2,6,23,0.46)]`}
+                className={`lexcoria-hud-avatar relative ${sharedHudHeightClass} ${avatarSizeClass} shrink-0 ${variant === 'hub' ? 'rounded-[0.8rem]' : 'rounded-[0.95rem]'} border-2 border-amber-300/95 bg-[linear-gradient(180deg,#2d63b7_0%,#1b3f86_100%)] shadow-[0_9px_18px_rgba(2,6,23,0.46)]`}
               >
                 <div className={`pointer-events-none absolute -inset-[2px] ${variant === 'hub' ? 'rounded-[0.85rem]' : 'rounded-[1rem]'} bg-[radial-gradient(circle,rgba(125,211,252,0.34)_0%,rgba(125,211,252,0)_72%)]`} />
                 <div className={`absolute inset-[3px] overflow-hidden ${variant === 'hub' ? 'rounded-[0.6rem]' : 'rounded-[0.72rem]'} border border-cyan-100/45`}>
@@ -108,8 +112,9 @@ const UnifiedMiniGameHud: React.FC<UnifiedMiniGameHudProps> = ({
               </div>
             </div>
 
-            <div className={`relative min-w-0 items-center justify-center px-1 ${shouldHideTimer ? 'hidden' : 'flex'}`}>
-              <div
+            {!shouldHideTimer ? (
+              <div className="relative flex min-w-0 items-center justify-center px-1">
+                <div
                 className={`relative flex ${sharedHudHeightClass} ${timerWidthClass} items-center rounded-full border-2 border-cyan-100/60 bg-[linear-gradient(180deg,#2f67ba_0%,#1f458f_100%)] px-1.5 shadow-[0_10px_20px_rgba(2,6,23,0.44)]`}
               >
                 <div className="inline-flex h-[76%] w-[clamp(24px,6.2vw,32px)] shrink-0 items-center justify-center rounded-full border border-amber-100/70 bg-[linear-gradient(180deg,#f8d86d_0%,#f59e0b_100%)] text-slate-900 shadow-[0_3px_8px_rgba(2,6,23,0.38)]">
@@ -142,12 +147,31 @@ const UnifiedMiniGameHud: React.FC<UnifiedMiniGameHudProps> = ({
                 <span className={`ml-1.5 shrink-0 font-black uppercase text-slate-100 [text-shadow:0_1px_0_rgba(0,0,0,0.35)] ${variant === 'hub' ? 'text-[clamp(0.6rem,1.6vw,0.8rem)]' : 'text-[clamp(0.68rem,1.8vw,0.9rem)]'}`}>
                   {timeValue}s
                 </span>
+                </div>
               </div>
-            </div>
+            ) : showFocus ? (
+              <div
+                className="english-focus-hud relative flex min-w-0 items-center justify-center gap-1.5"
+                aria-label={`${streak} correct answers in a row`}
+              >
+                <Sparkles className="english-focus-hud-icon h-4 w-4 shrink-0" aria-hidden="true" />
+                <div className="min-w-0 leading-tight">
+                  <div className="text-[9px] font-black uppercase tracking-[0.12em] text-cyan-100/75">Focus</div>
+                  <div key={streak} className="english-focus-hud-value truncate text-xs font-black text-white">
+                    {streak > 0 ? `${streak} in a row` : 'Ready'}
+                  </div>
+                </div>
+                <div className="english-focus-hud-pips flex shrink-0 items-center gap-0.5" aria-hidden="true">
+                  {[1, 2, 3].map((step) => (
+                    <span key={step} className={step <= Math.min(streak, 3) ? 'is-charged' : ''} />
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             <div className="relative flex shrink-0 items-center justify-end pr-1">
               <div
-                className={`relative inline-flex ${sharedHudHeightClass} ${variant === 'hub' ? 'w-[clamp(52px,12vw,66px)]' : 'w-[clamp(58px,13vw,74px)]'} shrink-0 items-center justify-center gap-1 rounded-full border-2 border-cyan-100/65 bg-[linear-gradient(180deg,#245db3_0%,#1e3f89_100%)] px-2 font-black text-slate-100 shadow-[0_10px_20px_rgba(2,6,23,0.4)] ${variant === 'hub' ? 'text-[clamp(0.7rem,1.8vw,0.85rem)]' : 'text-[clamp(0.8rem,2vw,0.96rem)]'}`}
+                className={`lexcoria-hud-lives relative inline-flex ${sharedHudHeightClass} ${variant === 'hub' ? 'w-[clamp(52px,12vw,66px)]' : 'w-[clamp(58px,13vw,74px)]'} shrink-0 items-center justify-center gap-1 rounded-full border-2 border-cyan-100/65 bg-[linear-gradient(180deg,#245db3_0%,#1e3f89_100%)] px-2 font-black text-slate-100 shadow-[0_10px_20px_rgba(2,6,23,0.4)] ${variant === 'hub' ? 'text-[clamp(0.7rem,1.8vw,0.85rem)]' : 'text-[clamp(0.8rem,2vw,0.96rem)]'}`}
               >
                 <div className={`pointer-events-none absolute inset-[2px] ${variant === 'hub' ? 'rounded-[0.9rem]' : 'rounded-full'} bg-[linear-gradient(180deg,rgba(255,255,255,0.2),rgba(255,255,255,0)_45%)]`} />
                 <img

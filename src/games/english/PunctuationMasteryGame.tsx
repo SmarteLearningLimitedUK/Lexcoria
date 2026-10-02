@@ -21,7 +21,6 @@ type PunctuationMasteryGameProps = {
 };
 
 const MAX_LIVES = 3;
-const TOTAL_TIME = 130;
 
 const starsForAccuracy = (correct: number, total: number, lives: number) => {
   const accuracy = total > 0 ? correct / total : 0;
@@ -56,13 +55,11 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
   const [localLives, setLocalLives] = useState(MAX_LIVES);
-  const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
 
   const activeQuestion = sessionQuestions[Math.min(questionIndex, Math.max(0, sessionQuestions.length - 1))];
   const lives = sessionState?.lives ?? localLives;
-  const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
 
   const initialSlotState = useMemo(() => {
     if (!activeQuestion) return {};
@@ -82,21 +79,12 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
   }, [initialSlotState]);
 
   useEffect(() => {
-    if (sessionState) return;
-    setLocalTimeLeft(TOTAL_TIME);
-    const timerId = window.setInterval(() => {
-      setLocalTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
-    return () => window.clearInterval(timerId);
-  }, [sessionState]);
-
-  useEffect(() => {
     if (sessionState) {
-      if (sessionState.timeLeft <= 0 || sessionState.lives <= 0) {
+      if (sessionState.lives <= 0) {
         setStatus('gameover');
         emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
           score,
-          reason: sessionState.timeLeft <= 0 ? 'time' : 'lives',
+          reason: 'lives',
           metadata: { questionId: activeQuestion?.id, questionIndex },
         });
         onGameOver(score);
@@ -104,16 +92,16 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
       return;
     }
 
-    if (timeLeft <= 0 || lives <= 0) {
+    if (lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
     }
-  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState, timeLeft]);
+  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState]);
 
   const resetForNext = useCallback(() => {
     setLocked(false);
@@ -210,10 +198,10 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
         Question {Math.min(questionIndex + 1, sessionQuestions.length)}/{sessionQuestions.length}
       </span>
       <span className="font-black text-white/80">
-        Lives: {lives}{typeof timeLeft === 'number' ? ` | Time: ${timeLeft}s` : ''}
+        Lives: {lives}
       </span>
     </div>
-  ), [lives, questionIndex, sessionQuestions.length, timeLeft]);
+  ), [lives, questionIndex, sessionQuestions.length]);
 
   return (
     <GameScreenLayout
@@ -239,11 +227,6 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
                 const value = slotValues[part.id] ?? part.options[0] ?? '';
                 const showCorrect = isResolved && value === part.correct;
                 const showIncorrect = isResolved && value !== part.correct;
-                const surfaceClass = showCorrect
-                  ? 'border-emerald-200/55 bg-emerald-300/15'
-                  : showIncorrect
-                    ? 'border-rose-200/55 bg-rose-300/12'
-                    : 'border-amber-200/35 bg-amber-200/10';
 
                 return (
                   <button
@@ -252,10 +235,11 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
                     disabled={locked || status !== 'playing'}
                     onClick={() => cycleSlot(part)}
                     className={[
-                      'min-h-[48px] rounded-full border px-5 text-base font-black text-white',
-                      'shadow-[0_10px_18px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                      'sats-answer-btn !min-h-[48px] !rounded-full !px-5 !py-2 !text-base !font-black !text-center',
+                      isResolved
+                        ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                        : '',
                       'disabled:cursor-not-allowed disabled:opacity-70',
-                      surfaceClass,
                     ].join(' ')}
                   >
                     {value}
@@ -294,4 +278,3 @@ const PunctuationMasteryGame: React.FC<PunctuationMasteryGameProps> = ({
 };
 
 export default PunctuationMasteryGame;
-

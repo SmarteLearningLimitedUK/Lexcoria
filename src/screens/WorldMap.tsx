@@ -50,43 +50,47 @@ const MAP_HEIGHT_PX = 2500;
 const ISLAND_HOTSPOTS: IslandHotspot[] = [
   {
     islandId: 4,
-    x: 26,
-    y: 13,
-    width: 30,
+    // Moon island
+    x: 27,
+    y: 19,
+    width: 35,
     height: 12,
   },
   {
     islandId: 3,
-    x: 62,
-    y: 30,
-    width: 36,
+    // Cloud island
+    x: 68,
+    y: 31,
+    width: 35,
     height: 13,
   },
   {
     islandId: 2,
-    x: 52,
-    y: 56,
-    width: 42,
-    height: 14,
+    // Open book island
+    x: 65,
+    y: 55,
+    width: 49,
+    height: 13,
   },
   {
     islandId: 1,
-    x: 52,
-    y: 78,
-    width: 34,
+    // Stack of books tower
+    x: 51,
+    y: 76,
+    width: 31,
     height: 16,
   },
 ];
 
 const ISLAND_LABELS: IslandLabel[] = [
   // Moon (boss papers)
-  { islandId: 4, x: 26, y: 22 },
+  { islandId: 4, x: 36, y: 27 },
   // Cloud island
-  { islandId: 3, x: 62, y: 40 },
+  { islandId: 3, x: 68, y: 39 },
   // Open book island
-  { islandId: 2, x: 52, y: 66 },
+  { islandId: 2, x: 64, y: 57 },
   // Stack of books tower
-  { islandId: 1, x: 52, y: 88 },
+  { islandId: 1, x: 51, y: 85 },
 ];
 
 const ISLAND_ACCENT_FRAMES: Partial<Record<number, IslandAccentFrame>> = {
@@ -408,9 +412,9 @@ const WorldMap: React.FC<WorldMapProps> = ({
   );
 
   return (
-    <div className="relative w-full overflow-visible">
+    <div className="lexcoria-map-scene relative w-full overflow-visible">
       <div
-        className="relative mx-auto w-full overflow-hidden"
+        className="lexcoria-map-canvas relative mx-auto w-full overflow-hidden"
         style={{ aspectRatio: `${MAP_WIDTH_PX} / ${MAP_HEIGHT_PX}` }}
       >
         <img
@@ -431,7 +435,7 @@ const WorldMap: React.FC<WorldMapProps> = ({
                 type="button"
                 onClick={() => setSelectedIslandId(islandState.island.id)}
                 className={[
-                  'pointer-events-auto absolute z-30',
+                  'lexcoria-island-label pointer-events-auto absolute z-30',
                   'rounded-full border border-white/20 bg-slate-950/55 px-3 py-2',
                   'text-[11px] font-black uppercase tracking-[0.14em] text-white shadow-[0_10px_20px_rgba(2,6,23,0.35)]',
                   'backdrop-blur-sm transition-[transform,filter] duration-150 active:scale-[0.98]',

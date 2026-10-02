@@ -5,16 +5,8 @@ import { PrimaryActionButton, SecondaryActionButton } from '../../layout/ScreenP
 import { emitMiniGameSessionEvent } from '../../app/gameplaySessionContract';
 import type { GameplaySessionEventHandlers, GameplaySessionState } from '../../app/gameplaySessionContract';
 import { shuffle, shuffleOptionsWithAnswerIndex } from '../../utils/questionShuffle';
-import {
-  AUTHOR_INTENT_QUESTIONS,
-  EVIDENCE_HUNTER_PASSAGE,
-  EVIDENCE_HUNTER_QUESTIONS,
-  INFERENCE_ISLAND_PASSAGE,
-  INFERENCE_ISLAND_QUESTIONS,
-  SUMMIT_SUMMARISER_PASSAGE,
-  SUMMIT_SUMMARISER_QUESTIONS,
-  WORD_MEANING_WOODS_QUESTIONS,
-} from '../../systems/content/english/satsSpec';
+import ReadingBookOverlay from '../../components/game-ui/ReadingBookOverlay';
+import { READING_PAPER_PASSAGES, READING_PAPER_QUESTIONS } from '../../systems/content/english/readingPaper';
 
 type ReadingRescueGameProps = {
   levelId: number;
@@ -61,17 +53,17 @@ type BossQuestion =
   };
 
 const MAX_LIVES = 3;
-const TOTAL_TIME = 12 * 60;
 
 const starsForPercent = (percent: number) => {
   if (percent >= 0.8) return 3;
   if (percent >= 0.6) return 2;
-  return 1;
+  if (percent >= 0.4) return 1;
+  return 0;
 };
 
 const normalize = (values: number[]) => [...values].sort((a, b) => a - b).join(',');
 
-const normalizeAnswer = (value: string) => value.trim().toLowerCase();
+const normalizeAnswer = (value: string) => value.trim().toLowerCase().replace(/[^a-z0-9' ]/g, '').replace(/\s+/g, ' ');
 
 const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
   levelId: _levelId,
@@ -81,103 +73,16 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
   sessionState,
   sessionEvents,
 }) => {
-  const passages = useMemo(() => ([
-    {
-      title: INFERENCE_ISLAND_PASSAGE.title,
-      text: INFERENCE_ISLAND_PASSAGE.text,
-    },
-    {
-      title: EVIDENCE_HUNTER_PASSAGE.title,
-      text: EVIDENCE_HUNTER_PASSAGE.text,
-    },
-    {
-      title: SUMMIT_SUMMARISER_PASSAGE.title,
-      text: SUMMIT_SUMMARISER_PASSAGE.text,
-    },
-  ]), []);
-
+  const passages = READING_PAPER_PASSAGES;
   const questions = useMemo<BossQuestion[]>(() => {
-    const mcq: BossQuestion[] = [
-      ...INFERENCE_ISLAND_QUESTIONS.map((q) => ({
-        type: 'mcq' as const,
-        id: q.id,
-        passageIndex: 0,
-        prompt: q.prompt,
-        question: q.question,
-        choices: q.choices,
-        answerIndex: q.answerIndex,
-        marks: q.difficulty,
-      })),
-      ...WORD_MEANING_WOODS_QUESTIONS.map((q) => ({
-        type: 'mcq' as const,
-        id: q.id,
-        passageIndex: 2,
-        prompt: q.prompt,
-        question: q.question,
-        choices: q.choices,
-        answerIndex: q.answerIndex,
-        marks: q.difficulty,
-      })),
-      ...SUMMIT_SUMMARISER_QUESTIONS.map((q) => ({
-        type: 'mcq' as const,
-        id: q.id,
-        passageIndex: 2,
-        prompt: q.prompt,
-        question: q.question,
-        choices: q.choices,
-        answerIndex: q.answerIndex,
-        marks: q.difficulty,
-      })),
-      ...AUTHOR_INTENT_QUESTIONS.map((q) => ({
-        type: 'mcq' as const,
-        id: q.id,
-        passageIndex: 2,
-        prompt: q.prompt,
-        question: q.question,
-        choices: q.choices,
-        answerIndex: q.answerIndex,
-        marks: q.difficulty,
-      })),
-    ];
-
-    const evidence: BossQuestion[] = EVIDENCE_HUNTER_QUESTIONS.map((q) => ({
-      type: 'evidence' as const,
-      id: q.id,
-      passageIndex: 1,
-      prompt: q.prompt,
-      question: q.question,
-      sentences: q.sentences,
-      answerIndices: q.answerIndices,
-      marks: q.difficulty,
+    const passageOrder = shuffle(READING_PAPER_PASSAGES.map((_, index) => index));
+    return passageOrder.flatMap(passageIndex => shuffle<BossQuestion>(
+      READING_PAPER_QUESTIONS.filter(question => question.passageIndex === passageIndex),
+    ).map(question => {
+      if (question.type !== 'mcq') return question;
+      const shuffled = shuffleOptionsWithAnswerIndex(question.choices, question.answerIndex);
+      return { ...question, choices: shuffled.options, answerIndex: shuffled.answerIndex };
     }));
-
-    const short: BossQuestion[] = [
-      {
-        type: 'short',
-        id: 'sr-001',
-        passageIndex: 0,
-        prompt: 'Short answer',
-        question: 'What does Tom do before speaking?',
-        answers: ['takes a deep breath', 'take a deep breath', 'he takes a deep breath', 'deep breath'],
-        marks: 2,
-      },
-      {
-        type: 'short',
-        id: 'sr-002',
-        passageIndex: 1,
-        prompt: 'Short answer',
-        question: 'Write one phrase that shows the wind is strong.',
-        answers: ['wind howled louder than before', 'the wind howled louder than before', 'wind howled'],
-        marks: 2,
-      },
-    ];
-
-    const combined = [...mcq, ...evidence, ...short];
-    return shuffle(combined).map((q) => {
-      if (q.type !== 'mcq') return q;
-      const shuffled = shuffleOptionsWithAnswerIndex(q.choices, q.answerIndex);
-      return { ...q, choices: shuffled.options, answerIndex: shuffled.answerIndex };
-    });
   }, []);
 
   const totalMarks = useMemo(() => questions.reduce((sum, q) => sum + q.marks, 0), [questions]);
@@ -190,31 +95,21 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
   const [locked, setLocked] = useState(false);
   const [feedback, setFeedback] = useState<string>('');
   const [localLives, setLocalLives] = useState(MAX_LIVES);
-  const [localTimeLeft, setLocalTimeLeft] = useState(TOTAL_TIME);
   const [earnedMarks, setEarnedMarks] = useState(0);
   const [score, setScore] = useState(0);
+  const [isBookOpen, setIsBookOpen] = useState(false);
 
   const activeQuestion = questions[Math.min(questionIndex, Math.max(0, questions.length - 1))];
   const passage = passages[activeQuestion?.passageIndex ?? 0] ?? passages[0];
   const lives = sessionState?.lives ?? localLives;
-  const timeLeft = sessionState?.timeLeft ?? localTimeLeft;
-
-  useEffect(() => {
-    if (sessionState) return;
-    setLocalTimeLeft(TOTAL_TIME);
-    const timerId = window.setInterval(() => {
-      setLocalTimeLeft((prev) => Math.max(0, prev - 1));
-    }, 1000);
-    return () => window.clearInterval(timerId);
-  }, [sessionState]);
 
   useEffect(() => {
     if (sessionState) {
-      if (sessionState.timeLeft <= 0 || sessionState.lives <= 0) {
+      if (sessionState.lives <= 0) {
         setStatus('gameover');
         emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
           score,
-          reason: sessionState.timeLeft <= 0 ? 'time' : 'lives',
+          reason: 'lives',
           metadata: { questionId: activeQuestion?.id, questionIndex },
         });
         onGameOver(score);
@@ -222,16 +117,16 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
       return;
     }
 
-    if (timeLeft <= 0 || lives <= 0) {
+    if (lives <= 0) {
       setStatus('gameover');
       emitMiniGameSessionEvent(sessionEvents, 'game_failed', {
         score,
-        reason: timeLeft <= 0 ? 'time' : 'lives',
+        reason: 'lives',
         metadata: { questionId: activeQuestion?.id, questionIndex },
       });
       onGameOver(score);
     }
-  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState, timeLeft]);
+  }, [activeQuestion?.id, lives, onGameOver, questionIndex, score, sessionEvents, sessionState]);
 
   const resetForNext = useCallback(() => {
     setSelectedIndex(null);
@@ -307,7 +202,10 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
         metadata: { questionId: activeQuestion.id, questionIndex, marks: gainedMarks },
       });
     } else {
-      setFeedback('Incorrect. Correct answer is highlighted.');
+      const correct = activeQuestion.type === 'mcq' ? activeQuestion.choices[activeQuestion.answerIndex]
+        : activeQuestion.type === 'evidence' ? activeQuestion.answerIndices.map(index => activeQuestion.sentences[index]).join(' / ')
+          : activeQuestion.answers[0];
+      setFeedback(`Incorrect. Correct answer: ${correct}.`);
       emitMiniGameSessionEvent(sessionEvents, 'incorrect_answer', {
         score: nextScore,
         metadata: { questionId: activeQuestion.id, questionIndex },
@@ -332,35 +230,30 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
         Question {Math.min(questionIndex + 1, questions.length)}/{questions.length}
       </span>
       <span className="font-black text-white/80">
-        Marks: {earnedMarks}/{totalMarks}{typeof timeLeft === 'number' ? ` | Time: ${timeLeft}s` : ''}{` | Lives: ${lives}`}
+        Marks: {earnedMarks}/{totalMarks}{` | Lives: ${lives}`}
       </span>
     </div>
-  ), [earnedMarks, lives, questionIndex, questions.length, timeLeft, totalMarks]);
+  ), [earnedMarks, lives, questionIndex, questions.length, totalMarks]);
 
   const isResolved = status === 'resolved' || status === 'complete' || status === 'gameover';
 
   return (
     <GameScreenLayout
+      className="english-game-layout english-reading-layout"
       main={(
-        <div className="flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4">
-          <div className="flex min-h-0 flex-[3] flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
-            <div className="flex items-start justify-between gap-3 px-4 pb-3 pt-4">
-              <div className="min-w-0 flex-1">
-                <div className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-100/70">Passage</div>
-                <div className="mt-1 truncate text-base font-black text-white md:text-lg">{passage.title}</div>
-              </div>
-              <SecondaryActionButton onClick={onBack} className="h-11 rounded-2xl px-5 text-xs md:h-12 md:text-sm">
-                Exit
-              </SecondaryActionButton>
-            </div>
-            <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto px-4 pb-4 text-sm font-semibold leading-relaxed text-white/90 md:text-base">
-              {passage.text.split('\n').map((line) => (
-                <p key={line} className="m-0 mb-3 last:mb-0">
-                  {line}
-                </p>
-              ))}
-            </div>
-          </div>
+        <div className="relative flex h-full min-h-0 flex-col gap-3 overflow-hidden pb-1 md:gap-4">
+          <ReadingBookOverlay
+            title={passage.title}
+            isOpen={isBookOpen}
+            onOpen={() => setIsBookOpen(true)}
+            onClose={() => setIsBookOpen(false)}
+          >
+            {passage.text.split('\n').map((line) => (
+              <p key={line} className="m-0 mb-3 last:mb-0">
+                {line}
+              </p>
+            ))}
+          </ReadingBookOverlay>
 
           <div className="flex min-h-0 flex-[2] flex-col gap-3 overflow-hidden">
             <GameQuestionCard title="Trial of Reading" subtitle={headerSubtitle}>
@@ -382,14 +275,6 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
                   const showCorrect = isResolved && isCorrect;
                   const showIncorrect = isResolved && isSelected && !isCorrect;
 
-                  const surfaceClass = showCorrect
-                    ? 'border-emerald-200/55 bg-emerald-300/15'
-                    : showIncorrect
-                      ? 'border-rose-200/55 bg-rose-300/12'
-                      : isSelected
-                        ? 'border-amber-200/55 bg-amber-200/10'
-                        : 'border-white/18 bg-white/8 hover:bg-white/10';
-
                   return (
                     <button
                       key={`${activeQuestion.id}-${choice}`}
@@ -400,16 +285,17 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
                         setSelectedIndex(index);
                       }}
                       className={[
-                        'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                        'shadow-[0_14px_28px_rgba(2,6,23,0.28)] transition-[transform,filter,background] duration-150',
+                        'sats-answer-btn',
+                        isResolved
+                          ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                          : (isSelected ? 'sats-answer-btn--selected' : ''),
                         'disabled:cursor-not-allowed disabled:opacity-70',
-                        surfaceClass,
                       ].join(' ')}
                     >
-                      <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-100/70">
+                      <div className="text-xs font-black uppercase tracking-[0.18em] opacity-80">
                         Option {index + 1}
                       </div>
-                      <div className="mt-1 text-lg font-black text-white md:text-xl">
+                      <div className="mt-1 text-lg font-black md:text-xl">
                         {choice}
                       </div>
                     </button>
@@ -417,22 +303,12 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
                 })}
               </div>
             ) : activeQuestion?.type === 'evidence' ? (
-              <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.4rem] border border-white/15 bg-white/8 p-2 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
-                <div className="reading-scroll-panel min-h-0 flex-1 overflow-y-auto p-2">
-                  <div className="space-y-2">
+              <div className="grid min-h-0 flex-1 grid-cols-2 grid-rows-2 gap-2">
                     {activeQuestion.sentences.map((sentence, index) => {
                       const isSelected = selectedEvidence.includes(index);
                       const isCorrect = activeQuestion.answerIndices.includes(index);
                       const showCorrect = isResolved && isCorrect;
                       const showIncorrect = isResolved && isSelected && !isCorrect;
-
-                      const surfaceClass = showCorrect
-                        ? 'border-emerald-200/55 bg-emerald-300/15'
-                        : showIncorrect
-                          ? 'border-rose-200/55 bg-rose-300/12'
-                          : isSelected
-                            ? 'border-amber-200/55 bg-amber-200/10'
-                            : 'border-white/18 bg-white/8 hover:bg-white/10';
 
                       return (
                         <button
@@ -446,20 +322,19 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
                             ));
                           }}
                           className={[
-                            'min-h-[56px] w-full rounded-2xl border px-4 py-3 text-left',
-                            'shadow-[0_14px_28px_rgba(2,6,23,0.22)] transition-[transform,filter,background] duration-150',
+                            'sats-answer-btn',
+                            isResolved
+                              ? (showCorrect ? 'sats-answer-btn--correct' : (showIncorrect ? 'sats-answer-btn--incorrect' : ''))
+                              : (isSelected ? 'sats-answer-btn--selected' : ''),
                             'disabled:cursor-not-allowed disabled:opacity-70',
-                            surfaceClass,
                           ].join(' ')}
                         >
-                          <div className="text-sm font-semibold leading-relaxed text-white md:text-base">
+                          <div className="text-xs font-semibold leading-snug md:text-sm">
                             {sentence}
                           </div>
                         </button>
                       );
                     })}
-                  </div>
-                </div>
               </div>
             ) : activeQuestion?.type === 'short' ? (
               <div className="rounded-[1.4rem] border border-white/15 bg-white/8 p-4 shadow-[0_18px_34px_rgba(2,6,23,0.35)]">
@@ -488,7 +363,7 @@ const ReadingRescueGame: React.FC<ReadingRescueGameProps> = ({
         <div className="flex w-full flex-col gap-2 md:flex-row md:gap-3">
           <PrimaryActionButton
             onClick={status === 'playing' ? handleSubmit : undefined}
-            disabled={!canSubmit}
+            disabled={!canSubmit || isBookOpen}
             className="h-14 w-full rounded-2xl text-base md:h-16 md:flex-1 md:text-lg"
           >
             {status === 'playing' ? 'Submit' : '...'}

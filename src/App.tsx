@@ -203,6 +203,7 @@ const App: React.FC = () => {
   const [wellbeingCompletion, setWellbeingCompletion] = useState<WellbeingCompletionState | null>(null);
   const [storedLevelResult, setStoredLevelResult] = useState<LevelResultState | null>(null);
   const [gameplayRestartKey, setGameplayRestartKey] = useState(0);
+  const [focusStreak, setFocusStreak] = useState(0);
   const legacyHydrationAppliedRef = useRef(false);
   const lastIncorrectLifeLossRef = useRef<{ signature: string; at: number }>({ signature: '', at: 0 });
   const levelFailCountsRef = useRef<Record<string, number>>({});
@@ -467,6 +468,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (screen === 'gameplay' && selectedLevel) {
       resetSessionMetrics();
+      setFocusStreak(0);
     }
   }, [gameplayRestartKey, resetSessionMetrics, screen, selectedLevel?.id]);
 
@@ -554,33 +556,8 @@ const App: React.FC = () => {
     if (typeof window === 'undefined') return;
     if (!buildId) return;
     try {
-      const storageKey = 'sats_legends_build_id';
-      const previous = window.localStorage.getItem(storageKey);
-      if (previous && previous !== buildId) {
-        const clearBrowserState = async () => {
-          try {
-            window.localStorage.clear();
-            window.sessionStorage.clear();
-            if ('caches' in window) {
-              const keys = await caches.keys();
-              await Promise.all(keys.map((key) => caches.delete(key)));
-            }
-          } catch {
-            // Ignore cache/storage errors so we can still recover on reload.
-          }
-        };
-
-        void (async () => {
-          await clearBrowserState();
-          window.localStorage.setItem(storageKey, buildId);
-          window.location.reload();
-        })();
-        return;
-      }
-      window.localStorage.setItem(storageKey, buildId);
-    } catch {
-      // Ignore storage/cache errors to avoid blocking render.
-    }
+      window.localStorage.setItem('lexcoria_build_id', buildId);
+    } catch { return; }
   }, [buildId]);
 
   useEffect(() => {
@@ -597,7 +574,8 @@ const App: React.FC = () => {
       const baseHeight = IPHONE_STAGE_HEIGHT;
       const isTabletViewport = Math.min(viewportWidth, viewportHeight) >= 700;
       const isDesktopViewport = Math.min(viewportWidth, viewportHeight) >= 1100;
-      const shouldUseUnboundedStage = !isTabletViewport && !isDesktopViewport;
+      const shouldUseUnboundedStage = !isTabletViewport && !isDesktopViewport
+        || screen === 'gameplay' || screen === 'world_map' || screen === 'island_levels';
       const renderMultiplier = isDesktopViewport ? 1.25 : isTabletViewport ? 1.12 : 1;
       const rawScale = Math.min(
         viewportWidth / (baseWidth * renderMultiplier),
@@ -624,7 +602,7 @@ const App: React.FC = () => {
       visualViewport?.removeEventListener('resize', updateStageScale);
       visualViewport?.removeEventListener('scroll', updateStageScale);
     };
-  }, []);
+  }, [screen]);
 
   useEffect(() => {
     const allowVerticalPan = screen === 'world_map' || screen === 'island_levels';
@@ -840,15 +818,17 @@ const App: React.FC = () => {
     onCorrectAnswer: (event) => {
       playGameSound('correct');
       triggerHaptic('selection');
+      setFocusStreak((previous) => previous + 1);
       setSessionMetrics((prev) => ({ ...prev, correct: prev.correct + 1 }));
       recordTelemetryEvent('correct_answer', event);
     },
     onIncorrectAnswer: (event) => {
       playGameSound('incorrect');
       triggerHaptic('error');
+      setFocusStreak(0);
       setSessionMetrics((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
       recordTelemetryEvent('incorrect_answer', event);
-      if (screen === 'gameplay') {
+      if (screen === 'gameplay' && !selectedLevel?.isBoss && !selectedLevel?.isPractice) {
         const metadataKey = JSON.stringify(event.metadata ?? {});
         const signature = `${event.gameType ?? 'unknown'}:${event.levelId ?? 'unknown'}:${metadataKey}`;
         const now = Date.now();
@@ -917,23 +897,12 @@ const App: React.FC = () => {
   const goToProfile = useCallback(() => {
     setScreen('profile');
   }, [setScreen]);
-  const mapDockButtonClass = [
-    'inline-flex items-center justify-center border text-slate-100',
-    'border-cyan-100/40 bg-[linear-gradient(180deg,rgba(75,137,232,0.9)_0%,rgba(45,102,194,0.9)_54%,rgba(29,75,153,0.92)_100%)]',
-    'shadow-[0_6px_12px_rgba(2,6,23,0.33),inset_0_1px_0_rgba(255,255,255,0.26)]',
-    'transition-[transform,filter,box-shadow,background] duration-150 ease-out',
-    'hover:brightness-105 active:translate-y-[1px] active:brightness-95',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1e4e]',
-    'h-[42px] w-[42px] rounded-[0.85rem]',
-  ].join(' ');
-  const mapDockIconClass = 'h-[18px] w-[18px] drop-shadow-[0_2px_2px_rgba(0,0,0,0.26)]';
+  const mapDockButtonClass = 'lexcoria-map-dock-button';
+  const mapDockIconClass = 'lexcoria-map-dock-icon';
     const mapHudDock = screen === 'world_map'
       ? (
         <div className="mt-0.5 flex w-full max-w-[calc(100vw-0.7rem)] shrink-0 items-center justify-center overflow-hidden">
-          <div className="relative inline-flex w-auto max-w-full shrink-0 flex-nowrap items-center justify-center rounded-[1.15rem] border border-cyan-100/26 bg-[linear-gradient(180deg,rgba(16,40,96,0.84)_0%,rgba(9,24,64,0.88)_100%)] px-2 py-1.5 shadow-[0_10px_18px_rgba(2,6,23,0.38),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-[2px]">
-            <div className="pointer-events-none absolute inset-[1px] rounded-[1.05rem] border border-cyan-100/14" />
-            <div className="pointer-events-none absolute inset-x-3 top-[3px] h-3 rounded-full bg-cyan-200/10 blur-[2px]" />
-
+          <div className="lexcoria-map-dock">
             <div className="relative flex flex-nowrap items-center justify-center gap-1.5">
               <button
                 type="button"
@@ -941,7 +910,7 @@ const App: React.FC = () => {
                 className={`${mapDockButtonClass} shrink-0`}
                 aria-label="Open player profile"
               >
-                <AssetIcon name="user" className={mapDockIconClass} />
+                <AssetIcon name="user" className={mapDockIconClass} /><span>Profile</span>
               </button>
               <button
                 type="button"
@@ -949,7 +918,7 @@ const App: React.FC = () => {
                 className={`${mapDockButtonClass} shrink-0`}
                 aria-label="Open achievements"
               >
-                <AssetIcon name="trophy" className={mapDockIconClass} />
+                <AssetIcon name="trophy" className={mapDockIconClass} /><span>Rewards</span>
               </button>
               <button
                 type="button"
@@ -957,7 +926,7 @@ const App: React.FC = () => {
                 className={`${mapDockButtonClass} shrink-0`}
                 aria-label="Open parent portal"
               >
-                <AssetIcon name="doc" className={mapDockIconClass} />
+                <AssetIcon name="doc" className={mapDockIconClass} /><span>Parent</span>
               </button>
               <button
                 type="button"
@@ -966,7 +935,7 @@ const App: React.FC = () => {
                 aria-label="Open Calm Grove"
                 title="Open Calm Grove"
               >
-                <TreePine className={mapDockIconClass} />
+                <TreePine className={mapDockIconClass} /><span>Calm</span>
               </button>
             </div>
           </div>
@@ -1052,6 +1021,7 @@ const App: React.FC = () => {
                 timeLeft={globalMiniGameHudTimeLeft}
                 totalTime={GLOBAL_MINIGAME_HUD_DURATION_SECONDS}
                 lives={globalMiniGameLives}
+                streak={isGameplayScreen ? focusStreak : 0}
                 hideTimer={hideShellTimer}
                 hideTopBar={screen === 'world_map' || screen === 'island_levels' || screen === 'profile' || screen === 'achievements_tracker' || screen === 'parent_dashboard'}
                 onBack={isGameplayScreen ? goToIslandLevels : handleGlobalDockBack}
@@ -1123,6 +1093,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+      {import.meta.env.VITE_SITE_EMBED === 'true' && !isGameplayScreen && <a className="english-site-return" href="/" aria-label="Return to SATs Legends website">← Website</a>}
     </div>
   );
 };

@@ -102,7 +102,8 @@ body {
     radial-gradient(circle at 50% 28%, rgba(251,191,36,0.06), transparent 22%),
     linear-gradient(180deg, #181f2b 0%, #10151f 42%, #0a0f18 76%, #04070d 100%);
   overscroll-behavior: none;
-  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .app-viewport [class*="text-amber-"],
@@ -118,7 +119,10 @@ body {
 .iphone-game-viewport {
   position: fixed;
   inset: 0;
+  height: 100svh;
   height: 100dvh;
+  min-height: 100svh;
+  min-height: 100dvh;
   max-height: 100dvh;
   overflow: hidden;
   background: #020617;
@@ -203,6 +207,7 @@ button {
   cursor: pointer;
   transition: transform 0.14s ease, filter 0.14s ease, box-shadow 0.14s ease;
   transform-origin: center;
+  touch-action: manipulation;
 }
 
 button:not(:disabled):active {
@@ -212,6 +217,19 @@ button:not(:disabled):active {
 
 button:disabled {
   cursor: not-allowed;
+}
+
+/* iOS playability: allow smooth scrolling inside the only approved scroll region (reading passages). */
+.reading-scroll-panel {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+/* iOS Safari: avoid input focus zoom by keeping game inputs at >=16px. */
+.screen-gameplay input,
+.screen-gameplay textarea {
+  font-size: 16px;
 }
 
 .cloud-bg {
@@ -5143,6 +5161,47 @@ button.avatar-hero-arrow:not(:disabled):active {
   margin: 0 !important;
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* SATs Legends answer button contract (blue -> yellow selected -> green/red after submit). */
+.sats-answer-btn {
+  border: 0 !important;
+  min-height: 56px;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: #f5fbff !important;
+  background:
+    linear-gradient(180deg, rgba(75, 137, 232, 0.92) 0%, rgba(45, 102, 194, 0.92) 54%, rgba(29, 75, 153, 0.94) 100%) !important;
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.26) !important;
+}
+
+.sats-answer-btn:hover {
+  filter: brightness(1.03);
+}
+
+.sats-answer-btn:active {
+  transform: translateY(1px);
+  filter: brightness(0.96);
+}
+
+.sats-answer-btn--selected {
+  color: #1f2937 !important;
+  background:
+    linear-gradient(180deg, #ffeaa6 0%, #fbbf24 56%, #f59e0b 100%) !important;
+}
+
+.sats-answer-btn--correct {
+  color: #052e16 !important;
+  background:
+    linear-gradient(180deg, #86efac 0%, #22c55e 55%, #16a34a 100%) !important;
+}
+
+.sats-answer-btn--incorrect {
+  color: #fff1f2 !important;
+  background:
+    linear-gradient(180deg, #fda4af 0%, #ef4444 55%, #be123c 100%) !important;
 }
 
 /* Ensure any full-screen utility class stays inside the contracted gameplay viewport. */

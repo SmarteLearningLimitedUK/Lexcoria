@@ -1,3 +1,6 @@
+import { READING_PAPER_PASSAGES, READING_PAPER_QUESTIONS } from './readingPaper';
+import type { ReadingPaperQuestion } from './readingPaper';
+
 export type Difficulty = 1 | 2 | 3;
 
 export type McqQuestion = {
@@ -88,6 +91,7 @@ export type FactOrFictionQuestion = {
   id: string;
   prompt: string;
   statement: string;
+  context?: string;
   mode: FactOrFictionMode;
   answerIndex: 0 | 1;
   difficulty: Difficulty;
@@ -107,7 +111,7 @@ export type CompareContrastQuestion = {
 export type NounPhraseBuilderQuestion = {
   id: string;
   prompt: string;
-  base: string; // e.g. "The ___ dog"
+  base: string;
   modifiers: [string, string, string];
   correctSequence: [string, string, string];
   difficulty: Difficulty;
@@ -169,9 +173,9 @@ export const INFERENCE_ISLAND_QUESTIONS: McqQuestion[] = [
   {
     id: 'inf-002',
     prompt: 'Inference',
-    question: 'What can you infer about the setting?',
-    choices: ['It is noisy', 'It is peaceful', 'It is dangerous', 'It is empty'],
-    answerIndex: 2,
+    question: 'What do the distant voices suggest about Tom?',
+    choices: ['He is distracted by his thoughts', 'He has lost his hearing', 'He is standing in an empty street', 'He is listening to music'],
+    answerIndex: 0,
     difficulty: 2,
   },
   {
@@ -185,8 +189,8 @@ export const INFERENCE_ISLAND_QUESTIONS: McqQuestion[] = [
   {
     id: 'inf-004',
     prompt: 'Inference',
-    question: 'Why does she look over her shoulder?',
-    choices: ['She heard something suspicious', 'She dropped something', 'She is stretching', 'She is bored'],
+    question: 'Which detail best suggests Tom feels relieved after speaking?',
+    choices: ['His shoulders dropped', 'He stood at the gate', 'He heard voices inside', 'He looked at the house'],
     answerIndex: 0,
     difficulty: 2,
   },
@@ -262,16 +266,18 @@ export const WORD_MEANING_WOODS_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     difficulty: 2,
   },
+  { id: 'wm-004', prompt: 'Vocabulary in context', question: 'The boat was “adrift” after the rope snapped. What does “adrift” mean?', choices: ['Moving without control', 'Tied to the quay', 'Full of people', 'Hidden under water'], answerIndex: 0, difficulty: 2 },
+  { id: 'wm-005', prompt: 'Vocabulary in context', question: 'Mina “glanced” at the clock. What does “glanced” mean?', choices: ['Looked quickly', 'Stared for an hour', 'Wrote a number', 'Covered it up'], answerIndex: 0, difficulty: 1 },
 ];
 
 export const SUMMIT_SUMMARISER_PASSAGE: ReadingPassage = {
-  title: 'Two Short Paragraphs',
+  title: 'Two Woodland Journeys',
   text: [
     'Paragraph 1:',
-    'A boy gets lost and finds help.',
+    'Eli left the path to follow a flash of blue between the trees. Soon he could no longer see the trail. He called out, and a walker who knew the wood guided him back to the gate.',
     '',
     'Paragraph 2:',
-    'A journey through a forest.',
+    'The next morning, Eli returned with a map. He followed the marked route beneath tall pines, crossed a wooden bridge and reached the far edge of the forest before lunch.',
   ].join('\n'),
   sentences: [],
 };
@@ -280,7 +286,7 @@ export const SUMMIT_SUMMARISER_QUESTIONS: McqQuestion[] = [
   {
     id: 'sum-001',
     prompt: 'Summary',
-    question: 'Choose the best summary.',
+    question: 'Which best summarises paragraph 1?',
     choices: [
       'A boy gets lost and finds help',
       'A boy eats lunch',
@@ -293,7 +299,7 @@ export const SUMMIT_SUMMARISER_QUESTIONS: McqQuestion[] = [
   {
     id: 'sum-002',
     prompt: 'Summary',
-    question: 'Choose the best summary.',
+    question: 'Which best summarises paragraph 2?',
     choices: [
       'A journey through a forest',
       'A school day',
@@ -322,6 +328,8 @@ export const AUTHOR_INTENT_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     difficulty: 2,
   },
+  { id: 'ai-003', prompt: "Author's intent", question: 'Why might an author repeat “still” in “The lake was still. The trees were still.”?', choices: ['To emphasise the quiet', 'To show that it is morning', 'To explain how lakes form', 'To make the trees seem taller'], answerIndex: 0, difficulty: 3 },
+  { id: 'ai-004', prompt: "Author's intent", question: 'What is the effect of “the leaves whispered” in a description?', choices: ['It makes the leaves seem almost human', 'It proves the leaves can speak', 'It shows that no wind is blowing', 'It tells us the leaves are blue'], answerIndex: 0, difficulty: 2 },
 ];
 
 export const GRAMMAR_GAUNTLET_QUESTIONS: ReplaceWordQuestion[] = [
@@ -352,6 +360,9 @@ export const GRAMMAR_GAUNTLET_QUESTIONS: ReplaceWordQuestion[] = [
     correctReplacementIndex: 0,
     difficulty: 2,
   },
+  { id: 'gg-004', prompt: 'Subject–verb agreement', sentence: 'The boxes is beside the door.', wrongWord: 'is', replacements: ['are', 'was', 'be', 'am'], correctReplacementIndex: 0, difficulty: 2 },
+  { id: 'gg-005', prompt: 'Standard English', sentence: 'We done our homework before tea.', wrongWord: 'done', replacements: ['did', 'does', 'doing', 'do'], correctReplacementIndex: 0, difficulty: 2 },
+  { id: 'gg-006', prompt: 'Modal verbs', sentence: 'You musted wait for the signal.', wrongWord: 'musted', replacements: ['must', 'musting', 'musts', 'must have'], correctReplacementIndex: 0, difficulty: 3 },
 ];
 
 export const TENSE_TRIALS_QUESTIONS: McqQuestion[] = [
@@ -371,6 +382,9 @@ export const TENSE_TRIALS_QUESTIONS: McqQuestion[] = [
     answerIndex: 2,
     difficulty: 2,
   },
+  { id: 'tt-003', prompt: 'Present perfect', question: 'Choose the present perfect form: “I ___ my keys.”', choices: ['have lost', 'lost', 'am losing', 'lose'], answerIndex: 0, difficulty: 2 },
+  { id: 'tt-004', prompt: 'Past progressive', question: 'Yesterday at noon, the children ___ in the garden.', choices: ['were playing', 'are playing', 'will play', 'have played'], answerIndex: 0, difficulty: 2 },
+  { id: 'tt-005', prompt: 'Verb forms', question: 'By the time we arrived, the train ___.', choices: ['had left', 'leave', 'is leaving', 'will leave'], answerIndex: 0, difficulty: 3 },
 ];
 
 export const PUNCTUATION_PANIC_QUESTIONS: PunctuationBuildQuestion[] = [
@@ -405,6 +419,9 @@ export const PUNCTUATION_PANIC_QUESTIONS: PunctuationBuildQuestion[] = [
     ],
     difficulty: 2,
   },
+  { id: 'pp-004', prompt: 'Plural possession', parts: ['The ', { id: 'dogs', options: ["dogs'", "dog's", 'dogs'], correct: "dogs'" }, ' bowls were empty', { id: 'end', options: ['.', '?'], correct: '.' }], difficulty: 3 },
+  { id: 'pp-005', prompt: 'Speech punctuation', parts: [{ id: 'open', options: ['“', '‘', ''], correct: '“' }, 'Come here', { id: 'comma', options: [',', '.', ''], correct: ',' }, { id: 'close', options: ['”', '’', ''], correct: '”' }, ' called Mum', { id: 'end', options: ['.', '!'], correct: '.' }], difficulty: 3 },
+  { id: 'pp-006', prompt: 'Fronted adverbial', parts: ['After lunch', { id: 'comma', options: [',', '.', ''], correct: ',' }, ' we walked home', { id: 'end', options: ['.', '?'], correct: '.' }], difficulty: 2 },
 ];
 
 export const SENTENCE_SURGERY_QUESTIONS: McqQuestion[] = [
@@ -424,6 +441,8 @@ export const SENTENCE_SURGERY_QUESTIONS: McqQuestion[] = [
     answerIndex: 0,
     difficulty: 2,
   },
+  { id: 'ss-003', prompt: 'Sentence structure', question: 'Which change correctly punctuates “After the storm the streets were quiet”?', choices: ['Add a comma after “storm”', 'Add a comma after “streets”', 'Remove “the”', 'Add a question mark'], answerIndex: 0, difficulty: 2 },
+  { id: 'ss-004', prompt: 'Sentence structure', question: 'Which is a complete sentence?', choices: ['The child who found the key opened the gate.', 'Because the child found the key.', 'Although the gate was open.', 'When the child reached the gate.'], answerIndex: 0, difficulty: 2 },
 ];
 
 export const CLAUSE_CRUSHER_QUESTIONS: McqQuestion[] = [
@@ -443,6 +462,8 @@ export const CLAUSE_CRUSHER_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     difficulty: 1,
   },
+  { id: 'cc-003', prompt: 'Relative clauses', question: 'In “The girl, who carried the lantern, led the way,” which words form the relative clause?', choices: ['who carried the lantern', 'The girl', 'led the way', 'the lantern'], answerIndex: 0, difficulty: 3 },
+  { id: 'cc-004', prompt: 'Subordinating conjunctions', question: 'Which word best completes “___ the rain stopped, we went outside”?', choices: ['When', 'And', 'But', 'Or'], answerIndex: 0, difficulty: 2 },
 ];
 
 export const WORD_CLASS_WARS_QUESTIONS: McqQuestion[] = [
@@ -457,7 +478,7 @@ export const WORD_CLASS_WARS_QUESTIONS: McqQuestion[] = [
   {
     id: 'wc-002',
     prompt: 'Word class',
-    question: 'What word class is “Run”?',
+    question: 'In “They run each morning”, what word class is “run”?',
     choices: ['Noun', 'Verb', 'Adverb', 'Adjective'],
     answerIndex: 1,
     difficulty: 1,
@@ -473,11 +494,15 @@ export const WORD_CLASS_WARS_QUESTIONS: McqQuestion[] = [
   {
     id: 'wc-004',
     prompt: 'Word class',
-    question: 'What word class is “Dog”?',
+    question: 'In “The dog barked”, what word class is “dog”?',
     choices: ['Noun', 'Verb', 'Adverb', 'Adjective'],
     answerIndex: 0,
     difficulty: 1,
   },
+  { id: 'wc-005', prompt: 'Word class', question: 'In “the blue kite”, what word class is “the”?', choices: ['Determiner', 'Verb', 'Adverb', 'Preposition'], answerIndex: 0, difficulty: 2 },
+  { id: 'wc-006', prompt: 'Word class', question: 'In “the ball rolled under the chair”, what word class is “under”?', choices: ['Preposition', 'Noun', 'Adjective', 'Pronoun'], answerIndex: 0, difficulty: 2 },
+  { id: 'wc-007', prompt: 'Word class', question: 'In “Lena took her coat”, what word class is “her”?', choices: ['Possessive determiner', 'Verb', 'Conjunction', 'Adverb'], answerIndex: 0, difficulty: 3 },
+  { id: 'wc-008', prompt: 'Word class', question: 'In “I stayed because it rained”, what word class is “because”?', choices: ['Conjunction', 'Noun', 'Adjective', 'Determiner'], answerIndex: 0, difficulty: 2 },
 ];
 
 export const SPELLBOUND_FORGE_QUESTIONS: McqQuestion[] = [
@@ -513,6 +538,12 @@ export const SPELLBOUND_FORGE_QUESTIONS: McqQuestion[] = [
     answerIndex: 1,
     difficulty: 3,
   },
+  { id: 'sf-spec-005', prompt: 'Spelling', question: 'Choose the correct spelling.', choices: ['necessary', 'neccessary', 'necesary', 'nessesary'], answerIndex: 0, difficulty: 3 },
+  { id: 'sf-spec-006', prompt: 'Spelling', question: 'Choose the correct spelling.', choices: ['environment', 'enviroment', 'envirenment', 'environmant'], answerIndex: 0, difficulty: 3 },
+  { id: 'sf-spec-007', prompt: 'Spelling', question: 'Choose the correct spelling.', choices: ['rhythm', 'rythm', 'rhythym', 'rhythem'], answerIndex: 0, difficulty: 3 },
+  { id: 'sf-spec-008', prompt: 'Spelling', question: 'Choose the correct spelling.', choices: ['physical', 'phisical', 'physicle', 'fysical'], answerIndex: 0, difficulty: 3 },
+  { id: 'sf-spec-009', prompt: 'Homophones', question: 'Which word completes “Please put the pencils in their ___”?', choices: ['stationery', 'stationary', 'stationaries', 'station'], answerIndex: 0, difficulty: 3 },
+  { id: 'sf-spec-010', prompt: 'Suffixes', question: 'Which is the correct spelling of happy with the suffix -ly?', choices: ['happily', 'happyly', 'hapily', 'happiley'], answerIndex: 0, difficulty: 2 },
 ];
 
 export const TEXT_DETECTIVE_LEVELS: TextDetectiveLevel[] = [
@@ -594,6 +625,21 @@ export const TEXT_DETECTIVE_LEVELS: TextDetectiveLevel[] = [
       },
     ],
   },
+  ...READING_PAPER_PASSAGES.map((passage, passageIndex): TextDetectiveLevel => ({
+    passageTitle: passage.title,
+    passageText: passage.text,
+    questions: READING_PAPER_QUESTIONS.filter((question): question is Extract<ReadingPaperQuestion, { type: 'mcq' }> => question.type === 'mcq'
+      && question.passageIndex === passageIndex
+      && !['inference', 'summary', 'author-choice'].includes(question.skillTag))
+      .map(question => ({
+        id: `td-${question.id}`,
+        questionText: question.question,
+        options: question.choices,
+        correctAnswerIndex: question.answerIndex,
+        skillTag: question.skillTag as TextDetectiveSkillTag,
+        difficulty: question.marks === 1 ? 'easy' : question.marks === 2 ? 'medium' : 'hard',
+      })),
+  })),
 ];
 
 export const STORY_SEQUENCER_QUESTIONS: StorySequencerQuestion[] = [
@@ -612,6 +658,7 @@ export const STORY_SEQUENCER_QUESTIONS: StorySequencerQuestion[] = [
     correctOrder: [1, 3, 2, 0],
     difficulty: 2,
   },
+  { id: 'seq-002', passageTitle: 'The Broken Bridge', passageText: 'Nia noticed a missing plank in the bridge. She warned her friends to stop. They found a longer path beside the river. At last, they reached the campsite safely.', prompt: 'Sequence', questionText: 'Put the four events in the order they happened.', events: ['The group reached the campsite', 'Nia warned her friends', 'Nia noticed the missing plank', 'They found another path'], correctOrder: [2, 1, 3, 0], difficulty: 2 },
 ];
 
 export const FACT_OR_FICTION_FORGE_QUESTIONS: FactOrFictionQuestion[] = [
@@ -634,6 +681,7 @@ export const FACT_OR_FICTION_FORGE_QUESTIONS: FactOrFictionQuestion[] = [
   {
     id: 'fof-003',
     prompt: 'True or false',
+    context: 'On Monday morning, Zara arrived at the town library before it opened.',
     statement: 'Zara arrives at the library on Monday morning.',
     mode: 'true_false',
     answerIndex: 0,
@@ -642,6 +690,7 @@ export const FACT_OR_FICTION_FORGE_QUESTIONS: FactOrFictionQuestion[] = [
   {
     id: 'fof-004',
     prompt: 'True or false',
+    context: 'Tom heard a strange noise upstairs. Then he picked up the key, walked upstairs and opened the door.',
     statement: 'Tom opens the door before he hears a noise.',
     mode: 'true_false',
     answerIndex: 1,
@@ -670,6 +719,7 @@ export const COMPARE_CONTRAST_CANYON_QUESTIONS: CompareContrastQuestion[] = [
     correctAnswerIndex: 0,
     difficulty: 1,
   },
+  { id: 'ccn-003', prompt: 'Compare & contrast', extractA: 'Asha kept the old map because its markings showed a safe route.', extractB: 'Ben chose the new map because its paths were easier to read.', questionText: 'How are Asha and Ben similar?', options: ['Both use maps to plan routes', 'Both prefer the old map', 'Neither can read a map', 'Both have finished'], correctAnswerIndex: 0, difficulty: 2 },
 ];
 
 export const NOUN_PHRASE_BUILDER_QUESTIONS: NounPhraseBuilderQuestion[] = [
@@ -689,6 +739,8 @@ export const NOUN_PHRASE_BUILDER_QUESTIONS: NounPhraseBuilderQuestion[] = [
     correctSequence: ['ancient', 'stone', 'on the hill'],
     difficulty: 2,
   },
+  { id: 'np-003', prompt: 'Expanded noun phrase', base: 'The ___ lantern', modifiers: ['flickering', 'brass', 'on the table'], correctSequence: ['flickering', 'brass', 'on the table'], difficulty: 3 },
+  { id: 'np-004', prompt: 'Expanded noun phrase', base: 'A ___ path', modifiers: ['narrow', 'winding', 'through the woods'], correctSequence: ['narrow', 'winding', 'through the woods'], difficulty: 2 },
 ];
 
 export const VOICE_SWITCH_VAULT_QUESTIONS: VoiceSwitchQuestion[] = [
@@ -708,6 +760,8 @@ export const VOICE_SWITCH_VAULT_QUESTIONS: VoiceSwitchQuestion[] = [
     correctAnswerIndex: 0,
     difficulty: 1,
   },
+  { id: 'vs-003', prompt: 'Voice', sentence: 'The prize was collected by Mina.', options: ['Active', 'Passive', 'Both', 'Neither'], correctAnswerIndex: 1, difficulty: 2 },
+  { id: 'vs-004', prompt: 'Voice', sentence: 'The volunteers planted new trees.', options: ['Active', 'Passive', 'Both', 'Neither'], correctAnswerIndex: 0, difficulty: 2 },
 ];
 
 export const FORMAL_FIXER_QUESTIONS: FormalFixerQuestion[] = [
@@ -715,8 +769,8 @@ export const FORMAL_FIXER_QUESTIONS: FormalFixerQuestion[] = [
     id: 'ff-001',
     prompt: 'Formal language',
     sentence: "I'm gonna go to the shop.",
-    informalPhrase: "gonna",
-    replacements: ['going to', 'wanna', 'gotta', 'kinda'],
+    informalPhrase: "I'm gonna",
+    replacements: ['I am going to', 'I wanna', 'I going to', 'I am go'],
     correctAnswerIndex: 0,
     difficulty: 1,
   },
@@ -729,6 +783,7 @@ export const FORMAL_FIXER_QUESTIONS: FormalFixerQuestion[] = [
     correctAnswerIndex: 0,
     difficulty: 2,
   },
+  { id: 'ff-003', prompt: 'Formal language', sentence: 'The results were a big deal.', informalPhrase: 'a big deal', replacements: ['significant', 'super cool', 'a laugh', 'no biggie'], correctAnswerIndex: 0, difficulty: 2 },
 ];
 
 export const COHESION_CONNECTOR_QUESTIONS: CohesionConnectorQuestion[] = [
@@ -748,6 +803,8 @@ export const COHESION_CONNECTOR_QUESTIONS: CohesionConnectorQuestion[] = [
     correctAnswerIndex: 1,
     difficulty: 2,
   },
+  { id: 'coh-003', prompt: 'Cohesion', sentence: 'Maya lent Sam her notebook. ___ returned it the next day.', options: ['Sam', 'She', 'Maya', 'They'], correctAnswerIndex: 0, difficulty: 3 },
+  { id: 'coh-004', prompt: 'Linking ideas', sentence: 'The route was steep. ___, the walkers continued.', options: ['Nevertheless', 'Therefore', 'For example', 'Because'], correctAnswerIndex: 0, difficulty: 3 },
 ];
 
 export const PUNCTUATION_MASTERY_QUESTIONS: PunctuationBuildQuestion[] = [
@@ -775,4 +832,6 @@ export const PUNCTUATION_MASTERY_QUESTIONS: PunctuationBuildQuestion[] = [
     ],
     difficulty: 3,
   },
+  { id: 'pm-003', prompt: 'Parenthesis (brackets)', parts: ['The oak tree ', { id: 'open', options: ['(', '[', ','], correct: '(' }, 'which was over a century old', { id: 'close', options: [')', ']', ','], correct: ')' }, ' stood by the gate', { id: 'end', options: ['.', '?'], correct: '.' }], difficulty: 3 },
+  { id: 'pm-004', prompt: 'Hyphens', parts: ['The ', { id: 'compound', options: ['well-known', 'well known', 'well,known'], correct: 'well-known' }, ' author visited the school', { id: 'end', options: ['.', '!'], correct: '.' }], difficulty: 3 },
 ];

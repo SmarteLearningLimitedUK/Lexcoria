@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { DEFAULT_AVATAR_ID } from '../assets/characters';
 import { AVATARS, INITIAL_DAILY_QUESTS, ISLANDS } from '../constants';
 import { IslandData, LevelData, PlayerData } from '../types';
@@ -7,6 +7,7 @@ import { getLevelGameTitle } from '../utils/gameNames';
 import { createTelemetryState } from '../systems/progression/telemetry';
 import { getStarterItemIds } from '../systems/progression/shopCatalog';
 import { useProgressionStore } from '../store/useProgressionStore';
+import { EnglishSaveContext } from './EnglishSaveContext';
 
 export const PLAYER_STORAGE_KEY = 'maths_quest_player_v2';
 const ALL_ISLAND_IDS = ISLANDS.map(island => island.id);
@@ -15,7 +16,7 @@ const resolveAvatarId = (avatarId?: string) => (
   AVATARS.some(avatar => avatar.id === avatarId) ? avatarId! : DEFAULT_AVATAR_ID
 );
 
-const createDefaultPlayer = (parsed?: Partial<PlayerData> | null): PlayerData => ({
+export const createDefaultPlayer = (parsed?: Partial<PlayerData> | null): PlayerData => ({
   playerName: parsed?.playerName || '',
   avatarId: resolveAvatarId(parsed?.avatarId),
   level: parsed?.level || 1,
@@ -91,8 +92,10 @@ export interface PlayerProgressionController {
 }
 
 export const usePlayerProgression = (): PlayerProgressionController => {
+  const saveContext = useContext(EnglishSaveContext);
   const grantProgressionXp = useProgressionStore((state) => state.grantXp);
   const [player, setPlayer] = useState<PlayerData>(() => {
+    if (saveContext) return createDefaultPlayer(saveContext.initialPlayer);
     const saved = localStorage.getItem(PLAYER_STORAGE_KEY);
     const parsed = saved ? JSON.parse(saved) : null;
     return createDefaultPlayer(parsed);
@@ -105,8 +108,14 @@ export const usePlayerProgression = (): PlayerProgressionController => {
   );
 
   useEffect(() => {
-    localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(player));
-  }, [player]);
+    localStorage.setItem(saveContext?.storageKey ?? PLAYER_STORAGE_KEY, JSON.stringify(player));
+    saveContext?.queue(player);
+  }, [player, saveContext]);
+
+  useEffect(() => {
+    if (!saveContext) return;
+    return useProgressionStore.subscribe(() => saveContext.queue(player));
+  }, [player, saveContext]);
 
   useEffect(() => {
     if (!AVATARS.some((avatar) => avatar.id === player.avatarId)) {

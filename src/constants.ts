@@ -20,16 +20,7 @@ const mergeIslandLevels = (...groups: LevelData[][]): LevelData[] => {
     id: index + 1,
   }));
 
-  const seen = new Set<string>();
-  return flattened.map((level) => {
-    const practiceKey = level.blueprintKey || `${level.gameType || 'level'}-${level.id}`;
-    const isPractice = !seen.has(practiceKey);
-    seen.add(practiceKey);
-    return {
-      ...level,
-      isPractice: level.isPractice ?? isPractice,
-    };
-  });
+  return flattened.map((level) => ({ ...level, isPractice: level.isPractice ?? false }));
 };
 
 export const ACHIEVEMENTS: Achievement[] = [
