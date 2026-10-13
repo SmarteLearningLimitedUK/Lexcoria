@@ -78,7 +78,7 @@ export default function EnglishAccessGate({ children }: { children: ReactNode })
         if (result.error) throw new Error('Unable to load English progress. Please try again.');
         const saved = result.data as SaveRow | null;
         const outbox = readOutbox(child.id);
-        if (outbox?.attempt?.requestId === saved?.last_request_id) {
+        if (outbox?.attempt && saved && outbox.attempt.requestId === saved.last_request_id) {
           outbox.attempt = null;
           outbox.revision = saved.revision;
           if (!outbox.latest) localStorage.removeItem(outboxKey(child.id));
